@@ -54,14 +54,12 @@ predict(object, newdata, level, asList, na.action, naPattern)
 \seealso{\code{\link{nlme}}, \code{\link{fitted.nlme}}}
 
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
 fm1 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
             fixed = Asym + xmid + scal ~ 1, start = c(18, 52, 7.5))
 newSoybean <- data.frame(Time = c(10,30,50,80,100),
                     Plot = c("1988F1", "1988F1","1988F1", "1988F1","1988F1"))
 predict(fm1, newSoybean, level = 0:1)
-}
 }
 \keyword{models}

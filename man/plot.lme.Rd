@@ -85,7 +85,6 @@ plot(object, form, abline, id, idLabels, idResType, grid, ...)
 \examples{
 library(lme)
 data(Orthodont)
-\dontrun{
 fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
 # standardized residuals versus fitted values by gender
 plot(fm1, resid(., type = "p") ~ fitted(.) | Sex, abline = 0)
@@ -93,7 +92,6 @@ plot(fm1, resid(., type = "p") ~ fitted(.) | Sex, abline = 0)
 plot(fm1, Subject ~ resid(.))
 # observed versus fitted values by Subject
 plot(fm1, distance ~ fitted(.) | Subject, abline = c(0,1))
-}
 }
 \keyword{models}
 \keyword{hplot}

@@ -70,10 +70,8 @@ library(lme)
 data(Orthodont)
 fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
 # scatter plot of coefficients by gender, identifying unusual subjects
-\dontrun{   # still having problems with coef(lmeObject)
 pairs(fm1, ~coef(.) | Sex, id = 0.1, adj = -0.5)    
 # scatter plot of estimated random effects
-pairs(fm1, ~ranef(.))
-}
+pairs(fm1, ~ranef(.))         
 }
 \keyword{models}

@@ -30,12 +30,10 @@ update(object, model, data, fixed, random, groups, start,
 \seealso{\code{\link{nlme}}}
 
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
 fm1 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
             fixed = Asym + xmid + scal ~ 1, start = c(18, 52, 7.5))
 fm2 <- update(fm1, weights = varPower())
-}
 }
 \keyword{models}

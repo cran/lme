@@ -163,9 +163,8 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
   \code{\link{corClasses}}, \code{\link{varClasses}}
 }
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
 ## all parameters as fixed and random effects
 fm1 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
             fixed = Asym + xmid + scal ~ 1, start = c(18, 52, 7.5))
@@ -173,6 +172,5 @@ fm1 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
 fm2 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
             fixed = Asym + xmid + scal ~ 1, random = pdDiag(Asym + xmid ~ 1),
             start = c(18, 52, 7.5))
-}
 }
 \keyword{models}

@@ -40,8 +40,6 @@ intervals(object, level, pool)
 library(lme)
 data(Orthodont)
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
-\dontrun{
 intervals(fm1)
-}
 }
 \keyword{models}

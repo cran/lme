@@ -41,8 +41,6 @@ library(lme)
 data(Ovary)
 fm1 <- lm(follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time), Ovary,
           subset = Mare == 1)
-\dontrun{
 Variogram(resid(fm1), dist(1:29))[1:10,]
-}
 }
 \keyword{models}

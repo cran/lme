@@ -63,9 +63,7 @@ plot(object, smooth, showModel, sigma, span, xlab, ylab, type, ylim, ...)
 \examples{
 library(lme)
 data(Ovary)
-\dontrun{
 fm1 <- lme(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary)
 plot(Variogram(fm1, form = ~ Time | Mare, maxDist = 0.7))
-}
 }
 \keyword{models}

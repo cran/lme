@@ -82,9 +82,8 @@ anova(object, ..., test, type, adjustSigma, terms, L, verbose)
   \code{\link{AIC}}, \code{\link{BIC}}, \code{\link{print.anova.lme}} }
 
 \examples{
-library(lme)
+library(nlme)
 data(Ovary)
-\dontrun{
 # AR(1) errors within each Mare
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
@@ -92,6 +91,5 @@ anova(fm1)
 # variance changes with a power of the absolute fitted values?
 fm2 <- update(fm1, weights = varPower())
 anova(fm1, fm2)
-}
 }
 \keyword{models}

@@ -73,11 +73,9 @@ pairs(object, form, label, id, idLabels, grid, ...)
 library(lme)
 data(Orthodont)
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
-\dontrun{
 # scatter plot of coefficients by gender, identifying unusual subjects
 pairs(fm1, ~coef(.) | Sex, id = 0.1, adj = -0.5)    
 # scatter plot of estimated random effects
-pairs(fm1, ~ranef(.))
-}
+pairs(fm1, ~ranef(.))         
 }
 \keyword{models}

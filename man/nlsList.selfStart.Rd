@@ -40,11 +40,8 @@ nlsList(model, data, start, control, level, na.action, pool)
   \code{\link{nlme.nlsList}}, \code{\link{nlsList.formula}}
 }
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
-## Will fail in 0.64.1 but should run in 0.65
 fm1 <- nlsList(SSlogis, Soybean)
-}
 }
 \keyword{models}

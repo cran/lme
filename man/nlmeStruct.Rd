@@ -32,7 +32,7 @@ nlmeStruct(reStruct, corStruct, varStruct)
   \code{\link{corClasses}}, \code{\link{varFunc}} }
 
 \examples{
-library(lme)
+library(nlme)
 nlms1 <- nlmeStruct(reStruct(~age), corAR1(), varPower())
 }
 \keyword{models}

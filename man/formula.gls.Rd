@@ -25,10 +25,8 @@ formula(object)
 \examples{
 library(lme)
 data(Ovary)
-\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 formula(fm1)
-}
 }
 \keyword{models}

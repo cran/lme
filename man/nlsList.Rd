@@ -59,12 +59,9 @@ nlsList(model, data, start, control, level, na.action, pool)
 \code{\link{nls}}, \code{\link{nlme.nlsList}}.
 }
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
-## Will fail in 0.64.1 but should run in 0.65.0
 fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal) | Plot, Soybean)
-}
 }
 \keyword{models}
 

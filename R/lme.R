@@ -1,4 +1,4 @@
-### $Id: lme.q,v 1.87 1999/06/14 14:59:52 pinheiro Exp $
+### $Id: lme.q,v 1.86 1999/05/27 22:08:41 bates Exp $
 ###
 ###            Fit a general linear mixed effects model
 ###
@@ -497,11 +497,6 @@ lmeApVar <-
     matrix(reSt[[i]]) <- sig2 * pdMatrix(reSt[[i]])
     if (inherits(reSt[[i]], "pdSymm") && natural) {
       reSt[[i]] <- pdNatural(reSt[[i]])
-    }
-    if (inherits(reSt[[i]], "pdBlocked") && natural) {
-      for(j in seq(along = reSt[[i]])) {
-        reSt[[i]][[j]] <- pdNatural(reSt[[i]][[j]])
-      }
     }
   }
   lmeSt[["reStruct"]] <- reSt

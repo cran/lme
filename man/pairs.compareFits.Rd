@@ -43,9 +43,6 @@ library(lme)
 data(Orthodont)
 fm1 <- lmList(Orthodont)
 fm2 <- lme(Orthodont)
-\dontrun{
-## requires trellis graphics
 pairs(compareFits(coef(fm1), coef(fm2)))
-}
 }
 \keyword{models}

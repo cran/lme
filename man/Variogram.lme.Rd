@@ -108,8 +108,6 @@ Variogram(object, distance, form, resType, data, na.action, maxDist,
 library(lme)
 data(BodyWeight)
 fm1 <- lme(weight ~ Time * Diet, BodyWeight, ~ Time | Rat)
-\dontrun{
 Variogram(fm1, form = ~ Time | Rat, nint = 10, robust = TRUE)
-}
 }
 \keyword{models}

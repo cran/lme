@@ -1,4 +1,4 @@
-### $Id: gnls.q,v 1.15 1999/06/14 14:59:52 pinheiro Exp $
+### $Id: gnls.q,v 1.14 1999/06/04 13:43:53 pinheiro Exp $
 ###
 ###  Fit a general nonlinear regression model with correlated and/or
 ###  heteroscedastic errors
@@ -476,9 +476,9 @@ gnls <-
   Fitted <- yShrunk - Resid
   attr(Resid, "std") <- sigma/(varWeights(gnlsSt))
   if (!is.null(groups)) {
-    Resid[] <- Resid[revOrderShrunk]
-    Fitted[] <- Fitted[revOrderShrunk]
-    grpShrunk[] <- grpShrunk[revOrderShrunk]
+    Resid <- Resid[revOrderShrunk]
+    Fitted <- Fitted[revOrderShrunk]
+    grpShrunk <- grpShrunk[revOrderShrunk]
     attr(Resid, "std") <- attr(Resid, "std")[revOrderShrunk]
   }
   ## getting the approximate var-cov of the parameters

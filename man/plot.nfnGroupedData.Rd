@@ -98,11 +98,9 @@ http://franz.stat.wisc.edu/pub/NLME.
 \examples{
 library(lme)
 data(Orthodont)
-\dontrun{
 # different panels per Subject
 plot(Orthodont)
 # different panels per gender
 plot(Orthodont, outer = TRUE)
-}
 }
 \keyword{models}

@@ -42,16 +42,13 @@ selfStart(model, initial, parameters, template)
 \seealso{\code{\link{selfStart.formula}}}
 }
 \examples{
-library(lme)
 # `first.order.log.model' is a function object defining a first order
 # compartment model 
 # `first.order.log.initial' is a function object which calculates initial
 # values for the parameters in `first.order.log.model'
 
 # self-starting first order compartment model
-\dontrun{
 SSfol <- selfStart(first.order.log.model, first.order.log.initial)
-}
 }
 \keyword{models}
 

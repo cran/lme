@@ -23,12 +23,10 @@ fitted(object)
 \seealso{\code{\link{gnls}}, \code{\link{residuals.gnls}} }
 
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
 fm1 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             weights = varPower())
 fitted(fm1)
-}
 }
 \keyword{models}

@@ -108,9 +108,7 @@ Variogram(object, distance, form, resType, data, na.action, maxDist,
 \examples{
 library(lme)
 data(BodyWeight)
-\dontrun{
 fm1 <- gls(weight ~ Time * Diet, BodyWeight)
 Variogram(fm1, form = ~ Time | Rat)[1:10,]
-}
 }
 \keyword{models}

@@ -67,10 +67,8 @@ qqnorm(object, form, abline, id, idLabels, grid, ...)
 \examples{
 library(lme)
 data(Ovary)
-\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 qqnorm(fm1, abline = c(0,1))
-}
 }
 \keyword{models}

@@ -24,12 +24,9 @@ formula(object)
 \seealso{\code{\link{nlsList}}}
 
 \examples{
-library(nls)
+library(nlme)
 data(Soybean)
-## This example won't run in 0.64.1 but should in 0.65
-\dontrun{
 fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal)|Plot, data=Soybean)
 formula(fm1)
-}
 }
 \keyword{models}

@@ -93,13 +93,11 @@ gls(model, data, correlation, weights, subset, method, na.action, control,
 \examples{
 library(lme)
 data(Ovary)
-\dontrun{
 # AR(1) errors within each Mare
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 # variance increases with a power of the absolute fitted values
-fm2 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
+fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            weights = varPower())
-}
 }
 \keyword{models}

@@ -15,10 +15,12 @@ formula(object)
 \value{
   a formula representing the model used to obtain \code{object}.
 }
+
 \author{Jose Pinheiro and Douglas Bates}
+
 \seealso{\code{\link{nls}}, \code{\link{formula}}}
+
 \examples{
-library(nls)
 data(Orange)
 fm1 <- nls(circumference ~ A/(1+exp((B-age)/C)), Orange,
   start = list(A=160, B=700, C = 350))

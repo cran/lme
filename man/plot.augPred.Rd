@@ -38,8 +38,6 @@ plot(x, key, grid, ...)
 library(lme)
 data(Orthodont)
 fm1 <- lme(Orthodont)
-\dontrun{
 plot(augPred(fm1, level = 0:1, length.out = 2))
-}
 }
 \keyword{models}

@@ -108,15 +108,13 @@ gnls(model, data, params, start, correlation, weights, subset,
   \code{\link{varFunc}}, \code{\link{corClasses}}, \code{\link{varClasses}}
 }
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
 # variance increases with a power of the absolute fitted values
 fm1 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             weights = varPower())
 # errors follow an auto-regressive process of order 1 
 fm2 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             correlation = corAR1())
-}
 }
 \keyword{models}

@@ -377,18 +377,6 @@ splitFormula <-
   list(asOneSidedFormula(form))
 }
 
-
-## fake version of xyplot using coplot just so some of the plots from the
-## library can be drawn
-
-xyplot <- function (formula, data = list(), groups = NULL, ..., subset = TRUE) 
-{
-  args <- as.list(match.call())[-1]
-  do.call("coplot", c(args[match(c("formula", "data", "xlab", "ylab", "panel"), 
-                     names(args), 0)], list(show.given = FALSE) ) )
-}
-
-
 ## Local Variables:
 ## mode:S
 ## End:

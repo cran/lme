@@ -86,14 +86,9 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
   \code{\link{nlmeObject}} } 
 
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
-## Will fail in 0.64.1 but should run in 0.65
 fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal) | Plot, Soybean)
-}
-\dontrun{
 fm2 <- nlme(fm1)
-}
 }
 \keyword{models}

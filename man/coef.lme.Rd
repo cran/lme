@@ -70,9 +70,7 @@ coef(object, augFrame, level, data, which, FUN, omitGroupingFactor)
 library(lme)
 data(Orthodont)
 fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
-\dontrun{
 coef(fm1)
 coef(fm1, augFrame = TRUE)
-}
 }
 \keyword{models}

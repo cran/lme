@@ -57,9 +57,7 @@ ACF(object, maxLag, resType, form, na.action)
 \examples{
 library(lme)
 data(Ovary)
-\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary)
 ACF(fm1, form = ~ 1 | Mare)
-}
 }
 \keyword{models}

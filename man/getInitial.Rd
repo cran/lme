@@ -33,12 +33,9 @@ getInitial(object, data, ...)
   \code{\link{selfStart.default}},\code{\link{selfStart.formula}}
 }
 \examples{
-library(lme)
-data(Puromycin)
+library( lme )
+data( Puromycin )
 PurTrt <- Puromycin[ Puromycin$state == "treated", ]
-\dontrun{
-## check if the response should be vel or rate
 getInitial( vel ~ SSmicmen( conc, Vm, K ), PurTrt )
-}
 }
 \keyword{models,nonlinear,data}

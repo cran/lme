@@ -30,7 +30,6 @@ solve(a, b, tol)
 \seealso{\code{\link{solve.pdMat}}, \code{\link{reStruct}}}
 
 \examples{
-library(lme)
 rs1 <- reStruct(list(A = pdSymm(diag(1:3), form = ~Score),
   B = pdDiag(2 * diag(4), form = ~Educ)))
 solve(rs1)

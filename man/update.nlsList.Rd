@@ -31,11 +31,9 @@ update(object, model, data, start, control, level, subset, na.action,
 \seealso{\code{\link{nlsList}}}
 
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
 fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal) | Plot, Soybean)
 fm2 <- update(fm1, start = list(Asym = 23, xmid = 57, scal = 9))
-}
 }
 \keyword{models}

@@ -45,8 +45,6 @@ plot(object, ...)
 library(lme)
 data(Orthodont)
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
-\dontrun{
 plot(intervals(fm1))
-}
 }
 \keyword{models}

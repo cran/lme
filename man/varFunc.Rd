@@ -28,7 +28,6 @@ varFunc(object)
   \code{\link{coef.varFunc}}} 
 
 \examples{
-library(lme)
 vf1 <- varFunc(~age)
 }
 \keyword{models}

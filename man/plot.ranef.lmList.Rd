@@ -80,13 +80,11 @@ plot(object, form, grid, control, ...)
 \examples{
 library(lme)
 data(Orthodont)
-\dontrun{
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
 plot(ranef(fm1))
 fm1RE <- ranef(fm1, aug = TRUE)
 plot(fm1RE, form = ~ Sex)
 plot(fm1RE, form = age ~ Sex)
-}
 }
 \keyword{models}
 

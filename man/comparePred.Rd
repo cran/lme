@@ -1,4 +1,4 @@
-% $Id: comparePred.Rd,v 1.4 1999/06/21 21:54:28 pinheiro Exp $
+% $Id: comparePred.Rd,v 1.3 1998/04/02 18:53:10 pinheiro Exp $
 \name{comparePred}
 \title{Compare Predictions}
 \usage{
@@ -60,7 +60,8 @@ level, ...)
   specific classes of objects. Classes which already have methods for
   this function include: \code{gls}, \code{lme}, and \code{lmList}.
 }
-\seealso{code{\link{augPred}}, \code{\link{getGroups}}}
+\seealso{\code{\link{plot.comparePred}}, \code{\link{augPred}},
+  \code{\link{getGroups}}}
 
 \examples{
 library(lme)

@@ -1,4 +1,4 @@
-### $Id: newGenerics.q,v 1.30 1999/06/21 21:54:28 pinheiro Exp $
+### $Id: newGenerics.q,v 1.29 1999/05/13 15:46:20 pinheiro Exp $
 ###
 ###    New generics used with corStruct, varFunc, groupedData, and reStruct
 ###
@@ -100,7 +100,7 @@ getResponse <-
 
 isBalanced <-
   ## Check for balance, especially in a groupedData object
-  function(object, countOnly = FALSE, level) UseMethod()
+  function(object, countOnly = FALSE) UseMethod()
 
 isInitialized <-
   ## Determine if the object has been assigned a value

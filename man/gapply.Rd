@@ -1,4 +1,4 @@
-% $Id: gapply.Rd,v 1.6 1999/06/21 21:54:28 pinheiro Exp $
+% $Id: gapply.Rd,v 1.5 1999/03/31 15:41:22 pinheiro Exp $
 \name{gapply}
 \title{Apply a Function by Groups}
 \usage{
@@ -54,6 +54,6 @@ gapply(object, which, FUN, form, level, groups, ...)
 library( lme )
 data( Quinidine )
 ## Find number of non-missing "conc" observations for each Subject
-gapply( Quinidine, FUN = function(x) sum(!is.na(x$conc)) )
+gapply( Quinidine, function(x) sum(!is.na(x$conc)) )
 }
 \keyword{data}

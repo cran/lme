@@ -40,6 +40,6 @@ logLik(object, REML, pool)
 library(lme)
 data(Orthodont)
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
-logLik(fm1)   # returns NA when it should not
+logLik(fm1)
 }
 \keyword{models}

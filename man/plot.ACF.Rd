@@ -46,10 +46,7 @@ plot(object, alpha, xlab, ylab, grid, ...)
 \examples{
 library(lme)
 data(Ovary)
-\dontrun{  # plot.ACF assigns with where = 1 (strange - should it be
-   frame = 1)
 fm1 <- lme(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary)
 plot(ACF(fm1, maxLag = 10), alpha = 0.01)
-}
 }
 \keyword{models}

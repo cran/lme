@@ -52,8 +52,6 @@ coef(object) <- value
 library(lme)
 vf1 <- varPower(1)
 coef(vf1)
-\dontrun{
 coef(vf1) <- 2
-}
 }
 \keyword{models}

@@ -34,10 +34,8 @@ residuals(object, type)
 \examples{
 library(lme)
 data(Soybean)
-\dontrun{
 fm1 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             weights = varPower())
 fitted(fm1)
-}
 }
 \keyword{models}

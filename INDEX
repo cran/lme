@@ -242,8 +242,12 @@ plot.lme                 Plot an lme Object
 plot.nffGroupedData      Plot an nffGroupedData Object
 plot.nfnGroupedData      Plot an nfnGroupedData Object
 plot.nmGroupedData       Plot an nmGroupedData Object
+plot.random.effects.lmList
+                         Plot a random.effects.lmList Object
+plot.random.effects.lme  Plot a random.effects.lme Object
 plot.ranef.lmList        Plot a ranef.lmList Object
 plot.ranef.lme           Plot a ranef.lme Object
+plot.variogram           Plot a variogram Object
 pooledSD                 Extract Pooled Standard Deviation
 predict.gls              Predictions from a gls Object
 predict.gnls             Predictions from a gnls Object

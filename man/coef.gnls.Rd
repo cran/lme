@@ -23,12 +23,10 @@ coef(object)
 \seealso{\code{\link{gnls}}} 
 
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
 fm1 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             weights = varPower())
 coef(fm1)
-}
 }
 \keyword{models}

@@ -33,9 +33,8 @@ print(x, verbose)
 \examples{
 library(lme)
 data(Orthodont)
-fm1 <- lme(distance ~ age * Sex, Orthodont, random = ~ age | Subject)
-fm2 <- update(fm1, random = ~ 1 | Subject)
-print(anova(fm1))                # single argument form
-print(anova(fm1, fm2))           # multiple arguments
+fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
+fm2 <- update(fm1, distance ~ age * Sex)
+print(anova(fm1, fm2))
 }
 \keyword{models}

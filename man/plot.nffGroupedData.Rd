@@ -1,4 +1,4 @@
-% $Id: plot.nffGroupedData.Rd,v 1.2 1999/06/21 21:54:29 pinheiro Exp $
+% $Id: plot.nffGroupedData.Rd,v 1.1 1998/04/06 21:35:18 pinheiro Exp $
 \name{plot.nffGroupedData}
 \title{Plot an nffGroupedData Object}
 \usage{
@@ -90,10 +90,8 @@ http://franz.stat.wisc.edu/pub/NLME.
 
 \examples{
 library(lme)
-data(Machines)
-\dontrun{
-plot(Machines)
-plot(Machines, inner = TRUE)
-}
+data(Machine)
+plot(Machine)
+plot(Machine, inner = TRUE)
 }
 \keyword{models}

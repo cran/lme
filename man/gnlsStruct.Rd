@@ -29,7 +29,7 @@ gnlsStruct(corStruct, varStruct)
   \code{\link{varFunc}} } 
 
 \examples{
-library(lme)
+library(nlme)
 gnls1 <- gnlsStruct(corAR1(), varPower())
 }
 \keyword{models}

@@ -45,6 +45,4 @@ class = c("nfnGroupedData", "nfGroupedData", "groupedData", "data.frame"),
 formula = distance ~ age | Subject,
 labels = list(x = "Age",
   y = "Distance from pituitary to pterygomaxillary fissure"),
-units = list(x = "(yr)", y = "(mm)"),
-FUN = function (x) max(x, na.rm = TRUE),
-order.groups = TRUE)            
+units = list(x = "(yr)", y = "(mm)"))

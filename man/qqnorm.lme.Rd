@@ -68,12 +68,10 @@ qqnorm(object, form, abline, id, idLabels, grid, ...)
 \examples{
 library(lme)
 data(Orthodont)
-\dontrun{
 fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
 # normal plot of standardized residuals by gender
 qqnorm(fm1, ~ resid(., type = "p") | Sex, abline = c(0, 1))
 # normal plots of random effects
 qqnorm(fm1, ~ranef(.))
-}
 }
 \keyword{models}

@@ -75,11 +75,9 @@ summary(object, pool)
 \seealso{\code{\link{nlsList}}, \code{\link{summary.nls}}}
 
 \examples{
-library(lme)
+library(nlme)
 data(Soybean)
-\dontrun{
 fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal) | Plot, Soybean)
 summary(fm1)
-}
 }
 \keyword{models}

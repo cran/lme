@@ -1,5 +1,5 @@
-### $Id: AvgDGain.q,v 1.2 1999/06/23 21:49:46 bates Exp $
-### Average daily weight gain (adg) of steers fed for 160 days.  The Treatment
+### $Id: AvgDGain.q,v 1.1 1998/05/19 19:45:40 bates Exp $
+### Average daily weight gain of steers fed for 160 days.  The Treatment
 ### is the level of medicated feed additive in the diet.  It is given as both
 ### an ordered factor (Treatment) and a continuous covariate (Trt).  The initial
 ### weight is also recorded.  The steers were housed in 8 different barns,
@@ -27,7 +27,10 @@ InitWt = c(338, 477, 444, 370, 403, 451, 450,
 Trt = c(0, 
   10, 20, 30, 0, 10, 20, 30, 0, 10, 20, 30, 0, 10, 20, 30, 0, 10, 
   20, 30, 0, 10, 20, 30, 0, 10, 20, 30, 0, 10, 20, 30)),
-row.names = as.character(1:32),
+row.names = c("1", 
+"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", 
+"14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", 
+"25", "26", "27", "28", "29", "30", "31", "32"),
 class = c("nfnGroupedData", "nfGroupedData", "groupedData", "data.frame"),
 formula = adg ~ Trt | Block,
 labels = list(x = "Level of medicated feed additive in diet",
