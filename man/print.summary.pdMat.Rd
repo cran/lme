@@ -1,4 +1,4 @@
-% $Id: print.summary.pdMat.Rd,v 1.3 1998/04/02 18:53:17 pinheiro Exp $
+% $Id: print.summary.pdMat.Rd,v 1.4 1999/06/28 17:22:25 bates Exp $
 \name{print.summary.pdMat}
 \title{Print a summary.pdMat Object}
 \usage{
@@ -38,8 +38,10 @@ print(x, sigma, rdig, Level, resid, ...)
 \examples{
 library(lme)
 data(Orthodont)
+\dontrun{
 pd1 <- pdCompSymm(3 * diag(3) + 1, form = ~age + age^2,
          data = Orthodont)
 print(summary(pd1), sigma = 1.2, resid = TRUE)
+}
 }
 \keyword{models}

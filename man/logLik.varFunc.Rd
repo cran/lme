@@ -1,4 +1,4 @@
-% $Id: logLik.varFunc.Rd,v 1.2 1998/04/02 18:53:15 pinheiro Exp $
+% $Id: logLik.varFunc.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{logLik.varFunc}
 \title{Extract varFunc logLik}
 \usage{
@@ -7,7 +7,7 @@ logLik(object, data)
 \alias{logLik.varFunc}
 \alias{logLik.varComb}
 \arguments{
- \item{object}{an object inheriting from class code{varFunc},
+ \item{object}{an object inheriting from class \code{varFunc},
    representing a variance function structure.} 
  \item{data}{this argument is included to make this method function
    compatible with other \code{logLik} methods and will be ignored.} 

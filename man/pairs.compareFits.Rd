@@ -1,4 +1,4 @@
-% $Id: pairs.compareFits.Rd,v 1.3 1998/04/02 18:53:15 pinheiro Exp $
+% $Id: pairs.compareFits.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{pairs.compareFits}
 \title{Pairs Plot of compareFits Object}
 \usage{
@@ -25,24 +25,23 @@ pairs(object, subset, key, ...)
   for each object being compared and values corresponding to the same
   group are joined by a line, to facilitate comparison of fits. If only
   two coefficients are present, the \code{trellis} function
-  \code{xyplot} is used; else the \code{trellis} function \code{splom}
-  is employed.
+  \code{xyplot} is used; otherwise the \code{trellis} function \code{splom}
+  is used.
 }
 \value{
   Pairwise scatter plots of the values being compared, with different
   symbols (colors) used for each object under comparison.
 }
-
 \author{Jose Pinheiro and Douglas Bates }
-
-\seealso{\code{\link{compareFits}},\code{\link{plot.compareFits}},
+\seealso{\code{\link{compareFits}}, \code{\link{plot.compareFits}},
   \code{\link{xyplot}}, \code{\link{splom}} }
-
 \examples{
 library(lme)
 data(Orthodont)
 fm1 <- lmList(Orthodont)
 fm2 <- lme(Orthodont)
+\dontrun{
 pairs(compareFits(coef(fm1), coef(fm2)))
+}
 }
 \keyword{models}

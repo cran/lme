@@ -1,4 +1,4 @@
-% $Id: recalc.modelStruct.Rd,v 1.4 1998/04/02 18:53:18 pinheiro Exp $
+% $Id: recalc.modelStruct.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{recalc.modelStruct}
 %\title{Recalculate Condensed Linear Model for a \code{modelStruct} Object}
 \title{Recalculate for a modelStruct Object}
@@ -23,15 +23,11 @@ recalc(object, conLin)
 \value{
   the recalculated condensed linear model object.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
 \note{This method function is generally only used inside model fitting
-  functions like \code{lme} and \code{gls}, which allow model
+  functions, such as \code{lme} and \code{gls}, that allow model
   components, such as correlated error terms and variance functions.
 }
-
 \seealso{\code{\link{recalc.corStruct}}, \code{\link{recalc.reStruct}},
-\code{\link{recalc.varFunc}}}
-
+    \code{\link{recalc.varFunc}}}
 \keyword{models}

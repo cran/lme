@@ -1,4 +1,4 @@
-% $Id: summary.gls.Rd,v 1.2 1998/04/06 21:35:19 pinheiro Exp $
+% $Id: summary.gls.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{summary.gls}
 \title{Summarize a gls Object}
 \usage{
@@ -31,8 +31,8 @@ summary(object, verbose)
     and the associated p-value under a \eqn{t} approximation. Rows
     correspond to the different coefficients.}
   \item{residuals}{if more than five observations are used in the
-    \code{gls} fit, a vector with the minimum, 25% quantile, median, 75%
-    quantile, and maximum of the residuals distribution; else the
+    \code{gls} fit, a vector with the minimum, first quartile, median, third
+    quartile, and maximum of the residuals distribution; else the
     residuals.} 
   \item{AIC}{the Akaike Information Criterion corresponding to
     \code{object}.} 
@@ -48,8 +48,10 @@ summary(object, verbose)
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 summary(fm1)
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: summary.pdMat.Rd,v 1.3 1998/04/02 18:53:19 pinheiro Exp $
+% $Id: summary.pdMat.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{summary.pdMat}
 \title{Summarize a pdMat Object}
 \usage{
@@ -13,7 +13,7 @@ summary(object, structName, noCorrelation)
 
 
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.} 
  \item{structName}{an optional character string with a description of
    the \code{pdMat} class. Default depends on the method function:

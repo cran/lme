@@ -1,4 +1,4 @@
-% $Id: lmList.groupedData.Rd,v 1.3 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: lmList.groupedData.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{lmList.groupedData}
 \title{lmList Fit from a groupedData Object}
 \usage{
@@ -6,13 +6,11 @@ lmList(object, data, level, na.action, pool)
 }
 \alias{lmList.groupedData}
 \arguments{
-  \item{object}{a data frame inheriting from class{groupedData}.}
-  \item{data}{this argument is included for consistency with the generic
-    function. It is ignored in this method function.
-  }
- \item{other arguments}{identical to the arguments in the generic
-   function call. See the documentation on \code{\link{lmList}}.
- }
+    \item{object}{a data frame inheriting from class \code{groupedData}.}
+    \item{data}{this argument is included for consistency with the generic
+	function. It is ignored in this method function.}
+    \item{other arguments}{identical to the arguments in the generic
+	function call. See the documentation for \code{\link{lmList}}.}
 }
 \description{
   The response variable and primary covariate in \code{formula(object)}

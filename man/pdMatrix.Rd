@@ -1,4 +1,4 @@
-% $Id: pdMatrix.Rd,v 1.2 1998/03/31 20:49:30 bates Exp $
+% $Id: pdMatrix.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{pdMatrix}
 \title{Extract Matrix or Square-Root Factor from a pdMat Object}
 \usage{
@@ -13,7 +13,7 @@ pdMatrix(object, fact, ...)
 \alias{pdMatrix.pdSymm}
 
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.}
  \item{fact}{an optional logical value. If \code{TRUE}, a square-root
    factor of the positive-definite matrix represented by \code{object}

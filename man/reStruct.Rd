@@ -1,4 +1,4 @@
-% $Id: reStruct.Rd,v 1.3 1998/04/02 18:53:17 pinheiro Exp $
+% $Id: reStruct.Rd,v 1.6 1999/07/29 18:44:55 bates Exp $
 \name{reStruct}
 \title{Random Effects Structure}
 \usage{
@@ -37,8 +37,8 @@ reStruct(object, pdClass, RML, data)
    obtain the levels for \code{factors}, which affect the dimensions and
    the row/column names of the underlying \code{pdMat} objects. If
    \code{NULL}, no attempt is made to obtain information on
-   \code{factors} appearing the random effects model. Defaults to parent
-   frame from which the function was called.}
+   \code{factors} appearing in the formulas. Defaults to the
+   parent frame from which the function was called.}
 }
 \description{
   This function is a constructor for the \code{reStruct} class,

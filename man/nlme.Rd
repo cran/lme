@@ -1,4 +1,4 @@
-% $Id: nlme.Rd,v 1.4 1998/12/03 14:28:59 pinheiro Exp $
+% $Id: nlme.Rd,v 1.7 1999/07/29 16:30:31 pinheiro Exp $
 \name{nlme}
 \title{Nonlinear Mixed-Effects Models}
 \usage{
@@ -21,31 +21,33 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
    called.} 
  \item{fixed}{a two-sided linear formula of the form
    \code{f1+...+fn~x1+...+xm}, or a list of two-sided formulas of the form
-   \code{f1~x1+...+xm}, with possibly different models for each fixed
-   effect. The \code{f1,...,fn} represent fixed effects included on the
-   right hand side of \code{model} and \code{x1+...+xm} define a linear
-   model for these parameters (when the left hand side of the formula
-   contains several parameters, they all are assumed to follow the same
-   linear model, described by the right hand side expression). A
-   \code{1} on the right hand side of the formula(s) indicates a single
+   \code{f1~x1+...+xm}, with possibly different models for different
+   parameters. The \code{f1,...,fn} are the names of parameters included on
+   the  right hand side of \code{model} and the \code{x1+...+xm}
+   expressions define linear models for these parameters (when the left
+   hand side of the formula contains several parameters, they all are
+   assumed to follow the same linear model, described by the right hand
+   side expression).
+   A \code{1} on the right hand side of the formula(s) indicates a single
    fixed effects for the corresponding parameter(s).}
  \item{random}{optionally, any of the following: (i) a two-sided formula
    of the form \code{r1+...+rn~x1+...+xm | g1/.../gQ}, with
-   \code{r1,...,rn} representing random effects included on the right
-   hand side of \code{model}, \code{x1+...+xm} specifying the model for
-   these random effects and \code{g1/.../gQ} the grouping structure
+   \code{r1,...,rn} naming parameters included on the right
+   hand side of \code{model}, \code{x1+...+xm} specifying the
+   random-effects model for
+   these parameters and \code{g1/.../gQ} the grouping structure
    (\code{Q} may be equal to 1, in which case no \code{/} is
    required). The random effects formula will be repeated 
    for all levels of grouping, in the case of multiple levels of
    grouping; (ii) a two-sided formula of the form
    \code{r1+...+rn~x1+..+xm}, a list of two-sided formulas of the form
-   \code{r1~x1+...+xm}, with possibly different models for each random
-   effect, a \code{pdMat} object with a two-sided formula, or list of
-   two-sided formulas (i.e. a non-\code{NULL} value for
+   \code{r1~x1+...+xm}, with possibly different random-effects models
+   for different parameters, a \code{pdMat} object with a two-sided
+   formula, or list of two-sided formulas (i.e. a non-\code{NULL} value for
    \code{formula(random)}), or a list of pdMat objects with two-sided
    formulas, or lists of two-sided formulas. In this case, the grouping
    structure formula will be given in \code{groups}, or derived from the
-   data used to to fit the nonlinear mixed-effects model, which should
+   data used to fit the nonlinear mixed-effects model, which should
    inherit from class  \code{groupedData},; (iii) a named list
    of formulas, lists of formulas, or \code{pdMat} objects as in (ii),
    with the grouping factors as names. The order of nesting will be
@@ -67,7 +69,7 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
    \code{fixed}, given by the vector. The \code{fixed} component
    is required, unless the model function inherits from class
    \code{selfStart}, in which case initial values will be derived from a
-   call to \code{nlsList}. The \code{random} is optionally used to specify
+   call to \code{nlsList}. An optional \code{random} component is used to specify
    initial values for the random effects and should consist of a matrix,
    or a list of matrices with length equal to the number of grouping
    levels. Each matrix should have as many rows as the number of groups
@@ -85,8 +87,8 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
    \code{varClasses} for a description of the available \code{varFunc}
    classes. Defaults to \code{NULL}, corresponding to homoscesdatic
    within-group errors.} 
- \item{subset}{an optional expression saying which subset of the rows of
-   \code{data} should  be  used in the fit. This can be a logical
+ \item{subset}{an optional expression indicating the subset of the rows of
+   \code{data} that should be used in the fit. This can be a logical
    vector, or a numeric vector indicating which observation numbers are
    to be included, or a  character  vector of the row names to be
    included.  All observations are included by default.}
@@ -117,7 +119,7 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
   mixed-effects model fit. Generic functions such as \code{print},
   \code{plot} and \code{summary} have methods to show the results of the
   fit. See \code{nlmeObject} for the components of the fit. The functions
-  \code{resid}, \code{coef}, \code{fitted}, code{fixed.effects}, and
+  \code{resid}, \code{coef}, \code{fitted}, \code{fixed.effects}, and
   \code{random.effects}  can be used to extract some of its components.
 }
 \references{
@@ -163,8 +165,9 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
   \code{\link{corClasses}}, \code{\link{varClasses}}
 }
 \examples{
-library(nlme)
+library(lme)
 data(Soybean)
+\dontrun{
 ## all parameters as fixed and random effects
 fm1 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
             fixed = Asym + xmid + scal ~ 1, start = c(18, 52, 7.5))
@@ -172,5 +175,6 @@ fm1 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
 fm2 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
             fixed = Asym + xmid + scal ~ 1, random = pdDiag(Asym + xmid ~ 1),
             start = c(18, 52, 7.5))
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: plot.lmList.Rd,v 1.3 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: plot.lmList.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{plot.lmList}
 \title{Plot an lmList Object}
 \usage{
@@ -68,19 +68,13 @@ plot(object, form, abline, id, idLabels, grid, ...)
 \value{
   a diagnostic Trellis plot.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{lmList}}, \code{\link{xyplot}}, \code{\link{bwplot}},
   \code{\link{histogram}} }
-
 \examples{
 library(lme)
 data(Orthodont)
+\dontrun{
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
 # standardized residuals versus fitted values by gender
 plot(fm1, resid(., type = "pool") ~ fitted(.) | Sex, abline = 0, id = 0.05)
@@ -88,5 +82,6 @@ plot(fm1, resid(., type = "pool") ~ fitted(.) | Sex, abline = 0, id = 0.05)
 plot(fm1, Subject ~ resid(.))
 # observed versus fitted values by Subject
 plot(fm1, distance ~ fitted(.) | Subject, abline = c(0,1))
+}
 }
 \keyword{models}

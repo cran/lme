@@ -1,4 +1,4 @@
-### $Id: zzModels.q,v 1.14 1999/06/04 16:06:38 pinheiro Exp $
+### $Id: zzModels.q,v 1.18 1999/07/28 23:00:46 bates Exp $
 ###
 ###       Individual selfStarting nonlinear regression models
 ###
@@ -23,7 +23,29 @@
 
 ##*## SSasymp - asymptotic regression model
 
-SSasymp <- selfStart(~ Asym + (R0 - Asym) * exp(-exp(lrc) * input),
+require(nls)
+
+SSasymp <- # selfStart(~ Asym + (R0 - Asym) * exp(-exp(lrc) * input),
+selfStart(
+  function(input, Asym, R0, lrc)
+{
+  .expr1 <- R0 - Asym
+  .expr2 <- exp(lrc)
+  .expr5 <- exp((( - .expr2) * input))
+  .value <- Asym + (.expr1 * .expr5)
+  .actualArgs <- as.list(match.call()[c("Asym", "R0", "lrc")])
+  if(all(unlist(lapply(.actualArgs, is.name)))) 
+    {
+      .grad <- array(0, c(length(.value), 3), list(NULL, c("Asym", "R0", "lrc")))
+      .grad[, "Asym"] <- 1 - .expr5
+      .grad[, "R0"] <- .expr5
+      .grad[, "lrc"] <-  - (.expr1 * (.expr5 * (.expr2 *
+                                                input)))
+      dimnames(.grad) <- list(NULL, .actualArgs)
+      attr(.value, "gradient") <- .grad
+    }
+  .value
+},
 function(mCall, data, LHS)
 {
   xy <- sortedXyData(mCall[["input"]], LHS, data)
@@ -37,7 +59,7 @@ function(mCall, data, LHS)
     ## This gives an estimate of the log (rate constant).  Use that
     ## with a partially linear nls algorithm
     pars <- coef(nls(y ~ cbind(1 - exp( - exp(lrc) * x),
-				  exp(- exp(lrc) * x)),
+                               exp(- exp(lrc) * x)),
 		     data = xy,
 		     start = list(lrc = lrc),
 		     algorithm = "plinear"))
@@ -68,13 +90,32 @@ function(mCall, data, LHS)
   val <- list(pars[2], pars[3], pars[1])
   names(val) <- mCall[c("Asym", "R0", "lrc")]
   val
-},
-c("Asym", "R0", "lrc"))
+})
 
 ##*## SSasympOff - alternate formulation of asymptotic regression model
 ##*## with an offset
 
-SSasympOff <- selfStart(~ Asym *( 1 - exp(-exp(lrc) * (input - c0) ) ),
+SSasympOff <- # selfStart(~ Asym *( 1 - exp(-exp(lrc) * (input - c0) ) ),
+selfStart(
+  function(input, Asym, lrc, c0)
+{
+  .expr1 <- exp(lrc)
+  .expr3 <- input - c0
+  .expr5 <- exp((( - .expr1) * .expr3))
+  .expr6 <- 1 - .expr5
+  .value <- Asym * .expr6
+  .actualArgs <- as.list(match.call()[c("Asym", "lrc", "c0")])
+  if(all(unlist(lapply(.actualArgs, is.name)))) 
+    {
+      .grad <- array(0, c(length(.value), 3), list(NULL, c("Asym", "lrc", "c0")))
+      .grad[, "Asym"] <- .expr6
+      .grad[, "lrc"] <- Asym * (.expr5 * (.expr1 * .expr3))
+      .grad[, "c0"] <-  - (Asym * (.expr5 * .expr1))
+      dimnames(.grad) <- list(NULL, .actualArgs)
+      attr(.value, "gradient") <- .grad
+    }
+  .value
+},
 function(mCall, data, LHS)
 {
   xy <- sortedXyData(mCall[["input"]], LHS, data)
@@ -89,12 +130,29 @@ function(mCall, data, LHS)
   val <- list(pars[2], pars[1], exp(-pars[1]) * log(-pars[3]/pars[2]))
   names(val) <- mCall[c("Asym", "lrc", "c0")]
   val
-},
-c("Asym", "lrc", "c0"))
+})
 
 ##*## SSasympOrig - exponential curve through the origin to an asymptote 
 
-SSasympOrig <- selfStart(~ Asym * (1 - exp(-exp(lrc) * input)),
+SSasympOrig <- # selfStart(~ Asym * (1 - exp(-exp(lrc) * input)),
+selfStart(
+  function(input, Asym, lrc)
+{
+  .expr1 <- exp(lrc)
+  .expr4 <- exp((( - .expr1) * input))
+  .expr5 <- 1 - .expr4
+  .value <- Asym * .expr5
+  .actualArgs <- as.list(match.call()[c("Asym", "lrc")])
+  if(all(unlist(lapply(.actualArgs, is.name)))) 
+    {
+      .grad <- array(0, c(length(.value), 2), list(NULL, c("Asym", "lrc")))
+      .grad[, "Asym"] <- .expr5
+      .grad[, "lrc"] <- Asym * (.expr4 * (.expr1 * input))
+      dimnames(.grad) <- list(NULL, .actualArgs)
+      attr(.value, "gradient") <- .grad
+    }
+  .value
+},
 function(mCall, data, LHS)
 {
   xy <- sortedXyData(mCall[["input"]], LHS, data)
@@ -113,13 +171,34 @@ function(mCall, data, LHS)
   value <- c(pars[2], pars[1])
   names(value) <- mCall[c("Asym", "lrc")]
   value
-},
-c("Asym", "lrc"))
+})
 
 ##*## SSbiexp - linear combination of two exponentials
 
 SSbiexp <-
-  selfStart(~ A1 * exp(-exp(lrc1)*input) + A2 * exp(-exp(lrc2) * input),
+#  selfStart(~ A1 * exp(-exp(lrc1)*input) + A2 * exp(-exp(lrc2) * input),
+selfStart(
+  function(input, A1, lrc1, A2, lrc2)
+{
+  .expr1 <- exp(lrc1)
+  .expr4 <- exp((( - .expr1) * input))
+  .expr6 <- exp(lrc2)
+  .expr9 <- exp((( - .expr6) * input))
+  .value <- (A1 * .expr4) + (A2 * .expr9)
+  .actualArgs <- as.list(match.call()[c("A1", "lrc1", "A2", "lrc2")])
+  if(all(unlist(lapply(.actualArgs, is.name)))) 
+    {
+      .grad <- array(0, c(length(.value), 4),
+                     list(NULL, c("A1", "lrc1", "A2", "lrc2")))
+      .grad[, "A1"] <- .expr4
+      .grad[, "lrc1"] <-  - (A1 * (.expr4 * (.expr1 * input)))
+      .grad[, "A2"] <- .expr9
+      .grad[, "lrc2"] <-  - (A2 * (.expr9 * (.expr6 * input)))
+      dimnames(.grad) <- list(NULL, .actualArgs)
+      attr(.value, "gradient") <- .grad
+    }
+  .value
+},
 function(mCall, data, LHS)
 {
   xy <- sortedXyData(mCall[["input"]], LHS, data)
@@ -133,7 +212,7 @@ function(mCall, data, LHS)
   lrc2 <- log(abs(pars2[2]))		# log of the slope
   xy[["res"]] <- xy[["y"]] - exp(pars2[1]) * exp(-exp(lrc2)*xy[["x"]])
   dfirst <- xy[1:(ndistinct - nlast), ]
-  pars1 <- coef(lm(log(res) ~ x, data = dfirst))
+  pars1 <- coef(lm(log(abs(res)) ~ x, data = dfirst))
   lrc1 <- log(abs(pars1[2]))
   pars <- coef(nls(y ~ cbind(exp(-exp(lrc1)*x), exp(-exp(lrc2)*x)),
 		   data = xy,
@@ -142,14 +221,40 @@ function(mCall, data, LHS)
   value <- c(pars[3], pars[1], pars[4], pars[2])
   names(value) <- mCall[c("A1", "lrc1", "A2", "lrc2")]
   value
-},
-c("A1", "lrc1", "A2", "lrc2"))
+})
 
 ##*## SSfol - first order compartment model with the log of the rates
-##*##       and the clearence  
+##*##         and the clearence  
 SSfol <- 
-  selfStart(~Dose * exp(lKe + lKa - lCl) * (exp(-exp(lKe) * input) -
-		    exp(-exp(lKa) * input))/(exp(lKa) - exp(lKe)),
+#  selfStart(~Dose * exp(lKe + lKa - lCl) * (exp(-exp(lKe) * input) -
+# exp(-exp(lKa) * input))/(exp(lKa) - exp(lKe)),
+selfStart(
+function(Dose, input, lKe, lKa, lCl)
+{
+  .expr4 <- Dose * (exp(((lKe + lKa) - lCl)))
+  .expr5 <- exp(lKe)
+  .expr8 <- exp((( - .expr5) * input))
+  .expr9 <- exp(lKa)
+  .expr12 <- exp((( - .expr9) * input))
+  .expr14 <- .expr4 * (.expr8 - .expr12)
+  .expr15 <- .expr9 - .expr5
+  .expr16 <- .expr14/.expr15
+  .expr23 <- .expr15^2
+  .value <- .expr16
+  .actualArgs <- as.list(match.call()[c("lKe", "lKa", "lCl")])
+  if(all(unlist(lapply(.actualArgs, is.name)))) 
+    {
+      .grad <- array(0, c(length(.value), 3), list(NULL, c("lKe", "lKa", "lCl")))
+      .grad[, "lKe"] <- ((.expr14 - (.expr4 * (.expr8 * (.expr5 * input))))/
+                         .expr15) + ((.expr14 * .expr5)/.expr23)
+      .grad[, "lKa"] <- ((.expr14 + (.expr4 * (.expr12 * (.expr9 * input))))/
+                         .expr15) - ((.expr14 * .expr9)/.expr23)
+      .grad[, "lCl"] <-  - .expr16
+      dimnames(.grad) <- list(NULL, .actualArgs)
+      attr(.value, "gradient") <- .grad
+    }
+  .value
+},
 function(mCall, data, LHS)
 {
   resp <- eval(LHS, data)
@@ -158,13 +263,13 @@ function(mCall, data, LHS)
   n <- length(resp)
   if(length(input) != n) {
     stop(paste("must have length of response =", 
-	       "length of second argument to SSfol"))
+               "length of second argument to SSfol"))
   }
   if(n < 4) {
     stop("must have at least 4 observations to fit an SSfol model")
   }
   rmaxind <- order(resp)[n]
-
+              
   lresp <- log(resp)
   if(rmaxind == n) {
     lKe <- -2.5
@@ -174,15 +279,17 @@ function(mCall, data, LHS)
   cond.lin <- nls(resp ~ (exp(-input * exp(lKe))-exp(-input * exp(lKa))) * Dose,
                   data = list(resp = resp, input = input, Dose = Dose, lKe = lKe),
                   start = list(lKa = lKe + 1), 
-		  algorithm = "plinear")
-  pars <- clearNames(coef(cond.lin))
+                  algorithm = "plinear")
+  pars <- coef(cond.lin)
+  names(pars) <- NULL
   cond.lin <- nls(resp ~ (Dose * (exp(-input*exp(lKe))-
-		     exp(-input*exp(lKa))))/(exp(lKa) - exp(lKe)), 
-		  data = data.frame(list(resp = resp, input = input, 
-		      Dose = Dose)), 
-		  start = list(lKa = pars[1],lKe = lKe), 
-		  algorithm = "plinear")
-  pars <- clearNames(coef(cond.lin))
+                                  exp(-input*exp(lKa))))/(exp(lKa) - exp(lKe)), 
+                  data = data.frame(list(resp = resp, input = input, 
+                    Dose = Dose)), 
+                  start = list(lKa = pars[1],lKe = lKe), 
+                  algorithm = "plinear")
+  pars <- coef(cond.lin)
+  names(pars) <- NULL
   lKa <- pars[1]
   lKe <- pars[2]
   Ka <- exp(lKa)
@@ -190,12 +297,36 @@ function(mCall, data, LHS)
   value <- list(lKe, lKa, log((Ke * Ka)/(pars[3])))
   names(value) <- as.character(mCall)[4:6]
   value
-}, c("lKe", "lKa", "lCl"))
+})
 
 ##*## SSfpl - four parameter logistic model
 
-SSfpl <- selfStart(~ A + (B - A)/(1 + exp((xmid - input)/scal)),
-function(mCall, data, LHS)
+SSfpl <- # selfStart(~ A + (B - A)/(1 + exp((xmid - input)/scal)),
+selfStart(
+  function(input, A, B, xmid, scal)
+{
+  .expr1 <- B - A
+  .expr2 <- xmid - input
+  .expr4 <- exp((.expr2/scal))
+  .expr5 <- 1 + .expr4
+  .expr8 <- 1/.expr5
+  .expr13 <- .expr5^2
+  .value <- A + (.expr1/.expr5)
+  .actualArgs <- as.list(match.call()[c("A", "B", "xmid", "scal")])
+  if(all(unlist(lapply(.actualArgs, is.name)))) 
+    {
+      .grad <- array(0, c(length(.value), 4),
+                     list(NULL, c("A", "B", "xmid", "scal")))
+      .grad[, "A"] <- 1 - .expr8
+      .grad[, "B"] <- .expr8
+      .grad[, "xmid"] <-  - ((.expr1 * (.expr4 * (1/ scal)))/.expr13)
+      .grad[, "scal"] <- (.expr1 * (.expr4 * (.expr2/(scal^2))))/.expr13
+      dimnames(.grad) <- list(NULL, .actualArgs)
+      attr(.value, "gradient") <- .grad
+    }
+  .value
+},
+  function(mCall, data, LHS)
 {
   xy <- sortedXyData(mCall[["input"]], LHS, data)
   if (nrow(xy) < 5) {
@@ -215,12 +346,31 @@ function(mCall, data, LHS)
   value <- c(pars[3], pars[3] + pars[4], pars[1], exp(pars[2]))
   names(value) <- mCall[c("A", "B", "xmid", "scal")]
   value
-},
-c("A", "B", "xmid", "scal"))
+})
 
 ##*## SSlogis - logistic model for nonlinear regression
 
-SSlogis <- selfStart(~ Asym/(1 + exp((xmid - input)/scal)),
+SSlogis <- # selfStart(~ Asym/(1 + exp((xmid - input)/scal)),
+selfStart(
+  function(input, Asym, xmid, scal)
+{
+  .expr1 <- xmid - input
+  .expr3 <- exp((.expr1/scal))
+  .expr4 <- 1 + .expr3
+  .expr10 <- .expr4^2
+  .value <- Asym/.expr4
+  .actualArgs <- as.list(match.call()[c("Asym", "xmid", "scal")])
+  if(all(unlist(lapply(.actualArgs, is.name)))) 
+    {
+      .grad <- array(0, c(length(.value), 3), list(NULL, c("Asym", "xmid", "scal")))
+      .grad[, "Asym"] <- 1/.expr4
+      .grad[, "xmid"] <-  - ((Asym * (.expr3 * (1/scal)))/.expr10)
+      .grad[, "scal"] <- (Asym * (.expr3 * (.expr1/(scal^2))))/.expr10
+      dimnames(.grad) <- list(NULL, .actualArgs)
+      attr(.value, "gradient") <- .grad
+    }
+  .value
+},
 function(mCall, data, LHS)
 {
   xy <- sortedXyData(mCall[["input"]], LHS, data)
@@ -239,12 +389,28 @@ function(mCall, data, LHS)
   value <- c(pars[3], pars[1], pars[2])
   names(value) <- mCall[c("Asym", "xmid", "scal")]
   value
-},
-c("Asym", "xmid", "scal"))
+})
 
 ##*## SSmicmen - Michaelis-Menten model for enzyme kinetics.
 
-SSmicmen <- selfStart(~ Vm * input/(K + input),
+SSmicmen <- # selfStart(~ Vm * input/(K + input),
+selfStart(
+  function(input, Vm, K)
+{
+  .expr1 <- Vm * input
+  .expr2 <- K + input
+  .value <- .expr1/.expr2
+  .actualArgs <- as.list(match.call()[c("Vm", "K")])
+  if(all(unlist(lapply(.actualArgs, is.name)))) 
+    {
+      .grad <- array(0, c(length(.value), 2), list(NULL, c("Vm", "K")))
+      .grad[, "Vm"] <- input/.expr2
+      .grad[, "K"] <-  - (.expr1/(.expr2^2))
+      dimnames(.grad) <- list(NULL, .actualArgs)
+      attr(.value, "gradient") <- .grad
+    }
+  .value
+},
 function(mCall, data, LHS)
 {
   xy <- sortedXyData(mCall[["input"]], LHS, data)
@@ -261,8 +427,34 @@ function(mCall, data, LHS)
   value <- c(pars[2], pars[1])
   names(value) <- mCall[c("Vm", "K")]
   value
-},
-c("Vm", "K"))
+})
+
+##*## phenoModel - one-compartment open model with intravenous
+##*##   administration and first-order elimination for the Phenobarbital data
+
+phenoModel <- 
+  function(Subject, time, dose, lCl, lV)
+{
+  .C("nlme_one_comp_first",
+     as.integer(length(time)),
+     resp = dose,
+     as.double(cbind(Subject, time, dose, exp(lV), exp(lCl))),
+     NAOK = TRUE)$resp
+}
+
+##*## quinModel - one-compartment open model with first order
+##*##   absorption for the Quinidine data
+
+quinModel <- 
+  function(Subject, time, conc, dose, interval, lV, lKa, lCl)
+{
+  .C("nlme_one_comp_open",
+     as.integer(length(time)),
+     resp = dose,
+     as.double(cbind(Subject, time, conc, dose, interval,
+                     exp(lV), exp(lKa), exp(lCl - lV))),
+     NAOK = TRUE)$resp
+}
 
 ### Local variables:
 ### mode: S

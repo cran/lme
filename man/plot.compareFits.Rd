@@ -1,4 +1,4 @@
-% $Id: plot.compareFits.Rd,v 1.3 1998/04/02 18:53:16 pinheiro Exp $
+% $Id: plot.compareFits.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{plot.compareFits}
 \title{Plot a compareFits Object}
 \usage{
@@ -32,17 +32,16 @@ plot(object, subset, key, mark, ...)
   A Trellis \code{dotplot} of the values being compared, with rows
   determined by the groups and panels by the coefficients.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\seealso{\code{\link{compareFits}},\code{\link{pairs.compareFits}},
+\seealso{\code{\link{compareFits}}, \code{\link{pairs.compareFits}},
   \code{\link{dotplot}} }
-
 \examples{
 library(lme)
 data(Orthodont)
 fm1 <- lmList(Orthodont)
 fm2 <- lme(Orthodont)
+\dontrun{
 plot(compareFits(coef(fm1), coef(fm2)))
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: pdConstruct.pdBlocked.Rd,v 1.2 1998/04/02 18:53:16 pinheiro Exp $
+% $Id: pdConstruct.pdBlocked.Rd,v 1.5 1999/07/29 18:42:51 bates Exp $
 \name{pdConstruct.pdBlocked}
 \title{Construct pdBlocked Objects}
 \usage{
@@ -6,7 +6,7 @@ pdConstruct(object, value, form, nam, data, pdClass)
 }
 \alias{pdConstruct.pdBlocked}
 \arguments{
- \item{object}{an object inheriting from class code{pdBlocked},
+ \item{object}{an object inheriting from class \code{pdBlocked},
    representing a positive definite block-diagonal matrix.} 
  \item{value}{an optional list with elements to be used as the
    \code{value} argument to other \code{pdMat} constructors. These
@@ -33,8 +33,8 @@ pdConstruct(object, value, form, nam, data, pdClass)
    obtain the levels for \code{factors}, which affect the
    dimensions and the row/column names of the underlying matrix. If
    \code{NULL}, no attempt is made to obtain information on 
-   \code{factors} appearing the random effects model. Defaults to parent
-   frame from which the function was called.}
+   \code{factors} appearing in the formulas. Defaults to the
+   parent frame from which the function was called.}
  \item{pdClass}{an optional vector of character strings naming the
    \code{pdMat} classes to be assigned to the individual blocks in the
    underlying matrix. If a single class is specified, it is used for all
@@ -53,7 +53,7 @@ pdConstruct(object, value, form, nam, data, pdClass)
   \code{object} is returned as an uninitialized \code{pdBlocked} object
   (with just some of its attributes and its class defined) and needs to
   have its coefficients assigned later, generally using the \code{coef}
-  or {matrix} functions. If \code{value} is a list of  initialized
+  or \code{matrix} replacement functions. If \code{value} is a list of  initialized
   \code{pdMat} objects, \code{object} will be constructed from the list
   obtained by applying \code{as.matrix} to each of the \code{pdMat}
   elements of \code{value}. Finally, if \code{value} is a list of

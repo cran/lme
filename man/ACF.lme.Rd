@@ -1,4 +1,4 @@
-% $Id: ACF.lme.Rd,v 1.1 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: ACF.lme.Rd,v 1.2 1999/07/27 22:01:39 bates Exp $
 \name{ACF.lme}
 \title{Autocorrelation Function for lme Residuals}
 \usage{
@@ -9,8 +9,8 @@ ACF(object, maxLag, resType)
   \item{object}{an object inheriting from class \code{lme}, representing
     a fitted linear mixed-effects model.}
   \item{maxLag}{an optional integer giving the maximum lag for which the
-    auntocorrelation should be calculated. Defaults to maximum lag in the
-    withnin-group residuals.}  
+    autocorrelation should be calculated. Defaults to maximum lag in the
+    within-group residuals.}  
   \item{resType}{an optional character string specifying the type of
     residuals to be used. If \code{"response"}, the "raw" residuals
     (observed - fitted) are used; else, if \code{"pearson"}, the

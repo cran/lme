@@ -1,4 +1,4 @@
-% $Id: lme.groupedData.Rd,v 1.4 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: lme.groupedData.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{lme.groupedData}
 \title{LME fit from groupedData Object}
 \usage{
@@ -7,7 +7,7 @@ lme(fixed, data, random, correlation, weights, subset, method,
 }
 \alias{lme.groupedData}
 \arguments{
-  \item{fixed}{a data frame inheriting from class{groupedData}.}
+  \item{fixed}{a data frame inheriting from class \code{groupedData}.}
   \item{data}{this argument is included for consistency with the generic
     function. It is ignored in this method function.}
  \item{other arguments}{identical to the arguments in the generic
@@ -26,7 +26,7 @@ lme(fixed, data, random, correlation, weights, subset, method,
   model fit. Generic functions such as \code{print}, \code{plot} and
   \code{summary} have methods to show the results of the fit. See
   \code{lmeObject} for the components of the fit. The functions
-  \code{resid}, \code{coef}, \code{fitted}, code{fixed.effects}, and
+  \code{resid}, \code{coef}, \code{fitted}, \code{fixed.effects}, and
   \code{random.effects}  can be used to extract some of its components.
 }
 \references{

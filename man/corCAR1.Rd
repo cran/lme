@@ -1,4 +1,4 @@
-% $Id: corCAR1.Rd,v 1.7 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: corCAR1.Rd,v 1.9 1999/07/29 16:30:31 pinheiro Exp $
 \name{corCAR1}
 \title{Continuous AR(1) Correlation Structure}
 \usage{
@@ -8,7 +8,7 @@ corCAR1(value, form, fixed)
 \arguments{
  \item{value}{the correlation between two observations one unit of time
    apart. Must be between 0 and 1. Defaults to 0.2.}
- \item{form}{a one sided formula of the form \code{~ t}, or code{~ t |
+ \item{form}{a one sided formula of the form \code{~ t}, or \code{~ t |
      g}, specifying a time covariate \code{t} and,  optionally, a
    grouping factor \code{g}. Covariates for this correlation structure
    need not be integer valued.  When a grouping factor is present in
@@ -25,8 +25,8 @@ corCAR1(value, form, fixed)
 \description{
   This function is a constructor for the \code{corCAR1} class,
   representing an autocorrelation structure of order 1, with a
-  continuous time covariate. Objects created using this constructor need
-  to be later initialized using the appropriate \code{initialize}
+  continuous time covariate. Objects created using this constructor must
+  be later initialized using the appropriate \code{initialize}
   method.  
 }
 \value{

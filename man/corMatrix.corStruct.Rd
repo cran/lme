@@ -1,4 +1,4 @@
-% $Id: corMatrix.corStruct.Rd,v 1.7 1998/04/02 20:06:17 bates Exp $
+% $Id: corMatrix.corStruct.Rd,v 1.8 1999/07/28 04:00:51 bates Exp $
 \name{corMatrix.corStruct}
 \title{Matrix of a corStruct Object}
 \usage{
@@ -18,7 +18,7 @@ corMatrix(object, covariate, corr)
  \item{covariate}{an optional covariate vector (matrix), or list of
    covariate vectors (matrices), at which values the correlation matrix,
    or list of correlation  matrices, are to be evaluated. Defaults to
-   \code{getCovariate{object}}.} 
+   \code{getCovariate(object)}.} 
  \item{corr}{a logical value. If \code{TRUE} the function returns the
    correlation matrix, or list of correlation matrices, represented by
    \code{object}. If \code{FALSE} the function returns a transpose

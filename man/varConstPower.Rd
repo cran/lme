@@ -1,4 +1,4 @@
-% $Id: varConstPower.Rd,v 1.3 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: varConstPower.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{varConstPower}
 \title{Constant Plus Power Variance Function}
 \usage{
@@ -30,7 +30,7 @@ varConstPower(const, power, form, fixed)
     function). When a grouping factor is present in \code{form},
     a different coefficient value is used for each of its
     levels. Several grouping variables may be
-    simultaneously specified, separated by the \code{*} operator, like
+    simultaneously specified, separated by the \code{*} operator, as
     in \code{~ v | g1 * g2 * g3}. In this case, the levels of each
     grouping variable are pasted together and the resulting factor is
     used to group the observations. Defaults to \code{~ fitted(.)}

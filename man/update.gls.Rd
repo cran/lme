@@ -1,4 +1,4 @@
-% $Id: update.gls.Rd,v 1.3 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: update.gls.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{update.gls}
 \title{Update a gls Object}
 \usage{
@@ -10,9 +10,9 @@ update(object, model, data, correlation, weights, subset, method,
 \arguments{
  \item{object}{an object inheriting from class \code{gls}, representing
    a generalized least squares fitted linear model.}
- \item{other arguments}{defined as in \code{\link{gls}}. See the
-   documentation on that function for descriptions of and default values
-   for these arguments.}
+ \item{other arguments}{defined as in \code{\link{gls}}. See
+     that function's documentation for descriptions of and default values
+     for these arguments.}
 }
 \description{
   The non-missing arguments in the call to the \code{update.gls} method
@@ -31,8 +31,10 @@ update(object, model, data, correlation, weights, subset, method,
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 fm2 <- update(fm1, weights = varPower())
+}
 }
 \keyword{models}

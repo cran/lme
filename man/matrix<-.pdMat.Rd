@@ -1,4 +1,4 @@
-% $Id: matrix<-.pdMat.Rd,v 1.3 1998/04/02 18:53:15 pinheiro Exp $
+% $Id: matrix<-.pdMat.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{matrix<-.pdMat}
 \title{Assign Matrix to a pdMat Object}
 \usage{
@@ -7,7 +7,7 @@ matrix(object) <- value
 \alias{matrix<-.pdMat}
 \alias{matrix<-.pdBlocked}
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.} 
  \item{value}{a matrix with the new values to be assigned to the
    positive-definite matrix represented by \code{object}. Must have the

@@ -1,4 +1,4 @@
-% $Id: nlsList.Rd,v 1.4 1999/06/04 02:48:03 pinheiro Exp $
+% $Id: nlsList.Rd,v 1.6 1999/07/28 04:00:51 bates Exp $
 \name{nlsList}
 \title{List of nls Objects with a Common Model}
 \usage{
@@ -59,9 +59,12 @@ nlsList(model, data, start, control, level, na.action, pool)
 \code{\link{nls}}, \code{\link{nlme.nlsList}}.
 }
 \examples{
-library(nlme)
-data(Soybean)
-fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal) | Plot, Soybean)
+library(nls)
+library(lme)
+data(CO2)
+fm1 <- nlsList(uptake ~ SSasympOff(conc, Asym, lrc, c0),
+   data = CO2, start = c(Asym = 30, lrc = -4.5, c0 = 52))
+fm1
 }
 \keyword{models}
 

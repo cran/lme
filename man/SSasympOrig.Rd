@@ -1,4 +1,4 @@
-% $Id: SSasympOrig.Rd,v 1.2 1999/05/27 22:08:41 bates Exp $
+% $Id: SSasympOrig.Rd,v 1.4 1999/07/29 16:30:31 pinheiro Exp $
 \name{SSasympOrig}
 \title{Asymptotic Regression Model through the Origin}
 \usage{
@@ -21,9 +21,8 @@ SSasympOrig(input, Asym, lrc)
   a numeric vector of the same length as \code{input}.  It is the value of
   the expression \code{Asym*(1 - exp(-exp(lrc)*input))}.  If all of
   the arguments \code{Asym} and \code{lrc} are
-  names of objects, as opposed to expressions or explicit numerical
-  values, the gradient matrix with respect to these names is attached as
-  an attribute named \code{gradient}.
+  names of objects, the gradient matrix with respect to these names is
+  attached as an attribute named \code{gradient}.
 }
 \author{Jose Pinheiro and Douglas Bates}
 \seealso{\code{\link{nls}}, \code{\link{selfStart}}

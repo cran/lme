@@ -1,4 +1,4 @@
-% $Id: balancedGrouped.Rd,v 1.3 1999/06/04 13:31:40 bates Exp $
+% $Id: balancedGrouped.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{balancedGrouped}
 \alias{balancedGrouped}
 \title{Create a groupedData object from a matrix}
@@ -24,9 +24,8 @@ balancedGrouped(form, data, labels=NULL, units=NULL)
 }
 \description{
   Create a \code{groupedData} object from a data matrix.  This function
-  can only be used with balanced grouped data that will be representable
-  as a matrix.  The opposite conversion (\code{groupedData} to
-  \code{matrix}) is performed by \code{asTable}.
+  can be used only with balanced data.  The opposite conversion, from a
+  \code{groupedData} object to a \code{matrix}, is done with \code{asTable}.
 }
 \value{
   A balanced \code{groupedData} object.

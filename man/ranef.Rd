@@ -1,4 +1,4 @@
-% $Id: ranef.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: ranef.Rd,v 1.2 1999/07/29 19:19:17 bates Exp $
 \name{ranef}
 \title{Extract Random Effects}
 \usage{
@@ -20,7 +20,7 @@ ranef(object, ...)
 \value{
   will depend on the method function used; see the appropriate documentation.
 }
-\seealso{\code{\link{ranef.lmList}},\code{\link{ranef.lme}}} 
+\seealso{\code{\link{ranef.lmList}}, \code{\link{ranef.lme}}} 
 \examples{
 ## see the method function documentation
 }

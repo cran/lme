@@ -1,16 +1,18 @@
-% $Id: intervals.gls.Rd,v 1.3 1998/04/06 21:35:17 pinheiro Exp $
+% $Id: intervals.gls.Rd,v 1.6 1999/07/29 16:30:31 pinheiro Exp $
 \name{intervals.gls}
 \title{Confidence Intervals on gls Parameters}
 \usage{
-intervals(object, which)
+intervals(object, level, which)
 }
 \alias{intervals.gls}
 \arguments{
  \item{object}{an object inheriting from class \code{gls}, representing
    a generalized least squares fitted linear model.}
- \item{which}{an optional character string with specifying the  subset
+ \item{level}{an optional numeric value for the interval confidence
+   level. Defaults to 0.95.}
+ \item{which}{an optional character string specifying the subset
    of parameters for which to construct the confidence
-   intervals. Options include \code{"all"} for all parameters,
+   intervals. Possible values are \code{"all"} for all parameters,
    \code{"var-cov"} for the variance-covariance parameters only, and
    \code{"coef"} for the linear model coefficients  only. Defaults to
    \code{"all"}.}
@@ -51,8 +53,10 @@ intervals(object, which)
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 intervals(fm1)
+}
 }
 \keyword{models}

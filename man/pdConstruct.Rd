@@ -1,4 +1,4 @@
-% $Id: pdConstruct.Rd,v 1.2 1998/04/02 18:53:16 pinheiro Exp $
+% $Id: pdConstruct.Rd,v 1.5 1999/07/29 18:42:35 bates Exp $
 \name{pdConstruct}
 \title{Construct pdMat Objects}
 \usage{
@@ -13,10 +13,10 @@ pdConstruct(object, value, form, nam, data)
 \alias{pdConstruct.pdSymm}
 
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.} 
  \item{value}{an optional initialization value, which can be any of the
-   following: a code{pdMat} object, a positive-definite
+   following: a \code{pdMat} object, a positive-definite
    matrix, a one-sided linear formula (with variables separated by
    \code{+}), a vector of character strings, or a numeric
    vector. Defaults to \code{numeric(0)}, corresponding to an
@@ -38,8 +38,8 @@ pdConstruct(object, value, form, nam, data)
    obtain the levels for \code{factors}, which affect the
    dimensions and the row/column names of the underlying matrix. If
    \code{NULL}, no attempt is made to obtain information on 
-   \code{factors} appearing the random effects model. Defaults to parent
-   frame from which the function was called.}
+   \code{factors} appearing in the formulas. Defaults to the
+   parent frame from which the function was called.}
 }
 \description{
   This function is an alternative constructor for the \code{pdMat}

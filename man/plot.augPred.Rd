@@ -1,6 +1,6 @@
-% $Id: plot.augPred.Rd,v 1.5 1999/03/31 15:41:22 pinheiro Exp $
+% $Id: plot.augPred.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{plot.augPred}
-\title{Plot augPred Object}
+\title{Plot an augPred Object}
 \usage{
 plot(x, key, grid, ...)
 }
@@ -19,14 +19,14 @@ plot(x, key, grid, ...)
    function generating the plots.}
 }
 \description{
-  A Trellis \code{xyplot} of predictions versus primary  covariate is
+  A Trellis \code{xyplot} of predictions versus the primary covariate is
   generated, with a different panel for each value of the grouping
   factor. Predicted values are joined by lines, with  
   different line types (colors) being used for each level of
   grouping. Original observations are represented by circles.
 }
 \value{
-  A Trellis plot of predictions versus primary covariate, with panels
+  A Trellis plot of predictions versus the primary covariate, with panels
   determined by the grouping factor.
 }
 
@@ -38,6 +38,8 @@ plot(x, key, grid, ...)
 library(lme)
 data(Orthodont)
 fm1 <- lme(Orthodont)
+\dontrun{
 plot(augPred(fm1, level = 0:1, length.out = 2))
+}
 }
 \keyword{models}

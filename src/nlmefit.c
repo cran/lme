@@ -1,4 +1,4 @@
-/* $Id: nlmefit.c,v 1.43 1999/03/05 04:15:38 pinheiro Exp $ 
+/* $Id: nlmefit.c,v 1.48 1999/07/08 21:29:01 bates Exp $ 
 
    Routines for calculation of the log-likelihood or restricted
    log-likelihood with mixed-effects models.
@@ -61,7 +61,7 @@ typedef struct dim_struct {
     Q,				/* number of levels of random effects */
     Srows,			/* number of rows in decomposition */
     *q,				/* dimensions of the random effects */
-    *ngrp,			/* number of groups at each level */
+    *ngrp,			/* numbers of groups at each level */
     *DmOff,			/* offsets into the DmHalf array */
     *ncol,			/* no. of columns decomposed at each level */
     *nrot,			/* no. of columns rotated at each level */
@@ -565,7 +565,7 @@ internal_loglik(dimPTR dd, double *ZXy, double *DmHalf, longint *RML,
 			DmHalf + (dd->DmOff)[i], qi, (dd->ncol)[i],
 			lglk + i, dc + (dd->SToff)[i][j], ldstr))
 	{ PROBLEM "Singular precision matrix in level %ld, block %ld",
-		  i + 1L, j + 1L  RECOVER(NULL_ENTRY); }
+		  i - (dd->Q), j + 1L  RECOVER(NULL_ENTRY); }
     }
   }
   for(i = 0, accum = 0; i < Q; i++) {
@@ -591,10 +591,11 @@ internal_estimate(dimPTR dd, double *dc)
     for (j = 0; j < (dd->ngrp)[i]; j++) {
       if (backsolve(dc + (dd->SToff)[i][j], dd->Srows,
 		    (dd->SToff)[i][j] - (dd->DecOff)[i][j],
-		    (dd->ncol)[i], (dd->nrot)[i], (dd->ncol)[Qp1])
-	  != 0)
-	{ PROBLEM "Singularity in backsolve at level %ld, block %ld",
-		  i + 1L, j + 1L RECOVER(NULL_ENTRY); }
+		    (dd->ncol)[i], (dd->nrot)[i], (dd->ncol)[Qp1]) != 0)
+	{ 
+	  PROBLEM "Singularity in backsolve at level %ld, block %ld",
+	    i - (dd->Q), j + 1L RECOVER(NULL_ENTRY); 
+	}
     }
   }
 }
@@ -615,9 +616,9 @@ internal_R_invert(dimPTR dd, double *dc)
 static double cube_root_eps = 0.;
 
 static double *
-pt_prod( double *prod, double *a, double *b, int len )
+pt_prod( double *prod, double *a, double *b, longint len )
 {				/* prod <- a * b */
-  int i; double *ret = prod;
+  longint i; double *ret = prod;
   for (i = 0; i < len; i++) {
     *prod++ = *a++ * *b++;
   }
@@ -678,7 +679,7 @@ finite_diff_Hess( double (*func)(double*), double *pars, int npar,
   print_mat( "Xmat", Xmat, nTot, nTot, nTot );
 #endif /* DEBUG */
   xQR = QR( Xmat, (longint) nTot, (longint) nTot, (longint) nTot );
-  QRsolve( xQR, vals, nTot, 1, vals, nTot );
+  QRsolve( xQR, vals, (longint) nTot, 1L, vals, (longint) nTot );
   pt_prod( vals, vals, div, nTot );
 				/* re-arrange the Hessian terms */
   xpt = vals + npar + 1;
@@ -882,7 +883,7 @@ mixed_calcgh(longint *n, double *theta, longint *nf,
   longint i, nn = *n;
   double *hpt = values + nn + 1;
 
-  finite_diff_Hess( negLogLik_fun, theta, nn, values );
+  finite_diff_Hess( negLogLik_fun, theta, (int) nn, values );
   Memcpy( g, values + 1, nn );
   for( i = 1; i <= nn; i++ ) {	/* copy upper triangle of Hessian */
     Memcpy( h, hpt, i );
@@ -1439,7 +1440,8 @@ AR1_mat(double *par, longint *n, double *mat)
   longint i, j;
   double aux;
   for(i = 0; i < *n; i++) {
-    for(j = i; j < *n; j++) {
+    *(mat + i * (*n + 1)) = 1.0;
+    for(j = i + 1; j < *n; j++) {
       aux = pow(*par, j - i);
       *(mat + i + j * (*n)) = *(mat + j + i * (*n)) = aux;
     }
@@ -1514,7 +1516,8 @@ CAR1_mat(double *par, double *time, longint *n, double *mat)
   longint i, j;
   double aux;
   for(i = 0; i < *n; i++) {
-    for(j = i; j < *n; j++) {
+    *(mat + i * (*n + 1)) = 1.0;
+    for(j = i + 1; j < *n; j++) {
       aux = pow(*par, fabs(time[j] - time[i]));
       *(mat + i + j * (*n)) = *(mat + j + i * (*n)) = aux;
     }
@@ -2232,13 +2235,13 @@ static struct {			/* Gauss-Newton nonlinear least squares */
   dimPTR dd;
 } nlme;
 
-static long int *
+static longint *
 make_sequential(longint *dest, longint *src, longint n)
 {                    
   /*  copy the pattern from src to dest */
   /*  but in sequential values starting */
   /*  from 0 */
-  long val = 0, *ret = dest, sval;
+  longint val = 0, *ret = dest, sval;
   if (n <= 0) return dest;
   sval = *src++; *dest++ = val;
   while (--n) {
@@ -2308,7 +2311,7 @@ nlme_objective(void)
 static void
 nlme_correction(void)
 {
-  long i, j, nq;
+  longint i, j, nq;
   for(i = 0; i < nlme.dd->N; i++) {
     for(j = 0, nq = 0; j < nlme.dd->Q; j++) {
       nlme.residuals[i] += d_dot_prod(nlme.gradient + (nlme.dd->ZXoff)[j][0] + i, 
@@ -2325,7 +2328,7 @@ nlme_correction(void)
 static double
 nlme_RegSS(double *incr, double *mat)
 {
-  long i, j, nq;
+  longint i, j, nq;
   double regSS = 0, aux = 0, *src;
   for(i = 0; i < nlme.dd->N; i++) {
     for(j = 0, nq = 0, aux = 0; j < nlme.dd->Q; j++) {
@@ -2356,7 +2359,7 @@ nlme_increment(double *incr)
   double regSS, *dc = Calloc(nlme.dd->Srows * nlme.dd->ZXcols, double),
     ll, *dest, *src, 
     *auxGrad = Calloc(nlme.dd->N * (nlme.dd->ZXcols - 1), double);
-  long i, j, start, RML = 0;
+  longint i, j, start, RML = 0;
   if (!sqrt_eps) sqrt_eps = sqrt(DOUBLE_EPS);
   Memcpy(auxGrad, nlme.gradient, (nlme.dd->ZXcols - 1) * nlme.dd->N);
   nlme_correction();
@@ -2453,9 +2456,70 @@ fit_nlme(double *ptheta, double *pDmHalf, longint *pgroups,
 /*  Quinidine model  */
 
 void 
-nlme_one_comp_first (long int *nrow, double *Resp, double *inmat)
+nlme_one_comp_open (longint *nrow, double *Resp, double *inmat)
 {
-  long int i, j, nn = *nrow, mm = 0;
+  longint i, nn = *nrow;
+  double ke, ka, tl = 0, delta, C, Ca, interval,
+    *Subject, *Time, *Conc, *Dose, *Interval, *V, *Ka, *Ke,
+         sl = DOUBLE_EPS;	/* sl is last subject number, usually */
+				/* an integer but passed as double. */
+				/* It is started at an unlikely value. */
+  Subject = inmat;
+  Time = inmat + nn;
+  Conc = inmat + 2 * nn;
+  Dose = inmat + 3 * nn;
+  Interval = inmat + 4 * nn;
+  V = inmat + 5 * nn;
+  Ka = inmat + 6 * nn;
+  Ke = inmat + 7 * nn;
+  for(i = nn; i--; Resp++, Subject++, Time++, Conc++, Dose++,
+                   Interval++, V++, Ka++, Ke++) {
+    ke = *Ke; ka = *Ka;
+    if (*Subject != sl) {	/* new Subject */
+      sl = *Subject;
+      tl = *Time;
+      *Resp = 0;
+      if (!is_na_DOUBLE(Interval)) {		/* steady-state dosing */
+	interval = *Interval;
+	C = *Dose * ka * (1/(1 - exp(-ke * interval)) -
+			  1/(1 - exp(-ka * interval)))/
+			    (*V * (ka - ke));
+	Ca = *Dose / (*V * (1 - exp(-ka * interval)));
+      } else {			/* non-steady-state */
+	C = 0;
+	Ca = *Dose/ *V;
+      }
+    } else {			/* same Subject */
+      if (!is_na_DOUBLE(Dose)) {
+	if (!is_na_DOUBLE(Interval)) {	/* steady-state dosing */
+	  interval = *Interval;
+	  C = *Dose * ka * (1/(1 - exp(-ke * interval)) -
+			    1/(1 - exp(-ka * interval)))/
+			      (*V * (ka - ke));
+	  Ca = *Dose / (*V * (1 - exp(-ka * interval)));
+	} else {		/* non-steady-state */
+	  delta = *Time - tl;
+	  C = C*exp(-ke * delta) +
+	    Ca*ka*(exp(-ke*delta) - exp(-ka*delta))/(ka -ke);
+	  Ca = Ca * exp(-ka*delta) + *Dose / *V;
+	}
+	tl = *Time;
+	*Resp = 0;
+      } else if (!is_na_DOUBLE(Conc)) {
+	delta = *Time - tl;
+	*Resp = C * exp(-ke * delta) + Ca * ka *
+	  (exp(-ke * delta) - exp(-ka * delta))/(ka - ke);
+      } else *Resp = 0;
+    }
+  }
+}
+
+/* Phenobarbital Model */ 
+
+void 
+nlme_one_comp_first (longint *nrow, double *Resp, double *inmat)
+{
+  longint i, j, nn = *nrow, mm = 0;
   double v, cl, *tl = Calloc(nn, double), *ds = Calloc(nn, double),
     *Subject, *Time, *Dose, *V, *Cl,
          sl = DOUBLE_EPS;	/* sl is last subject number, usually */
@@ -2575,7 +2639,7 @@ gnls_objective(void)
 static double
 gnls_RegSS(double *incr)
 {
-  long i;
+  longint i;
   double regSS = 0, aux;
   for(i = 0; i < gnls.N; i++) {
     aux = d_dot_prod(gnls.gradient + i, gnls.N, incr, 1L, gnls.npar);
@@ -2589,7 +2653,7 @@ gnls_increment(double *incr)
 {
   double regSS = 0, *auxRes;
   QRptr aQR;
-  long i, j, start;
+  longint i, j, start;
   if (!sqrt_eps) sqrt_eps = sqrt(DOUBLE_EPS);
   auxRes = Calloc(gnls.N, double);
   Memcpy(auxRes, gnls.residuals, gnls.N);

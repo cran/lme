@@ -1,4 +1,4 @@
-% $Id: predict.nlme.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: predict.nlme.Rd,v 1.2 1999/06/28 17:22:25 bates Exp $
 \name{predict.nlme}
 \title{Predictions from an nlme Object}
 \usage{
@@ -54,12 +54,14 @@ predict(object, newdata, level, asList, na.action, naPattern)
 \seealso{\code{\link{nlme}}, \code{\link{fitted.nlme}}}
 
 \examples{
-library(nlme)
+library(lme)
 data(Soybean)
+\dontrun{
 fm1 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
             fixed = Asym + xmid + scal ~ 1, start = c(18, 52, 7.5))
 newSoybean <- data.frame(Time = c(10,30,50,80,100),
                     Plot = c("1988F1", "1988F1","1988F1", "1988F1","1988F1"))
 predict(fm1, newSoybean, level = 0:1)
+}
 }
 \keyword{models}

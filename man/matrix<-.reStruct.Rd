@@ -1,4 +1,4 @@
-% $Id: matrix<-.reStruct.Rd,v 1.3 1998/04/02 18:53:15 pinheiro Exp $
+% $Id: matrix<-.reStruct.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{matrix<-.reStruct}
 \title{Assign reStruct Matrices}
 \usage{
@@ -15,7 +15,7 @@ matrix(object) <-  value
 }
 \description{
   The individual matrices in \code{value} are assigned to each
-  \code{pdMat} component of \code{object}, in the they are listed. The
+  \code{pdMat} component of \code{object}, in the order they are listed. The
   new matrices must have the same dimensions as the matrices they are
   meant to replace.
 }

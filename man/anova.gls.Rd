@@ -1,8 +1,8 @@
-% $Id: anova.gls.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: anova.gls.Rd,v 1.4 1999/07/27 22:28:41 bates Exp $
 \name{anova.gls}
 \title{Compare Likelihoods of Fitted Objects}
 \usage{
-anova(object, ..., test, type, adjustSigma, terms, L, verbose)
+anova(object, ..., test, type, adjustSigma, Terms, L, verbose)
 }
 \alias{anova.gls}
 \arguments{
@@ -27,11 +27,11 @@ anova(object, ..., test, type, adjustSigma, terms, L, verbose)
  \item{adjustSigma}{an optional logical value. If \code{TRUE} and the
    estimation method used to obtain \code{object} was maximum
    likelihood, the residual standard error is multiplied by
-   \eqn{\sqrt{n_{obs}/(n_obs - n_par)}}{sqrt(nobs/(nobs - npar))},
+   \eqn{\sqrt{n_{obs}/(n_{obs} - n_{par})}}{sqrt(nobs/(nobs - npar))},
    converting it to a REML-like estimate. This argument is only used
    when a single fitted object is passed to the function. Default is
    \code{TRUE}.} 
- \item{terms}{an optional integer of character vector specifying which
+ \item{Terms}{an optional integer or character vector specifying which
    terms in the model should be jointly tested to be zero using a Wald
    F-test. If given as a character vector, its elements must correspond
    to term names; else, if given as an integer vector, its elements must
@@ -56,9 +56,9 @@ anova(object, ..., test, type, adjustSigma, terms, L, verbose)
 \description{
   When only one fitted model object is present, a data frame with the
   sums of squares, numerator degrees of freedom, F-values, and P-values
-  for Wald tests for the terms in the model (when \code{terms} and
+  for Wald tests for the terms in the model (when \code{Terms} and
   \code{L} are \code{NULL}), a combination of model terms (when
-  \code{terms} in not \code{NULL}), or linear combinations of the model
+  \code{Terms} in not \code{NULL}), or linear combinations of the model
   coefficients (when \code{L} is not \code{NULL}). Otherwise, when
   multiple fitted objects are being compared, a data frame with
   the degrees of freedom, the (restricted) log-likelihood, the 
@@ -82,8 +82,9 @@ anova(object, ..., test, type, adjustSigma, terms, L, verbose)
   \code{\link{AIC}}, \code{\link{BIC}}, \code{\link{print.anova.lme}} }
 
 \examples{
-library(nlme)
+library(lme)
 data(Ovary)
+\dontrun{
 # AR(1) errors within each Mare
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
@@ -91,5 +92,6 @@ anova(fm1)
 # variance changes with a power of the absolute fitted values?
 fm2 <- update(fm1, weights = varPower())
 anova(fm1, fm2)
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: recalc.Rd,v 1.3 1998/04/02 18:53:18 pinheiro Exp $
+% $Id: recalc.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{recalc}
 \title{Recalculate Condensed Linear Model Object}
 \usage{
@@ -25,13 +25,10 @@ recalc(object, conLin)
 \value{
   the recalculated condensed linear model object.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{This function is only used inside model fitting functions
-  which require recalculation of a condensed linear model object, like
-  \code{lme} and \code{gls}.} 
-
+\note{This function is only used inside model fitting functions, such as
+    \code{lme} and \code{gls}, that require recalculation of a condensed
+    linear model object.}
 \examples{
 ## see the method function documentation
 }

@@ -1,8 +1,8 @@
-% $Id: corSpher.Rd,v 1.9 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: corSpher.Rd,v 1.12 1999/07/29 18:57:26 bates Exp $
 \name{corSpher}
 \title{Spherical Correlation Structure}
 \usage{
-corLin(value, form, nugget, metric, fixed)
+corSpher(value, form, nugget, metric, fixed)
 }
 \alias{corSpher}
 \arguments{
@@ -31,11 +31,11 @@ corLin(value, form, nugget, metric, fixed)
    effect is present. Defaults to \code{FALSE}.}
  \item{metric}{an optional character string specifying the distance
    metric to be used. The currently available options are
-   \code{"euclidian"} for the root sum-of-squares of distances;
+   \code{"euclidean"} for the root sum-of-squares of distances;
    \code{"maximum"} for the maximum difference; and \code{"manhattan"}
    for the sum of the absolute differences. Partial matching of
    arguments is used, so only the first three characters need to be
-   provided.Defaults to \code{"euclidian"}.}
+   provided. Defaults to \code{"euclidean"}.}
  \item{fixed}{an optional logical value indicating whether the
    coefficients should be allowed to vary in the optimization, or kept
    fixed at their initial value. Defaults to \code{FALSE}, in which case
@@ -50,8 +50,8 @@ corLin(value, form, nugget, metric, fixed)
   nugget effect is present and \eqn{(1-n)
     (1-1.5(r/d)+0.5(r/d)^3)}{(1-n)*(1-1.5(r/d)+0.5(r/d)^3)}  
   when a nugget effect is assumed. If \eqn{r \geq d}{r >= d} the
-  correlation is zero. Objects created using this constructor need to be
-  later initialized using the appropriate \code{initialize} method. 
+  correlation is zero. Objects created using this constructor must later
+  be initialized using the appropriate \code{initialize} method. 
 }
 \value{
   an object of class \code{corSpher}, also inheriting from class

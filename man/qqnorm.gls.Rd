@@ -1,4 +1,4 @@
-% $Id: qqnorm.gls.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: qqnorm.gls.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{qqnorm.gls}
 \title{Normal Plot of Residuals from a gls Object}
 \usage{
@@ -55,20 +55,15 @@ qqnorm(object, form, abline, id, idLabels, grid, ...)
 \value{
   a diagnostic Trellis plot for assessing normality of residuals.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{gls}}, \code{\link{plot.gls}}}
-
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 qqnorm(fm1, abline = c(0,1))
+}
 }
 \keyword{models}

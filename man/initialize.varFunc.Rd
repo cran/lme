@@ -1,4 +1,4 @@
-% $Id: initialize.varFunc.Rd,v 1.2 1998/04/02 18:53:14 pinheiro Exp $
+% $Id: initialize.varFunc.Rd,v 1.4 1999/07/29 17:08:49 bates Exp $
 \name{initialize.varFunc}
 \title{Initialize varFunc Object}
 \usage{
@@ -12,7 +12,7 @@ initialize(object, data, ...)
 \alias{initialize.varIdent}
 \alias{initialize.varPower}
 \arguments{
- \item{object}{an object inheriting from class code{varFunc},
+ \item{object}{an object inheriting from class \code{varFunc},
    representing a variance function structure.} 
  \item{data}{a data frame in which to evaluate the variables named in
    \code{formula(object)}. }
@@ -33,15 +33,11 @@ initialize(object, data, ...)
   an initialized object with the same class as \code{object}
   representing a variance function structure.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\seealso{}
-
 \examples{
 library(lme)
 data(Orthodont)
-vf1 <- varPower(form = ~age|Sex)
-vf1 <- initialize(vf1, Orthodont)
+vf1 <- varPower( form = ~ age | Sex )
+vf1 <- initialize( vf1, Orthodont )
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: selfStart.formula.Rd,v 1.4 1999/02/27 01:36:38 bates Exp $
+% $Id: selfStart.formula.Rd,v 1.5 1999/07/29 19:19:17 bates Exp $
 \name{selfStart.formula}
 \title{Construct Self-starting Nonlinear Models}
 \usage{
@@ -6,25 +6,23 @@ selfStart(model, initial, parameters, template)
 }
 \alias{selfStart.formula}
 \arguments{
- \item{model}{a nonlinear formula object of the form \code{~expression}.}
- \item{initial}{a function object, with three arguments: \code{mCall},
-   \code{data}, and \code{LHS}, representing, respectively, the
-   expression on the right hand side of \code{model}, a data frame in
-   which to interpret the variables in \code{mCall} and \code{LHS}, and
-   a name, or expression, representing the variable to be used as the
-   "response" in the initial values calculations. It should return
-   initial values for the parameters on the right hand side of
-   \code{model}.
- }
- \item{parameters}{a character vector specifying the terms on the right
-   hand side of \code{model} for which initial estimates should be
-   calculated. Passed as the \code{namevec} argument to the \code{deriv}
-   function.}
- \item{template}{an optional prototype for the calling sequence of the
-   returned object, passed as the \code{function.arg} argument to the
-   \code{deriv} function. By default, a template is generated with the
-   covariates in \code{model} coming first and the parameters in
-   \code{model} coming last in the calling sequence.}
+    \item{model}{a nonlinear formula object of the form \code{~expression}.}
+    \item{initial}{a function object, taking three arguments: \code{mCall},
+	\code{data}, and \code{LHS}, representing, respectively, a matched
+	call to the function \code{model}, a data frame in
+	which to interpret the variables in \code{mCall}, and the expression
+	from the left-hand side of the model formula in the call to \code{nls}.
+	This function should return initial values for the parameters in
+	\code{model}.}
+    \item{parameters}{a character vector specifying the terms on the right
+	hand side of \code{model} for which initial estimates should be
+	calculated. Passed as the \code{namevec} argument to the \code{deriv}
+	function.}
+    \item{template}{an optional prototype for the calling sequence of the
+	returned object, passed as the \code{function.arg} argument to the
+	\code{deriv} function. By default, a template is generated with the
+	covariates in \code{model} coming first and the parameters in
+	\code{model} coming last in the calling sequence.}
 }
 \description{
   A method for the generic function `selfStart' for formula objects.
@@ -37,7 +35,6 @@ selfStart(model, initial, parameters, template)
   parameters in the model automatically.
 }
 \author{Jose Pinheiro and Douglas Bates}
-
 \seealso{\code{\link{selfStart.default}}, \code{\link{deriv}}
 }
 \examples{

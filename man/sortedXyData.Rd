@@ -1,4 +1,4 @@
-% $Id: sortedXyData.Rd,v 1.1 1999/02/27 01:27:25 bates Exp $
+% $Id: sortedXyData.Rd,v 1.2 1999/07/28 04:00:51 bates Exp $
 \name{sortedXyData}
 \title{Create a sortedXyData object}
 \alias{sortedXyData}
@@ -15,7 +15,7 @@ sortedXyData(x, y, data)
    for \code{x} and \code{y}, if they are given as expressions }
 }
 \description{
-  This is constructor function for the class of \code{sortedXyData}
+  This is a constructor function for the class of \code{sortedXyData}
   objects.  These objects are mostly used in the \code{initial}
   function for a self-starting nonlinear regression model, which will be
   of the \code{selfStart} class.

@@ -1,4 +1,4 @@
-% $Id: update.nlme.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: update.nlme.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{update.nlme}
 \title{Update an nlme Object}
 \usage{
@@ -6,14 +6,13 @@ update(object, model, data, fixed, random, groups, start,
        correlation, weights, subset, method, na.action, naPattern,
        control, verbose)
 }
-
 \alias{update.nlme}
 \arguments{
  \item{object}{an object inheriting from class \code{nlme}, representing
    a fitted nonlinear mixed-effects model.}
- \item{other arguments}{defined as in \code{\link{nlme}}. See the
-   documentation on that function for descriptions of and default values
-   for these arguments.}
+ \item{other arguments}{defined as in \code{\link{nlme}}. See that
+     function's documentation for descriptions of and default values
+     for these arguments.}
 }
 \description{
   The non-missing arguments in the call to the \code{update.nlme} method
@@ -30,10 +29,12 @@ update(object, model, data, fixed, random, groups, start,
 \seealso{\code{\link{nlme}}}
 
 \examples{
-library(nlme)
+library(lme)
 data(Soybean)
+\dontrun{
 fm1 <- nlme(weight ~ SSlogis(Time, Asym, xmid, scal), data = Soybean,
             fixed = Asym + xmid + scal ~ 1, start = c(18, 52, 7.5))
 fm2 <- update(fm1, weights = varPower())
+}
 }
 \keyword{models}

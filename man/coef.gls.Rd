@@ -1,4 +1,4 @@
-% $Id: coef.gls.Rd,v 1.2 1998/04/06 21:35:15 pinheiro Exp $
+% $Id: coef.gls.Rd,v 1.3 1999/06/28 17:22:25 bates Exp $
 \name{coef.gls}
 \title{Extract gls Coefficients}
 \usage{
@@ -29,8 +29,10 @@ coef(object, allCoef)
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 coef(fm1)
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: formula.pdMat.Rd,v 1.3 1998/04/02 18:53:12 pinheiro Exp $
+% $Id: formula.pdMat.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{formula.pdMat}
 \title{Extract pdMat Formula}
 \usage{
@@ -6,7 +6,7 @@ formula(object)
 }
 \alias{formula.pdMat}
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.} 
 }
 \description{

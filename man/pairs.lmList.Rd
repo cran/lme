@@ -1,4 +1,4 @@
-% $Id: pairs.lmList.Rd,v 1.5 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: pairs.lmList.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{pairs.lmList}
 \title{Pairs Plot of an lmList Object}
 \usage{
@@ -60,22 +60,17 @@ pairs(object, form, label, id, idLabels, grid, ...)
 \value{
   a diagnostic Trellis plot.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{lmList}}, \code{\link{xyplot}}, \code{\link{splom}}} 
-
 \examples{
 library(lme)
 data(Orthodont)
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
+\dontrun{
 # scatter plot of coefficients by gender, identifying unusual subjects
 pairs(fm1, ~coef(.) | Sex, id = 0.1, adj = -0.5)    
 # scatter plot of estimated random effects
-pairs(fm1, ~ranef(.))         
+pairs(fm1, ~ranef(.))
+}
 }
 \keyword{models}

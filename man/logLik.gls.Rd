@@ -1,4 +1,4 @@
-% $Id: logLik.gls.Rd,v 1.3 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: logLik.gls.Rd,v 1.4 1999/06/28 17:22:25 bates Exp $
 \name{logLik.gls}
 \title{Log-Likelihood of a gls Object}
 \usage{
@@ -33,9 +33,11 @@ logLik(object, REML)
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 logLik(fm1)
 logLik(fm1, REML = FALSE)
+}
 }
 \keyword{models}

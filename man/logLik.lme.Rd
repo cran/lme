@@ -1,4 +1,4 @@
-% $Id: logLik.lme.Rd,v 1.2 1998/04/06 21:35:17 pinheiro Exp $
+% $Id: logLik.lme.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{logLik.lme}
 \title{Log-Likelihood of an lme Object}
 \usage{
@@ -33,7 +33,7 @@ logLik(object, REML)
 \examples{
 library(lme)
 data(Orthodont)
-fm1 <- lme(distance ~ Sex * age, Orthodont, random = ~ age)
+fm1 <- lme(distance ~ Sex * age, Orthodont, random = ~ age, method = "ML")
 logLik(fm1)
 logLik(fm1, REML = TRUE)
 }

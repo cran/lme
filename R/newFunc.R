@@ -1,4 +1,4 @@
-### $Id: newFunc.q,v 1.24 1999/06/04 13:27:57 bates Exp $
+### $Id: newFunc.q,v 1.26 1999/07/27 20:54:27 pinheiro Exp $
 ###
 ###       Functions that are used in several parts of the nlme library 
 ###                 but do not belong to any specific part
@@ -172,7 +172,7 @@ fdHess <- function(pars, fun, ..., .relStep = (.Machine$double.eps)^(1/3),
   Hess <- diag( coefs[ 1 + npar + seq( along = pars ) ], ncol = npar )
   Hess[ row( Hess ) > col ( Hess ) ] <- coefs[ -(1:(1 + 2 * npar)) ]
   list( mean = coefs[ 1 ], gradient = coefs[ 1 + seq( along = pars ) ],
-       Hessian = ( Hess + t(Hess) )/2 )
+       Hessian = ( Hess + t(Hess) ) )
 }
 
 gapply <-
@@ -376,6 +376,18 @@ splitFormula <-
   if (length(form) < 1) return(NULL)
   list(asOneSidedFormula(form))
 }
+
+
+## fake version of xyplot using coplot just so some of the plots from the
+## library can be drawn
+
+xyplot <- function (formula, data = list(), groups = NULL, ..., subset = TRUE) 
+{
+  args <- as.list(match.call())[-1]
+  do.call("coplot", c(args[match(c("formula", "data", "xlab", "ylab", "panel"), 
+                     names(args), 0)], list(show.given = FALSE) ) )
+}
+
 
 ## Local Variables:
 ## mode:S

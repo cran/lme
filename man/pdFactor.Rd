@@ -1,4 +1,4 @@
-% $Id: pdFactor.Rd,v 1.2 1998/04/02 18:53:16 pinheiro Exp $
+% $Id: pdFactor.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{pdFactor}
 \title{Square-Root Factor of a Positive-Definite Matrix}
 \usage{
@@ -13,7 +13,7 @@ pdFactor(object, ...)
 \alias{pdFactor.pdNatural}
 
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix, which must have been initialized
    (i.e. \code{length(coef(object)) > 0}).} 
  \item{\dots}{some methods for the generic function may require additional
@@ -32,16 +32,13 @@ pdFactor(object, ...)
   associated with \code{object} stacked column-wise.
 }
 \author{Jose Pinheiro and Douglas Bates}
-}
 \note{
   This function is used intensively in optimization
   algorithms and its value is returned as a vector for efficiency
   reasons. The \code{pdMatrix} function can be used to obtain
   square-root factors in matrix form.
 }
-
 \seealso{\code{\link{pdMatrix}}}
-
 \examples{
 library(lme)
 pd1 <- pdCompSymm(4 * diag(3) + 1)

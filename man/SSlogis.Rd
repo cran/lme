@@ -1,8 +1,8 @@
-% $Id: SSlogis.Rd,v 1.2 1999/06/04 13:31:40 bates Exp $
+% $Id: SSlogis.Rd,v 1.4 1999/07/28 22:54:38 bates Exp $
 \name{SSlogis}
 \title{Logistic model}
 \usage{
-SSfpl(input, Asym, xmid, scal)
+SSlogis(input, Asym, xmid, scal)
 }
 \alias{SSlogis}
 \arguments{
@@ -16,15 +16,14 @@ SSfpl(input, Asym, xmid, scal)
 \description{
   This \code{selfStart} model evaluates the logistic
   function and its gradient.  It has an \code{initial} attribute that
-  will evaluate initial estimates of the parameters \code{Asym},
-  \code{xmid}, and \code{scal} for a given set of data.
+  creates initial estimates of the parameters \code{Asym},
+  \code{xmid}, and \code{scal}.
 }
 \value{
   a numeric vector of the same length as \code{input}.  It is the value of
   the expression \code{Asym/(1+exp((xmid-input)/scal))}.  If all of
   the arguments \code{Asym}, \code{xmid}, and \code{scal} are
-  names of objects, as opposed to expressions or explicit numerical
-  values, the gradient matrix with respect to these names is attached as
+  names of objects the gradient matrix with respect to these names is attached as
   an attribute named \code{gradient}.
 }
 \author{Jose Pinheiro and Douglas Bates}

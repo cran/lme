@@ -1,4 +1,4 @@
-% $Id: SSmicmen.Rd,v 1.2 1999/03/31 15:41:22 pinheiro Exp $
+% $Id: SSmicmen.Rd,v 1.4 1999/07/29 16:30:31 pinheiro Exp $
 \name{SSmicmen}
 \title{Michaelis-Menten model}
 \usage{
@@ -21,9 +21,8 @@ SSmicmen(input, Vm, K)
   a numeric vector of the same length as \code{input}.  It is the value of
   the expression \code{Vm*input/(K+input)}.  If both
   the arguments \code{Vm} and \code{K} are
-  names of objects, as opposed to expressions or explicit numerical
-  values, the gradient matrix with respect to these names is attached as
-  an attribute named \code{gradient}.
+  names of objects, the gradient matrix with respect to these names is
+  attached as an attribute named \code{gradient}.
 }
 \author{Jose Pinheiro and Douglas Bates}
 \seealso{\code{\link{nls}}, \code{\link{selfStart}}

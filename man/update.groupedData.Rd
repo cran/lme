@@ -1,4 +1,4 @@
-% $Id: update.groupedData.Rd,v 1.1 1998/04/06 21:35:20 pinheiro Exp $
+% $Id: update.groupedData.Rd,v 1.2 1999/07/28 04:00:51 bates Exp $
 \name{update.groupedData}
 \title{Update a groupedData Object}
 \usage{
@@ -7,8 +7,8 @@ update(object, formula, data, order.groups, FUN, outer, inner, labels, units)
 \alias{update.groupedData}
 \arguments{
  \item{object}{an object inheriting from class \code{groupedData}.}
- \item{other arguments}{defined as in \code{\link{groupedData}}. See the
-   documentation on that function for descriptions of and default values
+ \item{other arguments}{defined as in \code{\link{groupedData}}. See
+   that function's documentation for descriptions of and default values
    for these arguments.}
 }
 \description{

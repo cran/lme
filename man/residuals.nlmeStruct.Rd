@@ -1,4 +1,4 @@
-% $Id: residuals.nlmeStruct.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: residuals.nlmeStruct.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{residuals.nlmeStruct}
 \title{Calculate nlmeStruct Residuals}
 \usage{
@@ -38,17 +38,12 @@ residuals(object, levels, conLin)
 \references{
   Bates, D.M. and Pinheiro, J.C. (1998) "Computational methods for
   multilevel models" available in PostScript or PDF formats at
-  http://franz.stat.wisc.edu/pub/NNLME/
+  http://nlme.stat.wisc.edu
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
 \note{
-  This method function is generally only used inside the \code{nlme}
-  or \code{residuals.nlme} functions. 
+  This method function is primarily used within the \code{nlme}
+  function. 
 }
-
-\seealso{\code{\link{nlme}}, \code{\link{residuals.nlme}},
-  \code{\link{fitted.nlmeStruct}} } 
-
+\seealso{\code{\link{nlme}}, \code{\link{fitted.nlmeStruct}} } 
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: pdFactor.reStruct.Rd,v 1.3 1998/11/18 00:21:34 pinheiro Exp $
+% $Id: pdFactor.reStruct.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{pdFactor.reStruct}
 \title{Extract Square-Root Factor from Components of an reStruct Object}
 \usage{
@@ -20,18 +20,14 @@ pdFactor(object)
   a vector with square-root factors of the positive-definite matrices
   corresponding to the elements of \code{object} stacked column-wise.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
 \note{
   This function is used intensively in optimization
   algorithms and its value is returned as a vector for efficiency
   reasons. The \code{pdMatrix} function can be used to obtain
   square-root factors in matrix form.
 }
-
 \seealso{\code{\link{pdMatrix.reStruct}}, \code{\link{pdFactor.pdMat}}}
-
 \examples{
 library(lme)
 data(Orthodont)

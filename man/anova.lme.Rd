@@ -1,8 +1,8 @@
-% $Id: anova.lme.Rd,v 1.5 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: anova.lme.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{anova.lme}
 \title{Compare Likelihoods of Fitted Objects}
 \usage{
-anova(object, ..., test, type, adjustSigma, terms, L, verbose)
+anova(object, ..., test, type, adjustSigma, Terms, L, verbose)
 }
 \alias{anova.lme}
 \arguments{
@@ -27,11 +27,11 @@ anova(object, ..., test, type, adjustSigma, terms, L, verbose)
  \item{adjustSigma}{an optional logical value. If \code{TRUE} and the
    estimation method used to obtain \code{object} was maximum
    likelihood, the residual standard error is multiplied by
-   \eqn{\sqrt{n_{obs}/(n_obs - n_par)}}{sqrt(nobs/(nobs - npar))},
+   \eqn{\sqrt{n_{obs}/(n_{obs} - n_{par})}}{sqrt(nobs/(nobs - npar))},
    converting it to a REML-like estimate. This argument is only used
    when a single fitted object is passed to the function. Default is
    \code{TRUE}.} 
- \item{terms}{an optional integer of character vector specifying which
+ \item{Terms}{an optional integer or character vector specifying which
    terms in the model should be jointly tested to be zero using a Wald
    F-test. If given as a character vector, its elements must correspond
    to term names; else, if given as an integer vector, its elements must
@@ -57,8 +57,8 @@ anova(object, ..., test, type, adjustSigma, terms, L, verbose)
   When only one fitted model object is present, a data frame with the
   sums of squares, numerator degrees of freedom, denominator degrees of
   freedom, F-values, and P-values for Wald tests for the terms in the
-  model (when \code{terms} and \code{L} are \code{NULL}), a combination
-  of model terms (when \code{terms} in not \code{NULL}), or linear
+  model (when \code{Terms} and \code{L} are \code{NULL}), a combination
+  of model terms (when \code{Terms} in not \code{NULL}), or linear
   combinations of the model coefficients (when \code{L} is not
   \code{NULL}). Otherwise, when multiple fitted objects are being
   compared, a data frame with the degrees of freedom, the (restricted)

@@ -1,4 +1,4 @@
-% $Id: getGroupsFormula.Rd,v 1.4 1998/04/02 18:53:13 pinheiro Exp $
+% $Id: getGroupsFormula.Rd,v 1.6 1999/07/29 16:44:42 bates Exp $
 \name{getGroupsFormula}
 \title{Extract Grouping Formula}
 \usage{
@@ -14,9 +14,9 @@ getGroupsFormula(object, asList)
 }
 \description{
   The conditioning expression associated with \code{formula(object)}
-  (i.e. an expression after a \code{|} operator) is returned either as
+  (i.e. the expression after the \code{|} operator) is returned either as
   a named list of one-sided formulas, or a single one-sided formula,
-  depending  on the value of \code{asList}. The components of the
+  depending on the value of \code{asList}. The components of the
   returned list are ordered from outermost to innermost level and are
   named after the grouping factor expression.
 }
@@ -28,8 +28,13 @@ getGroupsFormula(object, asList)
 }
 \author{Jose Pinheiro and Douglas Bates}
 
-\seealso{\code{\link{getGroups}}}
-
+\seealso{
+    \code{\link{getGroupsFormula.gls}},
+    \code{\link{getGroupsFormula.lmList}},
+    \code{\link{getGroupsFormula.lme}},
+    \code{\link{getGroupsFormula.reStruct}},
+    \code{\link{getGroups}}
+}
 \examples{
 library(lme)
 getGroupsFormula(y ~ x | g1/g2)

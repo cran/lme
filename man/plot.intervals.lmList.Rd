@@ -1,4 +1,4 @@
-% $Id: plot.intervals.lmList.Rd,v 1.3 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: plot.intervals.lmList.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{plot.intervals.lmList}
 \title{Plot lmList Confidence Intervals}
 \usage{
@@ -7,9 +7,9 @@ plot(object, ...)
 \alias{plot.intervals.lmList}
 \arguments{
  \item{object}{an object inheriting from class \code{intervals.lmList},
-   representing confidence intervals and estimates for the the
-   coefficients in the \code{lm} components of the \code{lmList} object
-   used to produce \code{object}.
+   representing confidence intervals and estimates for the coefficients
+   in the \code{lm} components of the \code{lmList} object used to
+   produce \code{object}.
  }
  \item{\dots}{optional arguments passed to the Trellis \code{dotplot}
    function.
@@ -31,20 +31,15 @@ plot(object, ...)
   the individual \code{lm} components of the \code{lmList} that
   generated \code{object}. 
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{intervals.lmList}}, \code{\link{lmList}},
   \code{\link{dotplot}}} 
-
 \examples{
 library(lme)
 data(Orthodont)
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
+\dontrun{
 plot(intervals(fm1))
+}
 }
 \keyword{models}

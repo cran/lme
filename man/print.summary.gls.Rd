@@ -1,4 +1,4 @@
-% $Id: print.summary.gls.Rd,v 1.2 1998/04/06 21:35:19 pinheiro Exp $
+% $Id: print.summary.gls.Rd,v 1.3 1999/06/28 17:22:25 bates Exp $
 \name{print.summary.gls}
 \title{Print a summary.gls Object}
 \usage{
@@ -29,8 +29,10 @@ print(x, verbose, ...)
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 print(summary(fm1))
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: qqnorm.lme.Rd,v 1.2 1999/03/31 15:41:23 pinheiro Exp $
+% $Id: qqnorm.lme.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{qqnorm.lme}
 \title{Normal Plot of Residuals or Random Effects from an lme Object}
 \usage{
@@ -56,22 +56,17 @@ qqnorm(object, form, abline, id, idLabels, grid, ...)
   a diagnostic Trellis plot for assessing normality of residuals or
   random effects.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{lme}}, \code{\link{plot.lme}}}
-
 \examples{
 library(lme)
 data(Orthodont)
+\dontrun{
 fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
 # normal plot of standardized residuals by gender
 qqnorm(fm1, ~ resid(., type = "p") | Sex, abline = c(0, 1))
 # normal plots of random effects
 qqnorm(fm1, ~ranef(.))
+}
 }
 \keyword{models}

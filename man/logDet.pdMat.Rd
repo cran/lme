@@ -1,4 +1,4 @@
-% $Id: logDet.pdMat.Rd,v 1.3 1998/04/02 18:53:14 pinheiro Exp $
+% $Id: logDet.pdMat.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{logDet.pdMat}
 \title{Extract Log-Determinant from a pdMat Object}
 \usage{
@@ -11,7 +11,7 @@ logDet(object)
 \alias{logDet.pdIdent}
 \alias{logDet.pdSymm}
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.} 
 }
 \description{

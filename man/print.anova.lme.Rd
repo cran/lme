@@ -1,4 +1,4 @@
-% $Id: print.anova.lme.Rd,v 1.2 1998/04/06 21:35:18 pinheiro Exp $
+% $Id: print.anova.lme.Rd,v 1.3 1999/06/28 17:22:25 bates Exp $
 \name{print.anova.lme}
 \title{Print an anova.lme Object}
 \usage{
@@ -33,8 +33,9 @@ print(x, verbose)
 \examples{
 library(lme)
 data(Orthodont)
-fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
-fm2 <- update(fm1, distance ~ age * Sex)
-print(anova(fm1, fm2))
+fm1 <- lme(distance ~ age * Sex, Orthodont, random = ~ age | Subject)
+fm2 <- update(fm1, random = ~ 1 | Subject)
+print(anova(fm1))                # single argument form
+print(anova(fm1, fm2))           # multiple arguments
 }
 \keyword{models}

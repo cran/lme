@@ -1,4 +1,4 @@
-% $Id: residuals.gls.Rd,v 1.4 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: residuals.gnls.Rd,v 1.1 1999/07/28 04:00:51 bates Exp $
 \name{residuals.gnls}
 \title{Extract gnls Residuals}
 \usage{
@@ -26,16 +26,15 @@ residuals(object, type)
   a vector with the residuals for the linear model represented by
   \code{object}. 
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
 \seealso{\code{\link{gnls}}, \code{\link{fitted.gnls}} }
-
 \examples{
 library(lme)
 data(Soybean)
+\dontrun{
 fm1 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             weights = varPower())
 fitted(fm1)
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: update.varFunc.Rd,v 1.2 1998/04/02 18:53:20 pinheiro Exp $
+% $Id: update.varFunc.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{update.varFunc}
 \title{Update varFunc Object}
 \usage{
@@ -11,7 +11,7 @@ update(object, data)
 \alias{update.varPower}
 
 \arguments{
- \item{object}{an object inheriting from class code{varFunc},
+ \item{object}{an object inheriting from class \code{varFunc},
    representing a variance function structure.} 
  \item{data}{a list with a component named \code{"."} with the current
    version of the fitted object (from which fitted values, coefficients,

@@ -1,4 +1,4 @@
-% $Id: summary.varFunc.Rd,v 1.2 1998/04/02 18:53:19 pinheiro Exp $
+% $Id: summary.varFunc.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{summary.varFunc}
 \title{Summarize varFunc Object}
 \usage{
@@ -13,7 +13,7 @@ summary(object, structName)
 \alias{summary.varPower}
 
 \arguments{
- \item{object}{an object inheriting from class code{varFunc},
+ \item{object}{an object inheriting from class \code{varFunc},
    representing a variance function structure.} 
  \item{structName}{an optional character string with a description of
    the \code{varFunc} class. Default depends on the method function:

@@ -1,4 +1,4 @@
-## $Id: lmList.q,v 1.41 1999/06/04 13:26:05 bates Exp $
+## $Id: lmList.q,v 1.42 1999/07/28 17:13:02 pinheiro Exp $
 ###
 ###                  Create a list of lm objects
 ###
@@ -96,6 +96,7 @@ lmList.formula <-
   attr(val, "groupsForm") <- grpForm
   attr(val,"groups") <- ordered(groups, levels = names(val))
   attr(val, "origOrder") <- match(unique(as.character(groups)), names(val))
+  attr(val, "level") <- level
   attr(val, "pool") <- pool
   class(val) <- "lmList"
   val
@@ -166,7 +167,7 @@ augPred.lmList <-
 
 coef.lmList <-
   ## Extract the coefficients and form a  data.frame if possible
-  function(object, augFrame = FALSE, level = 1, data = NULL,
+  function(object, augFrame = FALSE, data = NULL,
            which = NULL, FUN = mean, omitGroupingFactor = TRUE)
 {
   coefs <- lapply(object, coef)
@@ -205,7 +206,7 @@ coef.lmList <-
 	  coefs <- cbind(coefs, data[row.names(coefs),,drop = FALSE])
 	}
       }
-      attr(coefs, "level") <- level
+      attr(coefs, "level") <- attr(object, "level")
       attr(coefs, "label") <- "Coefficients"
       attr(coefs, "effectNames") <- effectNames
       attr(coefs, "standardized") <- F
@@ -1100,7 +1101,7 @@ qqnorm.lmList <-
                  if ((id <= 0) || (id >= 1)) {
                    stop("Id must be between 0 and 1")
                  }
-                 aux <- ranef(object, level = level, standard = TRUE)
+                 aux <- ranef(object, standard = TRUE)
                  as.logical(abs(c(unlist(aux))) > -qnorm(id / 2))
                },
                call = eval(asOneSidedFormula(id)[[2]], data),
@@ -1184,11 +1185,11 @@ ranef.lmList <-
   ##  values from the original data object, if available.  The variables
   ##  in the original data are collapsed over the cluster variable by the
   ##  function fun.
-  function(object, augFrame = FALSE, level = 1, data = NULL,
+  function(object, augFrame = FALSE, data = NULL,
            which = NULL, FUN = mean, standard = FALSE,
            omitGroupingFactor = TRUE)
 {
-  val <- coef(object, augFrame, level, data, which, FUN, omitGroupingFactor)
+  val <- coef(object, augFrame, data, which, FUN, omitGroupingFactor)
   effNames <- attr(val, "effectNames")
   effs <- val[, effNames, drop = FALSE]
   effs <- as.data.frame(lapply(effs, function(el) el - mean(el, na.rm = TRUE)))

@@ -1,4 +1,4 @@
-% $Id: fitted.lme.Rd,v 1.4 1999/06/04 13:31:40 bates Exp $
+% $Id: fitted.lme.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{fitted.lme}
 \title{Extract lme Fitted Values}
 \usage{
@@ -28,7 +28,7 @@ fitted(object, level, asList)
   \eqn{i}.  
 }
 \value{
-  if a single level of grouping is specified in \code{level}, the
+  If a single level of grouping is specified in \code{level}, the
   returned value is either a list with the fitted values split by groups
   (\code{asList = TRUE}) or a vector with the fitted values
   (\code{asList = FALSE}); else, when multiple grouping levels are

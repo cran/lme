@@ -1,9 +1,9 @@
-% $Id: gls.Rd,v 1.5 1999/06/04 13:31:40 bates Exp $
+% $Id: gls.Rd,v 1.8 1999/07/28 04:00:51 bates Exp $
 \name{gls}
 \title{Fit Linear Model Using Generalized Least Squares}
 \usage{
-gls(model, data, correlation, weights, subset, method, na.action, control,
-    verbose)
+gls(model, data, correlation, weights, subset, method, na.action,
+    control, verbose)
 }
 \alias{gls}
 \arguments{
@@ -28,7 +28,7 @@ gls(model, data, correlation, weights, subset, method, na.action, control,
    \code{varClasses} for a description of the available \code{varFunc}
    classes. Defaults to \code{NULL}, corresponding to homoscesdatic
    errors.} 
- \item{subset}{an optional expression saying which subset of the rows of
+ \item{subset}{an optional expression indicating which subset of the rows of
    \code{data} should  be  used in the fit. This can be a logical
    vector, or a numeric vector indicating which observation numbers are
    to be included, or a  character  vector of the row names to be
@@ -54,7 +54,7 @@ gls(model, data, correlation, weights, subset, method, na.action, control,
 }
 \value{
   an object of class \code{gls} representing the linear model
-  fit. Generic functions such as \code{print}, \code{plot} and 
+  fit. Generic functions such as \code{print}, \code{plot}, and 
   \code{summary} have methods to show the results of the fit. See
   \code{glsObject} for the components of the fit. The functions
   \code{resid}, \code{coef}, and \code{fitted} can be used to extract
@@ -66,13 +66,13 @@ gls(model, data, correlation, weights, subset, method, na.action, control,
  G.M., and Reinsel G.C. (1994), Littel, R.C., Milliken, G.A., Stroup,
  W.W., and Wolfinger, R.D. (1997), and Venables, W.N. and Ripley,
  B.D. (1997). The use of variance functions for linear 
- and nonlinear models is presented in detail in Carrol, R.J. and Rupert,
+ and nonlinear models is presented in detail in Carroll, R.J. and Ruppert,
  D. (1988) and Davidian, M. and Giltinan, D.M. (1995).  
 
  Box, G.E.P., Jenkins, G.M., and Reinsel G.C. (1994) "Time Series
  Analysis: Forecasting and Control", 3rd Edition, Holden-Day. 
 
- Carrol, R.J. and Rupert, D. (1988) "Transformation and Weighting in
+ Carroll, R.J. and Ruppert, D. (1988) "Transformation and Weighting in
  Regression", Chapman and Hall.
 
  Davidian, M. and Giltinan, D.M. (1995) "Nonlinear Mixed Effects Models
@@ -93,11 +93,13 @@ gls(model, data, correlation, weights, subset, method, na.action, control,
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 # AR(1) errors within each Mare
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
-# variance increases with a power of the absolute fitted values
-fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
+# variance increases as a power of the absolute fitted values
+fm2 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            weights = varPower())
+}
 }
 \keyword{models}

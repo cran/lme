@@ -1,4 +1,4 @@
-### $Id: simulate.q,v 1.13 1999/03/08 14:04:47 pinheiro Exp $
+### $Id: simulate.q,v 1.14 1999/07/29 16:25:37 pinheiro Exp $
 ###
 ###            Fit a general linear mixed effects model
 ###
@@ -22,7 +22,7 @@
 ### MA 02111-1307, USA
 
 "createConLin"<-
-  function(fixed, data = sys.parent(),
+  function(fixed, data = sys.frame(sys.parent()),
 	   random = pdSymm(eval(as.call(fixed[-2]))), ...)
 {
   Call <- match.call()
@@ -150,7 +150,7 @@ simulate.lme <-
     aux <- rnorm(1)			# DMB using "aux" to confuse everyone :-)
     Random.seed <- .Random.seed
   }
-  assign(".Random.seed", Random.seed, where = 1)
+  assign(".Random.seed", Random.seed)
 
   if (inherits(m1, "lme")) {            # given as an lme object
     fit1 <- m1

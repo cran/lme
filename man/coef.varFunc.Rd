@@ -1,4 +1,4 @@
-% $Id: coef.varFunc.Rd,v 1.6 1998/04/02 18:53:10 pinheiro Exp $
+% $Id: coef.varFunc.Rd,v 1.7 1999/06/28 17:22:25 bates Exp $
 \name{coef.varFunc}
 \title{varFunc Object Coefficients}
 \usage{
@@ -52,6 +52,8 @@ coef(object) <- value
 library(lme)
 vf1 <- varPower(1)
 coef(vf1)
+\dontrun{
 coef(vf1) <- 2
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-### $Id: lme.q,v 1.86 1999/05/27 22:08:41 bates Exp $
+### $Id: lme.q,v 1.89 1999/07/29 16:25:37 pinheiro Exp $
 ###
 ###            Fit a general linear mixed effects model
 ###
@@ -497,6 +497,13 @@ lmeApVar <-
     matrix(reSt[[i]]) <- sig2 * pdMatrix(reSt[[i]])
     if (inherits(reSt[[i]], "pdSymm") && natural) {
       reSt[[i]] <- pdNatural(reSt[[i]])
+    }
+    if (inherits(reSt[[i]], "pdBlocked") && natural) {
+      for(j in seq(along = reSt[[i]])) {
+        if (inherits(reSt[[i]][[j]], "pdSymm")) {
+          reSt[[i]][[j]] <- pdNatural(reSt[[i]][[j]])
+        }
+      }
     }
   }
   lmeSt[["reStruct"]] <- reSt
@@ -1192,6 +1199,14 @@ intervals.lme <-
 	    c(nP, 3), list(names(est), c("lower", "est.", "upper")))
 
     lmeSt <- object$modelStruct
+    if (!all(whichKeep <- apply(attr(lmeSt, "pmap"), 2, any))) {
+      ## need to deleted components with fixed coefficients
+      aux <- lmeSt[whichKeep]
+      class(aux) <- class(lmeSt)
+      attr(aux, "settings") <- attr(lmeSt, "settings")
+      attr(aux, "pmap") <- attr(lmeSt, "pmap")[, whichKeep, drop = F]
+      lmeSt <- aux
+    }
     cSt <- lmeSt[["corStruct"]]
     if (!is.null(cSt) && inherits(cSt, "corSymm") && attr(aV, "natural")) {
       ## converting to corNatural
@@ -1363,7 +1378,10 @@ pairs.lme <-
   if (!is.null(grpsF)) {
     gr <- splitFormula(grpsF, sep = "*")
     for(i in 1:length(gr)) {
-      auxData[[deparse(gr[[i]][[2]])]] <- eval(gr[[i]][[2]], data)
+      auxGr <- all.vars(gr[[i]])
+      for(j in auxGr) {
+        argData[[j]] <- eval(as.name(j), data)
+      }
     }
     if (length(argForm) == 2)
       argForm <- eval(parse(text = paste("~ .x |", deparse(grpsF[[2]]))))
@@ -1568,7 +1586,10 @@ plot.lme <-
   if (!is.null(grpsF)) {
     gr <- splitFormula(grpsF, sep = "*")
     for(i in 1:length(gr)) {
-      argData[[deparse(gr[[i]][[2]])]] <- eval(gr[[i]][[2]], data)
+      auxGr <- all.vars(gr[[i]])
+      for(j in auxGr) {
+        argData[[j]] <- eval(as.name(j), data)
+      }
     }
     if (length(argForm) == 2)
       argForm <- eval(parse(text = paste("~ .x |", deparse(grpsF[[2]]))))
@@ -1901,10 +1922,10 @@ plot.ranef.lme <-
     assign(".drawLine", pControl$drawLine)
     assign(".span", pControl$span.loess)
     assign(".degree", pControl$degree.loess)
-    assign("panel.bwplot2", panel.bwplot2, where = 1)
-    assign(".cex", pControl$cex.axis, where = 1)
-    assign(".srt", pControl$srt.axis, where = 1)
-    assign(".mgp", pControl$mgp.axis, where = 1)    
+    assign("panel.bwplot2", panel.bwplot2)
+    assign(".cex", pControl$cex.axis)
+    assign(".srt", pControl$srt.axis)
+    assign(".mgp", pControl$mgp.axis)    
     dots <- list(...)
     ylab <- dots$ylab
     if (is.null(ylab)) {

@@ -1,8 +1,9 @@
-% $Id: plot.nffGroupedData.Rd,v 1.1 1998/04/06 21:35:18 pinheiro Exp $
+% $Id: plot.nffGroupedData.Rd,v 1.5 1999/07/29 16:30:31 pinheiro Exp $
 \name{plot.nffGroupedData}
 \title{Plot an nffGroupedData Object}
 \usage{
-plot(x, outer, inner, innerGroups, xlab, ylab, strip, panel, key, ...)
+plot(x, outer, inner, innerGroups, xlab, ylab, strip, panel, key,
+     grid, ...)
 }
 \alias{plot.nffGroupedData}
 \arguments{
@@ -23,7 +24,7 @@ plot(x, outer, inner, innerGroups, xlab, ylab, strip, panel, key, ...)
  \item{inner}{an optional logical value or one-sided formula, indicating
    a covariate that is inner to the grouping factor, which is used to
    associate points within each panel of the Trellis plot. If
-   equal to \code{TRUE}, \code{attr(object, "outer")} is used to indicate the
+   equal to \code{TRUE}, \code{attr(object, "inner")} is used to indicate the
    inner covariate. An inner covariate can change within the sets of
    rows defined by the grouping  factor. Defaults to \code{NULL},
    meaning that no inner covariate  is present. 
@@ -57,6 +58,9 @@ plot(x, outer, inner, innerGroups, xlab, ylab, strip, panel, key, ...)
    \code{TRUE} is either \code{inner} or \code{innerGroups} are
    non-\code{NULL} and \code{FALSE} otherwise.
  }
+ \item{grid}{this argument is included for consistency with the
+	 \code{plot.nfnGroupedData} method calling sequence. It is
+	 ignored in this method function.} 
  \item{\dots}{optional arguments passed to the \code{dotplot} function.}
 }
 \description{
@@ -79,19 +83,14 @@ Pinheiro, J.C. and Bates, D.M. (1997) "Future Directions in
 Mixed-Effects Software: Design of NLME 3.0" available at
 http://franz.stat.wisc.edu/pub/NLME.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{groupedData}}, \code{\link{dotplot}}}
-
 \examples{
 library(lme)
-data(Machine)
-plot(Machine)
-plot(Machine, inner = TRUE)
+data(Machines)
+\dontrun{
+plot(Machines)
+plot(Machines, inner = TRUE)
+}
 }
 \keyword{models}

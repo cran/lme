@@ -1,4 +1,4 @@
-% $Id: SSfol.Rd,v 1.1 1999/03/31 15:41:22 pinheiro Exp $
+% $Id: SSfol.Rd,v 1.3 1999/07/29 16:30:31 pinheiro Exp $
 \name{SSfol}
 \title{First-order Compartment Model}
 \usage{
@@ -18,17 +18,16 @@ SSfol(Dose, input, lKe, lKa, lCl)
 \description{
   This \code{selfStart} model evaluates the first-order compartment
   function and its gradient.  It has an \code{initial} attribute that 
-  will evaluate initial estimates of the parameters \code{lKe}, \code{lKa},
-  and \code{lCl} for a given set of data.
+  creates initial estimates of the parameters \code{lKe}, \code{lKa},
+  and \code{lCl}.
 }
 \value{
   a numeric vector of the same length as \code{input}.  It is the value of
   the expression \code{Dose*exp(lKe+lKa-lCl)*(exp(-exp(lKe)*input) -
     exp(-exp(lKa)*input))/(exp(lKa) - exp(lKe))}.  If all of
   the arguments \code{lKe}, \code{lKa}, and \code{lCl} are
-  names of objects, as opposed to expressions or explicit numerical
-  values, the gradient matrix with respect to these names is attached as
-  an attribute named \code{gradient}.
+  names of objects, the gradient matrix with respect to these names is
+  attached as an attribute named \code{gradient}.
 }
 \author{Jose Pinheiro and Douglas Bates}
 \seealso{\code{\link{nls}}, \code{\link{selfStart}}

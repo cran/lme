@@ -1,4 +1,4 @@
-% $Id: compareFits.Rd,v 1.3 1998/04/02 18:53:10 pinheiro Exp $
+% $Id: compareFits.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{compareFits}
 \title{Compare Fitted Objects}
 \usage{
@@ -10,7 +10,7 @@ compareFits(object1, object2, which)
    row names, but possibly different column names. These will usually
    correspond to coefficients from fitted objects with a grouping
    structure (e.g. \code{lme} and \code{lmList} objects).}
- \item{which}{an optional integer of character vector indicating which
+ \item{which}{an optional integer or character vector indicating which
    columns in \code{object1} and \code{object2} are to be used in the
    returned object. Defaults to all columns.}
 }
@@ -39,6 +39,8 @@ library(lme)
 data(Orthodont)
 fm1 <- lmList(Orthodont)
 fm2 <- lme(fm1)
+\dontrun{
 compareFits(coef(fm1), coef(fm2))
+}
 }
 \keyword{models}

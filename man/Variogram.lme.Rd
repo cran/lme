@@ -1,4 +1,4 @@
-% $Id: Variogram.lme.Rd,v 1.1 1999/05/13 15:44:54 pinheiro Exp $
+% $Id: Variogram.lme.Rd,v 1.3 1999/07/26 15:08:48 bates Exp $
 \name{Variogram.lme}
 \title{Calculate Semi-variogram for Residuals from an lme Object}
 \usage{
@@ -69,11 +69,11 @@ Variogram(object, distance, form, resType, data, na.action, maxDist,
     ignored.}
   \item{metric}{an optional character string specifying the distance
     metric to be used. The currently available options are
-    \code{"euclidian"} for the root sum-of-squares of distances;
+    \code{"euclidean"} for the root sum-of-squares of distances;
     \code{"maximum"} for the maximum difference; and \code{"manhattan"}
     for the sum of the absolute differences. Partial matching of
     arguments is used, so only the first three characters need to be
-    provided. Defaults to \code{"euclidian"}.}
+    provided. Defaults to \code{"euclidean"}.}
 }
 \description{
   This method function calculates the semi-variogram for the
@@ -108,6 +108,8 @@ Variogram(object, distance, form, resType, data, na.action, maxDist,
 library(lme)
 data(BodyWeight)
 fm1 <- lme(weight ~ Time * Diet, BodyWeight, ~ Time | Rat)
+\dontrun{
 Variogram(fm1, form = ~ Time | Rat, nint = 10, robust = TRUE)
+}
 }
 \keyword{models}

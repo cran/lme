@@ -1,4 +1,4 @@
-% $Id: solve.pdMat.Rd,v 1.2 1998/04/02 18:53:18 pinheiro Exp $
+% $Id: solve.pdMat.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{solve.pdMat}
 \title{Calculate Inverse of a Positive-Definite Matrix}
 \usage{
@@ -11,7 +11,7 @@ solve(a, b, tol)
 \alias{solve.pdNatural}
 
 \arguments{
- \item{a}{an object inheriting from class code{pdMat}, representing
+ \item{a}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.} 
  \item{b}{this argument is only included for consistency with the generic
    function and is not used in this method function.}

@@ -1,4 +1,4 @@
-% $Id: gsummary.Rd,v 1.4 1998/04/06 21:35:16 pinheiro Exp $
+% $Id: gsummary.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{gsummary}
 \title{Summarize by Groups}
 \usage{
@@ -35,7 +35,7 @@ gsummary(object, FUN, omitGroupingFactor, form, level,
    summary. Defaults to \code{FALSE}.
  }
  \item{form}{an optional one-sided formula that defines the groups.
-   When this formula is given the right-hand side is evaluated in
+   When this formula is given, the right-hand side is evaluated in
    \code{object}, converted to a factor if necessary, and the unique
    levels are used to define the groups.  Defaults to
    \code{formula(object)}.

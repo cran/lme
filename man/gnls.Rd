@@ -1,4 +1,4 @@
-% $Id: gnls.Rd,v 1.3 1999/06/04 13:31:40 bates Exp $
+% $Id: gnls.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{gnls}
 \title{Fit Nonlinear Model Using Generalized Least Squares}
 \usage{
@@ -36,7 +36,7 @@ gnls(model, data, params, start, correlation, weights, subset,
    within-group correlation structure. See the documentation of
    \code{corClasses} for a description of the available \code{corStruct}
    classes. If a grouping variable is to be used, it must be specified
-   in the \code{form} argument to the the \code{corStruct}
+   in the \code{form} argument to the \code{corStruct}
    constructor. Defaults to \code{NULL}, corresponding to uncorrelated 
    errors.}  
  \item{weights}{an optional \code{varFunc} object or one-sided formula
@@ -46,7 +46,7 @@ gnls(model, data, params, start, correlation, weights, subset,
    \code{varClasses} for a description of the available \code{varFunc}
    classes. Defaults to \code{NULL}, corresponding to homoscesdatic
    errors.} 
- \item{subset}{an optional expression saying which subset of the rows of
+ \item{subset}{an optional expression indicating which subset of the rows of
    \code{data} should  be  used in the fit. This can be a logical
    vector, or a numeric vector indicating which observation numbers are
    to be included, or a  character  vector of the row names to be
@@ -108,13 +108,15 @@ gnls(model, data, params, start, correlation, weights, subset,
   \code{\link{varFunc}}, \code{\link{corClasses}}, \code{\link{varClasses}}
 }
 \examples{
-library(nlme)
+library(lme)
 data(Soybean)
+\dontrun{
 # variance increases with a power of the absolute fitted values
 fm1 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             weights = varPower())
 # errors follow an auto-regressive process of order 1 
 fm2 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             correlation = corAR1())
+}
 }
 \keyword{models}

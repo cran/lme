@@ -1,5 +1,6 @@
-### $Id: Semiconductor.q,v 1.1 1998/04/10 23:02:02 bates Exp $
-### 
+### $Id: Semiconductor.q,v 1.2 1999/06/23 22:05:17 bates Exp $
+### Resistance in a semiconductor - data set 2.2(b) in
+### "SAS System for Mixed Models"
 "Semiconductor" <-
   structure(list(
   resistance = c(5.22, 5.61, 6.11, 6.33, 6.13, 6.14, 

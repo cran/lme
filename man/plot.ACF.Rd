@@ -1,4 +1,4 @@
-% $Id: plot.ACF.Rd,v 1.2 1999/03/31 15:41:22 pinheiro Exp $
+% $Id: plot.ACF.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{plot.ACF}
 \title{Plot an ACF Object}
 \usage{
@@ -34,19 +34,14 @@ plot(object, alpha, xlab, ylab, grid, ...)
 \value{
   an \code{xyplot} Trellis plot.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{ACF}}, \code{\link{xyplot}}}
-
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- lme(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary)
 plot(ACF(fm1, maxLag = 10), alpha = 0.01)
+}
 }
 \keyword{models}

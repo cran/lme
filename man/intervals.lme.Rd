@@ -1,4 +1,4 @@
-% $Id: intervals.lme.Rd,v 1.4 1998/04/06 21:35:17 pinheiro Exp $
+% $Id: intervals.lme.Rd,v 1.5 1999/07/29 16:30:31 pinheiro Exp $
 \name{intervals.lme}
 \title{Confidence Intervals on lme Parameters}
 \usage{
@@ -10,9 +10,9 @@ intervals(object, level, which)
    a fitted linear mixed-effects model.}
  \item{level}{an optional numeric value with the confidence level for
    the intervals. Defaults to 0.95.} 
- \item{which}{an optional character string with specifying the  subset
+ \item{which}{an optional character string specifying the  subset
    of parameters for which to construct the confidence
-   intervals. Options include \code{"all"} for all parameters,
+   intervals. Possible values are \code{"all"} for all parameters,
    \code{"var-cov"} for the variance-covariance parameters only, and
    \code{"fixed"} for the fixed effects only. Defaults to \code{"all"}.}
 }

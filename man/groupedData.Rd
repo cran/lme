@@ -1,4 +1,4 @@
-% $Id: groupedData.Rd,v 1.6 1999/06/04 13:31:40 bates Exp $
+% $Id: groupedData.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{groupedData}
 \title{Construct a groupedData Object}
 \usage{
@@ -82,12 +82,12 @@ groupedData(formula, data, order.groups, FUN, outer, inner,
   classes: \code{nfnGroupedData} - numeric covariate, single level of
   nesting; \code{nffGroupedData} - factor covariate, single level of
   nesting; and \code{nmGroupedData} - multiple levels of
-  nesting. Several modelling and plotting functions can use the formula
+  nesting. Several modeling and plotting functions can use the formula
   stored with a \code{groupedData} object to construct default plots and
   models. 
 }
 \value{
-  an object inheriting from one of the classes \code{nfnGroupedData},
+  an object of one of the classes \code{nfnGroupedData},
   \code{nffGroupedData}, or \code{nmGroupedData}, and also inheriting
   from  classes \code{groupedData} and \code{data.frame}. 
 }

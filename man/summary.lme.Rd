@@ -1,4 +1,4 @@
-% $Id: summary.lme.Rd,v 1.4 1998/04/06 21:35:19 pinheiro Exp $
+% $Id: summary.lme.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{summary.lme}
 \title{Summarize an lme Object}
 \usage{
@@ -24,15 +24,16 @@ summary(object, verbose)
   description of the components) plus the following components:
   \item{corFixed}{approximate correlation matrix for the fixed effects
     estimates }
-  \item{zTable}{a data frame with columns \code{Value},
-    \code{Std. Error}, \code{z-value}, and \code{p-value} representing
+  \item{tTable}{a data frame with columns \code{Value},
+    \code{Std. Error}, \code{DF}, \code{t-value}, and \code{p-value} representing
     respectively the fixed effects estimates, their approximate standard
-    errors, the ratios between the estimates and their standard errors,
-    and the associated p-value under a normal approximation. Rows
+    errors, the denominator degrees of freedom, the ratios between the
+    estimates and their standard errors, 
+    and the associated p-value from a t distribution. Rows
     correspond to the different fixed effects.}
   \item{residuals}{if more than five observations are used in the
-    \code{lme} fit, a vector with the minimum, 25% quantile, median, 75%
-    quantile, and maximum of the innermost grouping level residuals
+    \code{lme} fit, a vector with the minimum, first quartile, median, third
+    quartile, and maximum of the innermost grouping level residuals
     distribution; else the innermost grouping level residuals.}
   \item{AIC}{the Akaike Information Criterion corresponding to
     \code{object}.} 

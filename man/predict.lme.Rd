@@ -1,4 +1,4 @@
-% $Id: predict.lme.Rd,v 1.4 1998/04/06 21:35:18 pinheiro Exp $
+% $Id: predict.lme.Rd,v 1.5 1999/07/29 16:30:31 pinheiro Exp $
 \name{predict.lme}
 \title{Predictions from an lme Object}
 \usage{
@@ -56,9 +56,9 @@ predict(object, newdata, level, asList, na.action)
 library(lme)
 data(Orthodont)
 fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
-newOrth <- data.frame(Sex = c(0,0,1,1,0,0),
-                      age = c(15,20, 10,12,2,4),
-                      Subject = c(1,1,30,30,4,4))
+newOrth <- data.frame(Sex = c("Male","Male","Female","Female","Male","Male"),
+                      age = c(15, 20, 10, 12, 2, 4),
+                      Subject = c("M01","M01","F30","F30","M04","M04"))
 predict(fm1, newOrth, level = 0:1)
 }
 \keyword{models}

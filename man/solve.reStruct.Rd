@@ -1,4 +1,4 @@
-% $Id: solve.reStruct.Rd,v 1.4 1998/04/02 18:53:19 pinheiro Exp $
+% $Id: solve.reStruct.Rd,v 1.5 1999/06/28 17:22:26 bates Exp $
 \name{solve.reStruct}
 \title{Apply Solve to an reStruct Object}
 \usage{
@@ -30,6 +30,7 @@ solve(a, b, tol)
 \seealso{\code{\link{solve.pdMat}}, \code{\link{reStruct}}}
 
 \examples{
+library(lme)
 rs1 <- reStruct(list(A = pdSymm(diag(1:3), form = ~Score),
   B = pdDiag(2 * diag(4), form = ~Educ)))
 solve(rs1)

@@ -1,4 +1,4 @@
-### $Id: corStruct.q,v 1.19 1999/05/13 15:46:19 pinheiro Exp $
+### $Id: corStruct.q,v 1.20 1999/07/20 15:07:13 pinheiro Exp $
 ###
 ###              Classes of correlation structures
 ###
@@ -1271,11 +1271,10 @@ corMatrix.corARMA <-
 coef.corARMA <- 
   function(object, unconstrained = TRUE) 
 {
-  if (attr(object, "fixed")) {
-    val <- numeric(0)
-  } else {
-    val <-  as.vector(object)
-  }
+  if (attr(object, "fixed") && unconstrained) {
+    return(numeric(0))
+  } 
+  val <-  as.vector(object)
   if (!unconstrained) {
     p <- attr(object, "p")
     q <- attr(object, "q")
@@ -1500,7 +1499,8 @@ initialize.corCompSymm <-
   natPar <- as.vector(object)
   corD <- Dim(object)
   if (natPar <= (attr(object, "inf") <- -1/(corD[["maxLen"]] - 1))) {
-    stop(paste("Initial value in corCompSymm must be > than", aux))
+    stop(paste("Initial value in corCompSymm must be > than",
+               attr(object, "inf")))
   }
   object[] <- log((natPar - attr(object, "inf"))/(1 - natPar))	
   attr(object, "factor") <- corFactor(object)

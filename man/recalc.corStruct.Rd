@@ -1,4 +1,4 @@
-% $Id: recalc.corStruct.Rd,v 1.4 1998/04/02 18:53:18 pinheiro Exp $
+% $Id: recalc.corStruct.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{recalc.corStruct}
 \title{Recalculate for corStruct Object}
 \usage{
@@ -34,12 +34,8 @@ recalc(object, conLin)
 \value{
   the recalculated condensed linear model object.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{This method function is only used inside model fitting functions
-  which allow correlated error terms, like \code{lme} and \code{gls}.}
-
+\note{This method function is only used inside model fitting functions,
+    such as \code{lme} and \code{gls}, that allow correlated error terms.}
 \seealso{\code{\link{corFactor}}, \code{\link{logLik.corStruct}}}
-
 \keyword{models}

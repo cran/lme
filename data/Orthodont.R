@@ -1,4 +1,4 @@
-### $Id: Orthodont.q,v 1.4 1999/01/15 15:50:28 bates Exp $
+### $Id: Orthodont.q,v 1.5 1999/07/28 17:32:49 bates Exp $
 ### An orthodontic measurement on several children over time
 ### Pothoff and Roy (1964), Biometrika, 51, 313-326
 "Orthodont" <-
@@ -45,4 +45,6 @@ class = c("nfnGroupedData", "nfGroupedData", "groupedData", "data.frame"),
 formula = distance ~ age | Subject,
 labels = list(x = "Age",
   y = "Distance from pituitary to pterygomaxillary fissure"),
-units = list(x = "(yr)", y = "(mm)"))
+units = list(x = "(yr)", y = "(mm)"),
+FUN = function (x) max(x, na.rm = TRUE),
+order.groups = TRUE)            

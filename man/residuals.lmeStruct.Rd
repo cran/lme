@@ -1,4 +1,4 @@
-% $Id: residuals.lmeStruct.Rd,v 1.3 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: residuals.lmeStruct.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{residuals.lmeStruct}
 \title{Calculate lmeStruct Residuals}
 \usage{
@@ -44,15 +44,11 @@ residuals(object, levels, lmeFit, conLin)
   multilevel models" available in PostScript or PDF formats at
   http://franz.stat.wisc.edu/pub/NLME/
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
 \note{
-  This method function is generally only used inside the \code{lme}
+  This method function is primarily used within the \code{lme}
   function. 
 }
-
 \seealso{\code{\link{lme}}, \code{\link{residuals.lme}},
   \code{\link{fitted.lmeStruct}} } 
-
 \keyword{models}

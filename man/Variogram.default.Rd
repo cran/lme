@@ -1,4 +1,4 @@
-% $Id: Variogram.default.Rd,v 1.1 1999/05/13 15:44:54 pinheiro Exp $
+% $Id: Variogram.default.Rd,v 1.2 1999/06/28 17:22:25 bates Exp $
 \name{Variogram.default}
 \title{Calculate Semi-variogram}
 \usage{
@@ -41,6 +41,8 @@ library(lme)
 data(Ovary)
 fm1 <- lm(follicles ~ sin(2 * pi * Time) + cos(2 * pi * Time), Ovary,
           subset = Mare == 1)
+\dontrun{
 Variogram(resid(fm1), dist(1:29))[1:10,]
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: corExp.Rd,v 1.8 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: corExp.Rd,v 1.10 1999/07/28 04:00:51 bates Exp $
 \name{corExp}
 \title{Exponential Correlation Structure}
 \usage{
@@ -31,11 +31,11 @@ corExp(value, form, nugget, metric, fixed)
    effect is present. Defaults to \code{FALSE}.}
  \item{metric}{an optional character string specifying the distance
    metric to be used. The currently available options are
-   \code{"euclidian"} for the root sum-of-squares of distances;
+   \code{"euclidean"} for the root sum-of-squares of distances;
    \code{"maximum"} for the maximum difference; and \code{"manhattan"}
    for the sum of the absolute differences. Partial matching of
    arguments is used, so only the first three characters need to be
-   provided. Defaults to \code{"euclidian"}.}
+   provided. Defaults to \code{"euclidean"}.}
  \item{fixed}{an optional logical value indicating whether the
    coefficients should be allowed to vary in the optimization, or kept
    fixed at their initial value. Defaults to \code{FALSE}, in which case
@@ -48,7 +48,7 @@ corExp(value, form, nugget, metric, fixed)
   effect, the correlation between two observations a distance
   \eqn{r} apart is \eqn{\exp(-r/d)}{exp(-r/d)} when no nugget effect
   is present and \eqn{(1-n) \exp(-r/d)}{(1-n)*exp(-r/d)} when a nugget
-  effect is assumed. Objects created using this constructor need to be later
+  effect is assumed. Objects created using this constructor must later be
   initialized using the appropriate \code{initialize} method.
 }
 \value{

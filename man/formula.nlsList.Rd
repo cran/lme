@@ -1,4 +1,4 @@
-% $Id: formula.nlsList.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: formula.nlsList.Rd,v 1.3 1999/07/30 15:54:39 bates Exp $
 \name{formula.nlsList}
 \title{Extract nlsList Object Formula}
 \usage{
@@ -24,9 +24,11 @@ formula(object)
 \seealso{\code{\link{nlsList}}}
 
 \examples{
-library(nlme)
+library(nls)
 data(Soybean)
+\dontrun{
 fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal)|Plot, data=Soybean)
 formula(fm1)
+}
 }
 \keyword{models}

@@ -1,6 +1,6 @@
-% $Id: SSasympOff.Rd,v 1.3 1999/06/04 16:14:59 pinheiro Exp $
+% $Id: SSasympOff.Rd,v 1.5 1999/07/29 16:30:31 pinheiro Exp $
 \name{SSasympOff}
-\title{Alternative Asymptotic Regression Model with an Offset}
+\title{Asymptotic Regression Model with an Offset}
 \usage{
 SSasympOff(input, Asym, lrc, c0)
 }
@@ -11,22 +11,23 @@ SSasympOff(input, Asym, lrc, c0)
    the right side (very large values of \code{input}).}
  \item{lrc}{a numeric parameter representing the natural logarithm of
    the rate constant.}
- \item{c0}{a numeric parameter representing the \code{input} when
+ \item{c0}{a numeric parameter representing the \code{input} for which the
    response is zero.}
 }
 \description{
-  This \code{selfStart} model evaluates the alternative asymptotic
-  regression function and its gradient.  It has an \code{initial}
-  attribute that will evaluate initial estimates of the parameters
-  \code{Asym}, \code{lrc}, and \code{c0} for a given set of data.
+  This \code{selfStart} model evaluates an alternative parameterization
+  of the asymptotic
+  regression function and the gradient with respect to those parameters.
+  It has an \code{initial}
+  attribute that creates initial estimates of the parameters
+  \code{Asym}, \code{lrc}, and \code{c0}.
 }
 \value{
   a numeric vector of the same length as \code{input}.  It is the value of
   the expression \code{Asym*(1 - exp(-exp(lrc)*(input - c0)))}.  If all of
   the arguments \code{Asym}, \code{lrc}, and \code{c0} are
-  names of objects, as opposed to expressions or explicit numerical
-  values, the gradient matrix with respect to these names is attached as
-  an attribute named \code{gradient}.
+  names of objects, the gradient matrix with respect to these names is
+  attached as an attribute named \code{gradient}.
 }
 \author{Jose Pinheiro and Douglas Bates}
 \seealso{\code{\link{nls}}, \code{\link{selfStart}}

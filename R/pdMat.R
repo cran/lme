@@ -1,4 +1,4 @@
-### $Id: pdMat.q,v 1.47 1999/05/24 01:06:39 pinheiro Exp $
+### $Id: pdMat.q,v 1.48 1999/06/26 02:07:49 bates Exp $
 ###
 ###              Classes of positive-definite matrices
 ###
@@ -1667,7 +1667,7 @@ coef.pdCompSymm <-
   else {
     if (is.null(Ncol <- attr(object, "ncol"))) {
       stop(paste("Cannot obtain constrained coefficients with",
-		 "unitialized dimensions"))
+		 "uninitialized dimensions"))
     }
     val <- as.vector(object)
     aux <- exp(val[2])

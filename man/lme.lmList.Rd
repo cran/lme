@@ -1,4 +1,4 @@
-% $Id: lme.lmList.Rd,v 1.5 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: lme.lmList.Rd,v 1.6 1999/07/28 04:00:51 bates Exp $
 \name{lme.lmList}
 \title{LME fit from lmList Object}
 \usage{
@@ -35,7 +35,7 @@ lme(fixed, data, random, correlation, weights, subset, method,
   model fit. Generic functions such as \code{print}, \code{plot} and
   \code{summary} have methods to show the results of the fit. See
   \code{lmeObject} for the components of the fit. The functions
-  \code{resid}, \code{coef}, \code{fitted}, code{fixed.effects}, and
+  \code{resid}, \code{coef}, \code{fitted}, \code{fixed.effects}, and
   \code{random.effects}  can be used to extract some of its components.
 }
 \references{

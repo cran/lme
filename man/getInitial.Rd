@@ -1,6 +1,6 @@
-% $Id: getInitial.Rd,v 1.1 1999/05/28 14:39:12 bates Exp $
+% $Id: getInitial.Rd,v 1.4 1999/07/29 22:34:21 bates Exp $
 \name{getInitial}
-\title{get initial parameter estimates}
+\title{Get Initial Parameter Estimates}
 \alias{getInitial}
 \alias{getInitial.default}
 \alias{getInitial.formula}
@@ -9,11 +9,11 @@
 getInitial(object, data, ...)
 }
 \arguments{
- \item{object}{a formula or a \code{selfStart} model that defines a
-   nonlinear regression model}
- \item{data}{a data frame in which the expressions in the formula or
-   arguments to the \code{selfStart} model can be evaluated}
- \item{\dots}{optional additional arguments}
+    \item{object}{a formula or a \code{selfStart} model that defines a
+	nonlinear regression model}
+    \item{data}{a data frame in which the expressions in the formula or
+	arguments to the \code{selfStart} model can be evaluated}
+    \item{\dots}{optional additional arguments}
 }
 \description{
   This function evaluates initial parameter estimates for a nonlinear
@@ -24,18 +24,21 @@ getInitial(object, data, ...)
   evaluated.
 }
 \value{
-  A named numeric vector of starting estimates for the parameters.  The
-  construction of many selfStart models is such that these "starting"
-  estimates are in fact the converged parameter estimates.
+    A named numeric vector or list of starting estimates for the
+    parameters.  The construction of many \code{selfStart} models is such
+    that these "starting" estimates are, in fact, the converged parameter
+    estimates.
 }
 \author{Jose Pinheiro and Douglas Bates}
-\seealso{\code{\link{nls}},\code{\link{nlsList}},\code{\link{selfStart}},
-  \code{\link{selfStart.default}},\code{\link{selfStart.formula}}
+\seealso{\code{\link{nls}}, \code{\link{nlsList}}, \code{\link{selfStart}},
+    \code{\link{selfStart.default}}, \code{\link{selfStart.formula}}
 }
 \examples{
-library( lme )
-data( Puromycin )
+library(lme)
+data(Puromycin)
 PurTrt <- Puromycin[ Puromycin$state == "treated", ]
+\dontrun{
 getInitial( vel ~ SSmicmen( conc, Vm, K ), PurTrt )
+}
 }
 \keyword{models,nonlinear,data}

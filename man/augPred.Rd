@@ -1,3 +1,4 @@
+% $Id: augPred.Rd,v 1.5 1999/07/29 16:30:31 pinheiro Exp $
 \name{augPred}
 \title{Augmented Predictions}
 \usage{
@@ -31,7 +32,7 @@ augPred(object, primary, minimum, maximum, length.out, level, ...)
 }
 \description{
   Predicted values are obtained at the specified values of
-  \code{primary}. If \code{object} has a grouping strutcure
+  \code{primary}. If \code{object} has a grouping structure
   (i.e. \code{getGroups(object)} is not \code{NULL}), predicted values
   are obtained for each group. If \code{level} has more than one
   element, predictions are obtained for each level of the

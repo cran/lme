@@ -1,6 +1,6 @@
-% $Id: NLSstRtAsymptote.Rd,v 1.2 1999/06/04 13:31:40 bates Exp $
+% $Id: NLSstRtAsymptote.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{NLSstRtAsymptote}
-\title{Guess the horizontal asymptote on the right side}
+\title{Horizontal Asymptote on the Right Side}
 \alias{NLSstRtAsymptote}
 \alias{NLSstRtAsymptote.sortedXyData}
 \usage{
@@ -10,19 +10,18 @@ NLSstRtAsymptote(xy)
  \item{xy}{a \code{sortedXyData} object}
 }
 \description{
-  This function provides an initial guess at the horizontal asymptote on
-  the right side (larger values of \code{x}) of the graph of \code{y}
-  versus \code{x} from the \code{xy} object.  It is mostly used within the
-  \code{initial} functions for a self-starting nonlinear regression
-  models, which are in the \code{selfStart} class.
+  Provide an initial guess at the horizontal asymptote on
+  the right side (i.e. large values of \code{x}) of the graph of \code{y}
+  versus \code{x} from the \code{xy} object.  Primarily used within
+  \code{initial} functions for self-starting nonlinear regression
+  models.
 }
 \value{
-  A single numeric value which is a guess at the \code{y} value that
-  would be the asymptote for large \code{x}.
+  A single numeric value estimating the horizontal asymptote for large \code{x}.
 }
 \author{Jose Pinheiro and Douglas Bates}
-\seealso{\code{\link{sortedXyData}},\code{\link{NLSstClosestX}},
-  \code{\link{NLSstRtAsymptote}},\code{\link{selfStart}}
+\seealso{\code{\link{sortedXyData}}, \code{\link{NLSstClosestX}},
+  \code{\link{NLSstRtAsymptote}}, \code{\link{selfStart}}}
 \examples{
 library( lme )
 data( DNase )

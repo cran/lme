@@ -1,4 +1,4 @@
-% $Id: corAR1.Rd,v 1.6 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: corAR1.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{corAR1}
 \title{AR(1) Correlation Structure}
 \usage{
@@ -8,7 +8,7 @@ corAR1(value, form, fixed)
 \arguments{
  \item{value}{the value of the lag 1 autocorrelation, which must be
    between -1 and 1. Defaults to 0 (no autocorrelation).}
- \item{form}{a one sided formula of the form \code{~ t}, or code{~ t |
+ \item{form}{a one sided formula of the form \code{~ t}, or \code{~ t |
      g}, specifying a time covariate \code{t} and,  optionally, a
    grouping factor \code{g}. A covariate for this correlation structure
    must be integer valued. When a grouping factor is present in
@@ -25,7 +25,7 @@ corAR1(value, form, fixed)
 \description{
   This function is a constructor for the \code{corAR1} class,
   representing an autocorrelation structure of order 1. Objects
-  created using this constructor need to be later initialized using the
+  created using this constructor must later be initialized using the
   appropriate \code{initialize} method. 
 }
 \value{

@@ -1,4 +1,4 @@
-### $Id: newMethods.q,v 1.38 1999/05/27 22:08:41 bates Exp $
+### $Id: newMethods.q,v 1.41 1999/07/29 21:14:34 pinheiro Exp $
 ###
 ###      Methods for generics from newGenerics.q for some standard classes
 ###
@@ -235,11 +235,7 @@ logLik.lm <-
   
   N <- N - p * REML
   val <- (sum(log(w)) -N * (log(2 * pi) + 1 - log(N) + log(sum(w*res^2))))/2 -
-##ifdef R    
     REML * sum(log(abs(diag(object$qr$qr)[1:p])))
-##else
-    REML * sum(log(abs(diag(object$R)[1:p])))
-##endif
   attr(val, "nall") <- N + REML * p
   attr(val, "df") <- p + 1
   attr(val, "nobs") <- N
@@ -376,7 +372,7 @@ plot.ACF <-
   ylim <- range(object$ACF)
   if (alpha) {
     assign("stdv",  qnorm(1-alpha/2)/sqrt(attr(object,"n.used")),
-           where = 1)
+           frame = 1)
     stMax <- max(stdv)
     ylim <- c(min(c(-stMax, ylim[1])), max(c(ylim[2], stMax)))
   }
@@ -454,7 +450,7 @@ plot.compareFits <-
   }
   dims <- dim(object)
   dn <- dimnames(object)
-  assign("mark", rep(mark, rep(dims[1] * dims[2], dims[3])), where = 1)
+  assign("mark", rep(mark, rep(dims[1] * dims[2], dims[3])))
   tt <- data.frame(group = ordered(rep(dn[[1]], dims[2] * dims[3]),
 		       levels = dn[[1]]),
 		   coefs = as.vector(object),
@@ -511,17 +507,17 @@ plot.Variogram <-
     if (is.null(modVrg)) {
       stop("No model variogram available, with showModel = TRUE")
     }
-    assign("ltyM", trlLin$lty[lineT], where = 1)
-    assign("colM", trlLin$col[lineT], where = 1)
-    assign("modVrg", modVrg, where = 1)
+    assign("ltyM", trlLin$lty[lineT])
+    assign("colM", trlLin$col[lineT])
+    assign("modVrg", modVrg)
     lineT <- lineT + 1
   }
   if (missing(smooth)) {
     smooth <- !showModel 
   }
   if (smooth) {
-    assign("ltyS", trlLin$lty[lineT], where = 1)
-    assign("colS", trlLin$col[lineT], where = 1)
+    assign("ltyS", trlLin$lty[lineT])
+    assign("colS", trlLin$col[lineT])
   }
   assign("smooth", smooth)
   assign("showModel", showModel)

@@ -1,4 +1,4 @@
-% $Id: formula.pdBlocked.Rd,v 1.3 1998/04/02 18:53:12 pinheiro Exp $
+% $Id: formula.pdBlocked.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{formula.pdBlocked}
 \title{Extract pdBlocked Formula}
 \usage{
@@ -6,7 +6,7 @@ formula(object, asList)
 }
 \alias{formula.pdBlocked}
 \arguments{
- \item{object}{an object inheriting from class code{pdBlocked},
+ \item{object}{an object inheriting from class \code{pdBlocked},
    representing a positive definite block diagonal matrix.} 
  \item{asList}{an optional logical value. If \code{TRUE}, a list with
    the formulas for the individual block diagonal elements of

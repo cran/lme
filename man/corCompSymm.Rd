@@ -1,4 +1,4 @@
-% $Id: corCompSymm.Rd,v 1.6 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: corCompSymm.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{corCompSymm}
 \title{Compound Symmetry Correlation Structure}
 \usage{
@@ -8,7 +8,7 @@ corCompSymm(value, form, fixed)
 \arguments{
  \item{value}{the correlation between any two correlated
    observations. Defaults to 0.} 
- \item{form}{a one sided formula of the form \code{~ t}, or code{~ t |
+ \item{form}{a one sided formula of the form \code{~ t}, or \code{~ t |
      g}, specifying a time covariate \code{t} and,  optionally, a
    grouping factor \code{g}. When a grouping factor is present in
    \code{form}, the correlation structure is assumed to apply only
@@ -24,7 +24,7 @@ corCompSymm(value, form, fixed)
 \description{
   This function is a constructor for the \code{corCompSymm} class,
   representing a compound symmetry structure corresponding to uniform
-  correlation. Objects created using this constructor need to be later
+  correlation. Objects created using this constructor must later be
   initialized using the appropriate \code{initialize} method. 
 }
 \value{

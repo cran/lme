@@ -1,4 +1,4 @@
-% $Id: formula.nls.Rd,v 1.2 1998/04/02 18:53:12 pinheiro Exp $
+% $Id: formula.nls.Rd,v 1.3 1999/06/28 17:22:25 bates Exp $
 \name{formula.nls}
 \title{Extract Model Formula from nls Object}
 \usage{
@@ -15,12 +15,10 @@ formula(object)
 \value{
   a formula representing the model used to obtain \code{object}.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
 \seealso{\code{\link{nls}}, \code{\link{formula}}}
-
 \examples{
+library(nls)
 data(Orange)
 fm1 <- nls(circumference ~ A/(1+exp((B-age)/C)), Orange,
   start = list(A=160, B=700, C = 350))

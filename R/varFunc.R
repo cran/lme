@@ -1,4 +1,4 @@
-### $Id: varFunc.q,v 1.17 1999/04/21 16:38:37 pinheiro Exp $
+### $Id: varFunc.q,v 1.18 1999/06/26 02:07:18 bates Exp $
 ###
 ###              Classes of variance functions
 ###
@@ -66,7 +66,7 @@ coef.varFunc <-
   wPar <- attr(object, "whichFix")
   if (is.null(wPar) ||
       (length(object) != (length(wPar) - sum(wPar)))) {
-    stop("Cannot extract parameters of unitialized object")
+    stop("Cannot extract parameters of uninitialized object")
   }
   if (unconstrained) {
     if (allCoef) {
@@ -135,7 +135,7 @@ print.summary.varFunc <-
     print(aux)
   } else {
     cat("Variance function structure of class", class(x)[1],
-	"with no parameters, or unitilialized\n")
+	"with no parameters, or uninitialized\n")
   }
 }
 
@@ -148,7 +148,7 @@ print.varFunc <-
     print(invisible(aux), ...)
   } else {
     cat("Variance function structure of class", class(x)[1],
-	"with no parameters, or unitilialized\n")
+	"with no parameters, or uninitialized\n")
   }
 }
 
@@ -319,7 +319,7 @@ coef.varIdent <-
     value <- as.numeric(value)
     nGroups <- length(attr(object, "groupNames"))
 #    if (nGroups == 0) {
-#      stop("Cannot assign parameters of unitialized varIdent object")
+#      stop("Cannot assign parameters of uninitialized varIdent object")
 #    }
     if (length(value) != nGroups - 1) {
       stop(paste("Cannot change the length of the varIdent", 

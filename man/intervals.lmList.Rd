@@ -1,4 +1,4 @@
-% $Id: intervals.lmList.Rd,v 1.3 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: intervals.lmList.Rd,v 1.4 1999/06/28 17:22:25 bates Exp $
 \name{intervals.lmList}
 \title{Confidence Intervals on lmList Coefficients}
 \usage{
@@ -40,6 +40,8 @@ intervals(object, level, pool)
 library(lme)
 data(Orthodont)
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
+\dontrun{
 intervals(fm1)
+}
 }
 \keyword{models}

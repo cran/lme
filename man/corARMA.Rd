@@ -1,4 +1,4 @@
-% $Id: corARMA.Rd,v 1.6 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: corARMA.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{corARMA}
 \title{ARMA(p,q) Correlation Structure}
 \usage{
@@ -11,7 +11,7 @@ corARMA(value, form, p, q, fixed)
    average parameters, which must have length \code{p + q} and all
    elements between -1 and 1. Defaults to a vector of zeros,
    corresponding to uncorrelated observations.}
- \item{form}{a one sided formula of the form \code{~ t}, or code{~ t |
+ \item{form}{a one sided formula of the form \code{~ t}, or \code{~ t |
      g}, specifying a time covariate \code{t} and,  optionally, a
    grouping factor \code{g}. A covariate for this correlation structure
    must be integer valued. When a grouping factor is present in
@@ -31,8 +31,8 @@ corARMA(value, form, p, q, fixed)
 \description{
   This function is a constructor for the \code{corARMA} class,
   representing an autocorrelation-moving average correlation structure
-  of order (p, q). Objects created using this constructor need to be
-  later initialized using the appropriate \code{initialize} method. 
+  of order (p, q). Objects created using this constructor must later
+  be initialized using the appropriate \code{initialize} method. 
 }
 \value{
   an object of class \code{corARMA}, representing an

@@ -1,4 +1,4 @@
-% $Id: corSymm.Rd,v 1.6 1999/04/10 20:09:58 bates Exp $
+% $Id: corSymm.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{corSymm}
 \title{General Correlation Structure}
 \usage{
@@ -29,7 +29,7 @@ corSymm(value, form, fixed)
   representing a general correlation structure. The internal
   representation of this structure, in terms of unconstrained
   parameters, uses the spherical parametrization defined in Pinheiro and
-  Bates (1996).  Objects created using this constructor need to be later
+  Bates (1996).  Objects created using this constructor must later be
   initialized using the  appropriate \code{initialize} method. 
 }
 \value{

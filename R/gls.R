@@ -1,4 +1,4 @@
-### $Id: gls.q,v 1.33 1999/06/04 02:52:17 pinheiro Exp $
+### $Id: gls.q,v 1.34 1999/07/20 15:07:13 pinheiro Exp $
 ###
 ###  Fit a linear model with correlated errors and/or heteroscedasticity
 ###
@@ -765,6 +765,14 @@ intervals.gls <-
       est <- attr(aV, "Pars")
       nP <- length(est)
       glsSt <- object[["modelStruct"]]
+      if (!all(whichKeep <- apply(attr(glsSt, "pmap"), 2, any))) {
+        ## need to deleted components with fixed coefficients
+        aux <- glsSt[whichKeep]
+        class(aux) <- class(glsSt)
+        attr(aux, "settings") <- attr(lmeSt, "settings")
+        attr(aux, "pmap") <- attr(glsSt, "pmap")[, whichKeep, drop = F]
+        glsSt <- aux
+      }
       cSt <- glsSt[["corStruct"]]
       if (!is.null(cSt) && inherits(cSt, "corSymm") && attr(aV, "natural")) {
         ## converting to corNatural

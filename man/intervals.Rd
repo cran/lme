@@ -1,4 +1,4 @@
-% $Id: intervals.Rd,v 1.2 1998/04/02 18:53:14 pinheiro Exp $
+% $Id: intervals.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{intervals}
 \title{Confidence Intervals on Coefficients}
 \usage{
@@ -23,6 +23,9 @@ intervals(object, level, ...)
 \value{
   will depend on the method function used; see the appropriate documentation.
 }
+\seealso{\code{\link{intervals.gls}}, \code{\link{intervals.lme}},
+    \code{\link{intervals.lmList}}
+} 
 
 \author{Jose Pinheiro and Douglas Bates}
 \examples{

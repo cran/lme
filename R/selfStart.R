@@ -1,4 +1,4 @@
-### $Id: selfStart.q,v 1.8 1999/05/27 22:08:41 bates Exp $
+### $Id: selfStart.q,v 1.9 1999/07/28 23:01:28 bates Exp $
 ###
 ###            self-starting nonlinear regression models
 ###
@@ -29,8 +29,13 @@ selfStart <-
 selfStart.default <-
   function(model, initial, parameters, template)
 {
-  structure(as.function(model), initial = as.function(initial),
-	    class = "selfStart")
+  if( is.function(model) && is.function(initial) ) {
+    value <- structure(model, initial = initial)
+  } else {
+    value <- structure(as.function(model), initial = as.function(initial))
+  }
+  class(value) <- "selfStart"
+  value
 }
 
 selfStart.formula <-

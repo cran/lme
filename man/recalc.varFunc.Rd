@@ -1,4 +1,4 @@
-% $Id: recalc.varFunc.Rd,v 1.2 1998/04/02 18:53:18 pinheiro Exp $
+% $Id: recalc.varFunc.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{recalc.varFunc}
 \title{Recalculate for varFunc Object}
 \usage{
@@ -6,7 +6,7 @@ recalc(object, conLin)
 }
 \alias{recalc.varFunc}
 \arguments{
- \item{object}{an object inheriting from class code{varFunc},
+ \item{object}{an object inheriting from class \code{varFunc},
    representing a variance function structure.} 
  \item{conLin}{a condensed linear model object, consisting of a list
    with components \code{"Xy"}, corresponding to a regression matrix
@@ -25,13 +25,9 @@ recalc(object, conLin)
 \value{
   the recalculated condensed linear model object.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{This method function is only used inside model fitting functions
-  which allow heteroscedastic error terms, like \code{lme} and
-  \code{gls}.} 
-
+\note{This method function is only used inside model fitting functions,
+    such as \code{lme} and \code{gls}, that allow heteroscedastic error
+    terms.}
 \seealso{\code{\link{varWeights}}, \code{\link{logLik.varFunc}}}
-
 \keyword{models}

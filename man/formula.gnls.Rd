@@ -1,4 +1,4 @@
-% $Id: formula.gnls.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: formula.gnls.Rd,v 1.2 1999/06/28 17:22:25 bates Exp $
 \name{formula.gnls}
 \title{Extract gnls Object Formula}
 \usage{
@@ -23,10 +23,12 @@ formula(object)
 \seealso{\code{\link{gnls}}}
 
 \examples{
-library(nlme)
+library(lme)
 data(Soybean)
+\dontrun{
 fm1 <- gnls(weight ~ SSlogis(Time, Asym, xmid, scal), Soybean,
             weights = varPower())
 formula(fm1)
+}
 }
 \keyword{models}

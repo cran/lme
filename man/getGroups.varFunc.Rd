@@ -1,4 +1,4 @@
-% $Id: getGroups.varFunc.Rd,v 1.2 1998/04/02 18:53:13 pinheiro Exp $
+% $Id: getGroups.varFunc.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{getGroups.varFunc}
 \title{Extract varFunc Groups}
 \usage{
@@ -6,7 +6,7 @@ getGroups(object)
 }
 \alias{getGroups.varFunc}
 \arguments{
- \item{object}{an object inheriting from class code{varFunc},
+ \item{object}{an object inheriting from class \code{varFunc},
    representing a variance function structure.} 
 }
 \description{

@@ -1,8 +1,8 @@
-% $Id: coef.lmList.Rd,v 1.6 1998/10/19 18:22:10 pinheiro Exp $
+% $Id: coef.lmList.Rd,v 1.8 1999/07/29 16:30:31 pinheiro Exp $
 \name{coef.lmList}
 \title{Extract lmList Coefficients}
 \usage{
-coef(object, augFrame, which, FUN, omitGroupingFactor)
+coef(object, augFrame, data, which, FUN, omitGroupingFactor)
 }
 \alias{coef.lmList}
 \arguments{
@@ -10,10 +10,13 @@ coef(object, augFrame, which, FUN, omitGroupingFactor)
    a list of \code{lm} objects with a common model.
  }
  \item{augFrame}{an optional logical value. If \code{TRUE}, the returned
-   data frame is augmented with variables defined in data frame used to
-   produce \code{object}; else, if \code{FALSE}, only the coefficients
+   data frame is augmented with variables defined in the data frame used
+   to produce \code{object}; else, if \code{FALSE}, only the coefficients
    are returned. Defaults to \code{FALSE}.
  }
+ \item{data}{an optional data frame with the variables to be used for
+   augmenting the returned data frame when \code{augFrame =
+     TRUE}. Defaults to the data frame used to fit \code{object}.}
  \item{which}{an optional positive integer or character vector
    specifying which columns of the data frame used to produce \code{object}
    should be used in the augmentation of the returned data

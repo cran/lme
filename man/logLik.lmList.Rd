@@ -1,4 +1,4 @@
-% $Id: logLik.lmList.Rd,v 1.3 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: logLik.lmList.Rd,v 1.4 1999/06/28 17:22:25 bates Exp $
 \name{logLik.lmList}
 \title{Log-Likelihood of an lmList Object}
 \usage{
@@ -40,6 +40,6 @@ logLik(object, REML, pool)
 library(lme)
 data(Orthodont)
 fm1 <- lmList(distance ~ age | Subject, Orthodont)
-logLik(fm1)
+logLik(fm1)   # returns NA when it should not
 }
 \keyword{models}

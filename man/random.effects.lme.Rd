@@ -1,4 +1,4 @@
-% $Id: random.effects.lme.Rd,v 1.5 1998/04/06 21:35:19 pinheiro Exp $
+% $Id: random.effects.lme.Rd,v 1.6 1999/07/29 16:30:31 pinheiro Exp $
 \name{random.effects.lme}
 \title{Extract lme Random Effects}
 \usage{
@@ -69,7 +69,7 @@ random.effects(object, augFrame, level, data, which, FUN, standard,
 \author{Jose Pinheiro and Douglas Bates}
 
 \seealso{\code{\link{lme}}, \code{\link{fixed.effects.lme}},
-  \code{\link{coef.lme}}, \code{\link{plot.random.effects.lme}},
+  \code{\link{coef.lme}}, \code{\link{plot.ranef.lme}},
   \code{\link{gsummary}}}  
 
 \examples{

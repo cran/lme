@@ -1,4 +1,4 @@
-% $Id: ACF.gls.Rd,v 1.1 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: ACF.gls.Rd,v 1.2 1999/06/28 17:22:25 bates Exp $
 \name{ACF.gls}
 \title{Autocorrelation Function for gls Residuals}
 \usage{
@@ -57,7 +57,9 @@ ACF(object, maxLag, resType, form, na.action)
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary)
 ACF(fm1, form = ~ 1 | Mare)
+}
 }
 \keyword{models}

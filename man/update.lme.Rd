@@ -1,4 +1,4 @@
-% $Id: update.lme.Rd,v 1.3 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: update.lme.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{update.lme}
 \title{Update an lme Object}
 \usage{
@@ -10,9 +10,8 @@ update(object, fixed, data, random, correlation, weights, subset, method,
 \arguments{
  \item{object}{an object inheriting from class \code{lme}, representing
    a fitted linear mixed-effects model.}
- \item{other arguments}{defined as in \code{\link{lme}}. See the
-   documentation on that function for descriptions of and default values
-   for these arguments.}
+ \item{other arguments}{defined as in \code{\link{lme}}. See that function's
+   documentation for descriptions of and default values for these arguments.}
 }
 \description{
   The non-missing arguments in the call to the \code{update.lme} method

@@ -1,4 +1,4 @@
-% $Id: covariate<-.varFunc.Rd,v 1.2 1998/04/02 18:53:11 pinheiro Exp $
+% $Id: covariate<-.varFunc.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{covariate<-.varFunc}
 \title{Assign varFunc Covariate}
 \usage{
@@ -6,7 +6,7 @@ covariate(object) <- value
 }
 \alias{covariate<-.varFunc}
 \arguments{
- \item{object}{an object inheriting from class code{varFunc},
+ \item{object}{an object inheriting from class \code{varFunc},
    representing a variance function structure.} 
  \item{value}{a value to be assigned to the covariate associated with
    \code{object}.}

@@ -1,4 +1,4 @@
-% $Id: getData.gls.Rd,v 1.1 1999/03/31 15:41:22 pinheiro Exp $
+% $Id: getData.gls.Rd,v 1.2 1999/06/28 17:22:25 bates Exp $
 \name{getData.gls}
 \title{Extract gls Object Data}
 \usage{
@@ -28,8 +28,10 @@ getData(object)
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), data = Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 getData(fm1)
+}
 }
 \keyword{models}

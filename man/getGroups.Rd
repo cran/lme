@@ -1,4 +1,4 @@
-% $Id: getGroups.Rd,v 1.3 1998/04/02 18:53:12 pinheiro Exp $
+% $Id: getGroups.Rd,v 1.4 1999/07/29 19:19:17 bates Exp $
 \name{getGroups}
 \title{Extract Grouping Factors from an Object}
 \usage{
@@ -29,7 +29,9 @@ getGroups(object, form, level, data)
 
 \author{Jose Pinheiro and Douglas Bates}
 
-\seealso{\code{\link{getGroupsFormula}}}
+\seealso{\code{\link{getGroupsFormula}}, \code{\link{getGroups.data.frame}},
+\code{\link{getGroups.gls}}, \code{\link{getGroups.lmList}},
+\code{\link{getGroups.lme}}}
 \examples{
 ## see the method function documentation
 }

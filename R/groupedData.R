@@ -1,4 +1,4 @@
-### $Id: groupedData.q,v 1.28 1999/05/13 15:46:19 pinheiro Exp $
+### $Id: groupedData.q,v 1.30 1999/07/27 20:54:27 pinheiro Exp $
 ###
 ###           groupedData - data frame with a grouping structure
 ###
@@ -382,9 +382,12 @@ plot.nfnGroupedData <-
              if (grid) panel.grid()
              panel.xyplot(x, y)
              y.avg <- tapply(y, x, mean) # lines through average y
-             xvals <- as.numeric(names(y.avg))
-             ord <- order(xvals)
-             panel.xyplot(xvals[ord], y.avg[ord], type = "l")
+             y.avg <- y.avg[!is.na(y.avg)]
+             if (length(y.avg) > 0) {
+               xvals <- as.numeric(names(y.avg))
+               ord <- order(xvals)
+               panel.xyplot(xvals[ord], y.avg[ord], type = "l")
+             }
            }, key = TRUE, grid = TRUE, ...)
 {
   labels <- list(xlab = xlab, ylab =  ylab)
@@ -483,7 +486,7 @@ plot.nffGroupedData <-
              panel.abline(h = y, lwd = dot.line$lwd,
                           lty = dot.line$lty, col = dot.line$col)
              panel.dotplot(x, y)
-           }, key = length(inner) > 0, ...)
+           }, key = length(inner) > 0, grid, ...)
 {
   groupExpr <- deparse(getGroupsFormula(x)[[2]])
   if (is.null(groupLabel <- attr(x[, groupExpr], "label"))) {

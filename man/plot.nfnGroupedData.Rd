@@ -1,4 +1,4 @@
-% $Id: plot.nfnGroupedData.Rd,v 1.2 1999/03/31 15:41:22 pinheiro Exp $
+% $Id: plot.nfnGroupedData.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{plot.nfnGroupedData}
 \title{Plot an nfnGroupedData Object}
 \usage{
@@ -24,7 +24,7 @@ plot(x, outer, inner, innerGroups, xlab, ylab, strip, aspect, panel,
  \item{inner}{an optional logical value or one-sided formula, indicating
    a covariate that is inner to the grouping factor, which is used to
    associate points within each panel of the Trellis plot. If
-   equal to \code{TRUE}, \code{attr(object, "outer")} is used to
+   equal to \code{TRUE}, \code{attr(object, "inner")} is used to
    indicate the inner covariate. An inner covariate can change within
    the sets of rows defined by the grouping  factor. Defaults to
    \code{NULL}, meaning that no inner covariate  is present. 
@@ -86,21 +86,16 @@ Pinheiro, J.C. and Bates, D.M. (1997) "Future Directions in
 Mixed-Effects Software: Design of NLME 3.0" available at
 http://franz.stat.wisc.edu/pub/NLME.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{groupedData}}, \code{\link{xyplot}}}
-
 \examples{
 library(lme)
 data(Orthodont)
+\dontrun{
 # different panels per Subject
 plot(Orthodont)
 # different panels per gender
 plot(Orthodont, outer = TRUE)
+}
 }
 \keyword{models}

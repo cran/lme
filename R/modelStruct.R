@@ -1,4 +1,4 @@
-### $Id: modelStruct.q,v 1.7 1999/01/09 01:38:45 pinheiro Exp $
+### $Id: modelStruct.q,v 1.8 1999/07/20 15:07:13 pinheiro Exp $
 ###
 ###         modelStruct - a virtual class of model structures
 ###
@@ -42,7 +42,9 @@ coef.modelStruct <-
   value <- as.numeric(value)
   parMap <- attr(object, "pmap")
   for(i in names(object)) {
-    coef(object[[i]]) <- value[parMap[,i]]
+    if (any(parMap[,i])) {
+      coef(object[[i]]) <- value[parMap[,i]]
+    }
   }
   object
 }

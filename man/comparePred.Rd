@@ -1,4 +1,4 @@
-% $Id: comparePred.Rd,v 1.3 1998/04/02 18:53:10 pinheiro Exp $
+% $Id: comparePred.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{comparePred}
 \title{Compare Predictions}
 \usage{
@@ -39,8 +39,8 @@ level, ...)
   (i.e. \code{getGroups(object)} is not \code{NULL}), predicted values
   are obtained for each group. When both objects determine groups, the
   group levels must be the same. If other covariates besides
-  \code{primary} are used in the prediction model, their average
-  (numeric covariates) or most frequent value (categorical covariates)
+  \code{primary} are used in the prediction model, their group-wise averages
+  (numeric covariates) or most frequent values (categorical covariates)
   are used to obtain the predicted values. The original observations are
   also included in the returned object. 
 }
@@ -60,9 +60,7 @@ level, ...)
   specific classes of objects. Classes which already have methods for
   this function include: \code{gls}, \code{lme}, and \code{lmList}.
 }
-\seealso{\code{\link{plot.comparePred}}, \code{\link{augPred}},
-  \code{\link{getGroups}}}
-
+\seealso{\code{\link{augPred}}, \code{\link{getGroups}}}
 \examples{
 library(lme)
 data(Orthodont)

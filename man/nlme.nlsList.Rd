@@ -1,4 +1,4 @@
-% $Id: nlme.nlsList.Rd,v 1.5 1999/06/04 02:48:03 pinheiro Exp $
+% $Id: nlme.nlsList.Rd,v 1.7 1999/07/28 04:00:51 bates Exp $
 \name{nlme.nlsList}
 \title{NLME fit from nlsList Object}
 \usage{
@@ -35,7 +35,7 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
   model fit. Generic functions such as \code{print}, \code{plot} and
   \code{summary} have methods to show the results of the fit. See
   \code{nlmeObject} for the components of the fit. The functions
-  \code{resid}, \code{coef}, \code{fitted}, code{fixed.effects}, and
+  \code{resid}, \code{coef}, \code{fitted}, \code{fixed.effects}, and
   \code{random.effects}  can be used to extract some of its components.
 }
 \references{
@@ -86,9 +86,13 @@ nlme(model, data, fixed, random, groups, start, correlation, weights,
   \code{\link{nlmeObject}} } 
 
 \examples{
-library(nlme)
+library(lme)
 data(Soybean)
+\dontrun{
 fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal) | Plot, Soybean)
+}
+\dontrun{
 fm2 <- nlme(fm1)
+}
 }
 \keyword{models}

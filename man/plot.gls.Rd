@@ -1,4 +1,4 @@
-% $Id: plot.gls.Rd,v 1.3 1999/02/01 19:06:52 pinheiro Exp $
+% $Id: plot.gls.Rd,v 1.6 1999/07/29 16:30:31 pinheiro Exp $
 \name{plot.gls}
 \title{Plot a gls Object}
 \usage{
@@ -32,10 +32,10 @@ plot(object, form, abline, id, idLabels, idResType, grid, ...)
    vector which is used to identify observations in the plot. If
    missing, no observations are identified.}
  \item{idLabels}{an optional vector, or one-sided formula. If given as a
-   vector, it is converted to character and used to label the
+   vector, it is converted to character mode and used to label the
    observations identified according to \code{id}. If given as a
    one-sided formula, its right hand side must evaluate to a vector
-   which is converted to character and used to label the identified
+   which is converted to character mode and used to label the identified
    observations. Default is the innermost grouping factor.}
  \item{idResType}{an optional character string specifying the type of
    residuals to be used in identifying outliers, when \code{id} is a
@@ -72,19 +72,13 @@ plot(object, form, abline, id, idLabels, idResType, grid, ...)
 \value{
   a diagnostic Trellis plot.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{gls}}, \code{\link{xyplot}}, \code{\link{bwplot}},
   \code{\link{histogram}} }
-
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 # standardized residuals versus fitted values by Mare
@@ -93,5 +87,6 @@ plot(fm1, resid(., type = "p") ~ fitted(.) | Mare, abline = 0)
 plot(fm1, Mare ~ resid(.))
 # observed versus fitted values by Mare
 plot(fm1, follicles ~ fitted(.) | Mare, abline = c(0,1))
+}
 }
 \keyword{models}

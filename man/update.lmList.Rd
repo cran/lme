@@ -1,4 +1,4 @@
-% $Id: update.lmList.Rd,v 1.3 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: update.lmList.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{update.lmList}
 \title{Update an lmList Object}
 \usage{
@@ -14,8 +14,8 @@ update(object, formula, data, level, subset, na.action, control, pool)
    a two-sided linear formula with the common model for the individuals
    \code{lm} fits.
  }
- \item{other arguments}{defined as in \code{\link{lmList}}. See the
-   documentation on that function for descriptions of and default values
+ \item{other arguments}{defined as in \code{\link{lmList}}. See
+   that function's documentation for descriptions of and default values
    for these arguments.
  }
 }

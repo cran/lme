@@ -1,4 +1,4 @@
-% $Id: plot.ranef.lme.Rd,v 1.2 1999/05/13 15:44:54 pinheiro Exp $
+% $Id: plot.ranef.lme.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{plot.ranef.lme}
 \title{Plot a ranef.lme Object}
 \usage{
@@ -73,24 +73,19 @@ plot(object, form, omitFixed, level, grid, control, ...)
   a Trellis plot of the estimated random-effects (coefficients) versus
   covariates, or groups.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{ranef.lme}}, \code{\link{lme}},
   \code{\link{dotplot}}} 
-
 \examples{
 library(lme)
 data(Orthodont)
+\dontrun{
 fm1 <- lme(distance ~ age, Orthodont, random = ~ age | Subject)
 plot(ranef(fm1))
 fm1RE <- ranef(fm1, aug = TRUE)
 plot(fm1RE, form = ~ Sex)
 plot(fm1RE, form = age ~ Sex)
+}
 }
 \keyword{models}
 

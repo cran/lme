@@ -1,4 +1,4 @@
-% $Id: plot.nmGroupedData.Rd,v 1.3 1999/04/12 13:17:41 pinheiro Exp $
+% $Id: plot.nmGroupedData.Rd,v 1.5 1999/07/28 04:00:51 bates Exp $
 \name{plot.nmGroupedData}
 \title{Plot an nmGroupedData Object}
 \usage{
@@ -102,23 +102,18 @@ Pinheiro, J.C. and Bates, D.M. (1997) "Future Directions in
 Mixed-Effects Software: Design of NLME 3.0" available at
 http://franz.stat.wisc.edu/pub/NLME.
 }
-
 \author{Jose Pinheiro and Douglas Bates}
-
-\note{
-  This function requires the \code{trellis} library.
-}
-
 \seealso{\code{\link{groupedData}}, \code{\link{collapse.groupedData}},
   \code{\link{plot.nfnGroupedData}}, \code{\link{plot.nffGroupedData}}
 }  
-
 \examples{
 library(lme)
 data(Pixel)
+\dontrun{
 # no collapsing, panels by Dog
 plot(Pixel, display = "Dog", inner = ~Side)
 # collapsing by Dog, preserving day
 plot(Pixel, collapse = "Dog", preserve = ~day)
+}
 }
 \keyword{models}

@@ -1,4 +1,4 @@
-% $Id: logDet.corStruct.Rd,v 1.5 1998/04/02 18:53:14 pinheiro Exp $
+% $Id: logDet.corStruct.Rd,v 1.7 1999/07/29 18:09:24 bates Exp $
 \name{logDet.corStruct}
 \title{Extract corStruct Log-Determinant}
 \usage{
@@ -11,7 +11,7 @@ logDet(object, covariate)
  \item{covariate}{an optional covariate vector (matrix), or list of
    covariate vectors (matrices), at which values the correlation matrix,
    or list of correlation  matrices, are to be evaluated. Defaults to
-   \code{getCovariate{object}}.} 
+   \code{getCovariate(object)}.} 
 }
 \description{
   This method function extracts the logarithm of the determinant of a

@@ -1,4 +1,4 @@
-% $Id: print.pdMat.Rd,v 1.2 1998/04/02 18:53:17 pinheiro Exp $
+% $Id: print.pdMat.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{print.pdMat}
 \title{Print a pdMat Object}
 \usage{
@@ -6,7 +6,7 @@ print(x, ...)
 }
 \alias{print.pdMat}
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.} 
  \item{\dots}{optional arguments passed to \code{print.default}; see
    the documentation on that method function.}

@@ -1,4 +1,4 @@
-% $Id: predict.gls.Rd,v 1.2 1998/04/06 21:35:18 pinheiro Exp $
+% $Id: predict.gls.Rd,v 1.3 1999/06/28 17:22:25 bates Exp $
 \name{predict.gls}
 \title{Predictions from a gls Object}
 \usage{
@@ -31,9 +31,11 @@ predict(object, newdata, na.action)
 \examples{
 library(lme)
 data(Ovary)
+\dontrun{
 fm1 <- gls(follicles ~ sin(2*pi*Time) + cos(2*pi*Time), Ovary,
            correlation = corAR1(form = ~ 1 | Mare))
 newOvary <- data.frame(Time = c(-0.75, -0.5, 0, 0.5, 0.75))
 predict(fm1, newOvary)
+}
 }
 \keyword{models}

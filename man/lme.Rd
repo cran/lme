@@ -1,4 +1,4 @@
-% $Id: lme.Rd,v 1.9 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: lme.Rd,v 1.10 1999/07/28 04:00:51 bates Exp $
 \name{lme}
 \title{Linear Mixed-Effects Models}
 \usage{
@@ -31,7 +31,7 @@ lme(fixed, data, random, correlation, weights, subset, method,
    formula of the form \code{~x1+...+xn}, or a \code{pdMat} object with
    a formula (i.e. a non-\code{NULL} value for \code{formula(object)}),
    or a list of such formulas or \code{pdMat} objects. In this case, the
-   grouping structure formula will be derived from the data used to to
+   grouping structure formula will be derived from the data used to
    fit the linear mixed-effects model, which should inherit from class
    \code{groupedData}; (iv) a named list of formulas or \code{pdMat}
    objects as in (iii), with the grouping factors as names. The order of
@@ -52,8 +52,8 @@ lme(fixed, data, random, correlation, weights, subset, method,
    \code{varClasses} for a description of the available \code{varFunc}
    classes. Defaults to \code{NULL}, corresponding to homocesdatic
    within-group errors.} 
- \item{subset}{an optional expression saying which subset of the rows of
-   \code{data} should  be  used in the fit. This can be a logical
+ \item{subset}{an optional expression indicating the subset of the rows of
+   \code{data} that should be used in the fit. This can be a logical
    vector, or a numeric vector indicating which observation numbers are
    to be included, or a  character  vector of the row names to be
    included.  All observations are included by default.}
@@ -79,7 +79,7 @@ lme(fixed, data, random, correlation, weights, subset, method,
   model fit. Generic functions such as \code{print}, \code{plot} and
   \code{summary} have methods to show the results of the fit. See
   \code{lmeObject} for the components of the fit. The functions
-  \code{resid}, \code{coef}, \code{fitted}, code{fixed.effects}, and
+  \code{resid}, \code{coef}, \code{fitted}, \code{fixed.effects}, and
   \code{random.effects}  can be used to extract some of its components.
 }
 \references{

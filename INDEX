@@ -9,17 +9,16 @@ Dim                      Extract Dimensions from an Object
 Dim.corSpatial           Dimensions of a corSpatial Object
 Dim.corStruct            Dimensions of a corStruct Object
 Dim.pdMat                Dimensions of a pdMat Object
-NLSstClosestX            Find the x with the closest y
+NLSstClosestX            Inverse Interpolation
 NLSstLfAsymptote         Guess the horizontal asymptote on the left side
-NLSstRtAsymptote         Guess the horizontal asymptote on the right side
+NLSstRtAsymptote         Horizontal Asymptote on the Right Side
 Names                    Names Associated with an Object
 Names.formula            Extract Names from a formula
 Names.pdBlocked          Names of a pdBlocked Object
 Names.pdMat              Names of a pdMat Object
 Names.reStruct           Names of an reStruct Object
 SSasymp                  Asymptotic Regression Model
-SSasympOff               Alternative Asymptotic Regression Model with an
-                         Offset
+SSasympOff               Asymptotic Regression Model with an Offset
 SSasympOrig              Asymptotic Regression Model through the Origin
 SSbiexp                  Biexponential model
 SSfol                    First-order Compartment Model
@@ -39,6 +38,7 @@ Variogram.gls            Calculate Semi-variogram for Residuals from a
                          gls Object
 Variogram.lme            Calculate Semi-variogram for Residuals from an
                          lme Object
+[.pdMat                  Subscript a pdMat Object
 allCoef                  Extract Coefficients from a Set of Objects
 anova.gls                Compare Likelihoods of Fitted Objects
 anova.lme                Compare Likelihoods of Fitted Objects
@@ -82,7 +82,7 @@ corMatrix.corStruct      Matrix of a corStruct Object
 corMatrix.pdMat          Extract Correlation Matrix from a pdMat Object
 corMatrix.reStruct       Extract Correlation Matrix from Components of an
                          reStruct Object
-corExp                   Rational Quadratic Correlation Structure
+corRatio                 Rational Quadratic Correlation Structure
 corSpatial               Spatial Correlation Structure
 corSpher                 Spherical Correlation Structure
 corSymm                  General Correlation Structure
@@ -233,7 +233,7 @@ pdNatural                General Positive-Definite Matrix in Natural
 pdSymm                   General Positive-Definite Matrix
 plot.ACF                 Plot an ACF Object
 plot.Variogram           Plot a Variogram Object
-plot.augPred             Plot augPred Object
+plot.augPred             Plot an augPred Object
 plot.compareFits         Plot a compareFits Object
 plot.gls                 Plot a gls Object
 plot.intervals.lmList    Plot lmList Confidence Intervals
@@ -242,12 +242,8 @@ plot.lme                 Plot an lme Object
 plot.nffGroupedData      Plot an nffGroupedData Object
 plot.nfnGroupedData      Plot an nfnGroupedData Object
 plot.nmGroupedData       Plot an nmGroupedData Object
-plot.random.effects.lmList
-                         Plot a random.effects.lmList Object
-plot.random.effects.lme  Plot a random.effects.lme Object
 plot.ranef.lmList        Plot a ranef.lmList Object
 plot.ranef.lme           Plot a ranef.lme Object
-plot.variogram           Plot a variogram Object
 pooledSD                 Extract Pooled Standard Deviation
 predict.gls              Predictions from a gls Object
 predict.gnls             Predictions from a gnls Object
@@ -320,7 +316,7 @@ update.gnls              Update a gnls Object
 update.groupedData       Update a groupedData Object
 update.lmList            Update an lmList Object
 update.lme               Update an lme Object
-update.modelStruct       Update Elements of \code{modelStruct
+update.modelStruct       Update a modelStruct Object
 update.nlme              Update an nlme Object
 update.nlsList           Update an nlsList Object
 update.varFunc           Update varFunc Object

@@ -1,10 +1,10 @@
-% $Id: residuals.glsStruct.Rd,v 1.2 1998/04/06 21:35:19 pinheiro Exp $
+% $Id: residuals.glsStruct.Rd,v 1.4 1999/07/29 16:30:31 pinheiro Exp $
 \name{residuals.glsStruct}
 \title{Calculate glsStruct Residuals}
 \usage{
-fitted(object, glsFit)
+residuals(object, glsFit)
 }
-\alias{fitted.glsStruct}
+\alias{residuals.glsStruct}
 \arguments{
  \item{object}{an object inheriting from class \code{glsStruct},
    representing a list of linear model components, such as
@@ -12,7 +12,7 @@ fitted(object, glsFit)
  \item{glsFit}{an optional list with components \code{logLik}   
    (log-likelihood), \code{beta} (coefficients), \code{sigma} (standard
    deviation for error term), \code{varBeta} (coefficients' covariance
-   matrix), \code{fitted} (residuals), and \code{residuals}
+   matrix), \code{fitted} (fitted values), and \code{residuals}
    (residuals). Defaults to \code{attr(object, "glsFit")}.}
 }
 \description{
@@ -23,13 +23,11 @@ fitted(object, glsFit)
   a vector with the residuals for the linear model represented by
   \code{object}. 
 }
-
 \author{Jose Pinheiro and Douglas Bates}
 \note{
-  This method function is generally only used inside \code{gls} and 
-  \code{fitted.gls}.
+  This method function is primarily used inside \code{gls} and 
+  \code{residuals.gls}.
 }
-
 \seealso{\code{\link{gls}}, \code{\link{residuals.gls}},
   \code{\link{fitted.glsStruct}} } 
 

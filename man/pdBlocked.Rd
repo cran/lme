@@ -1,4 +1,4 @@
-% $Id: pdBlocked.Rd,v 1.2 1998/04/02 18:53:15 pinheiro Exp $
+% $Id: pdBlocked.Rd,v 1.3 1999/07/28 04:00:51 bates Exp $
 \name{pdBlocked}
 \title{Positive-Definite Block Diagonal Matrix}
 \usage{
@@ -13,11 +13,11 @@ pdBlocked(value, form, nam, data, pdClass)
    numeric vectors. All elements in the list must be similar (e.g. all
    one-sided formulas, or all numeric vectors). Defaults to
    \code{numeric(0)}, corresponding to an uninitialized object.}
- \item{form}{an optional list of one-sided linear formula specifying the
+ \item{form}{an optional list of one-sided linear formulas specifying the
    row/column names for the block-diagonal elements of the matrix
    represented by \code{object}. Because factors may be present in
    \code{form}, the formulas needs to be evaluated on a data.frame to
-   resolve the names they defines. This argument is ignored when
+   resolve the names they define. This argument is ignored when
    \code{value} is a list of one-sided formulas. Defaults to \code{NULL}.}
  \item{nam}{an optional list of vector of character strings specifying the
    row/column names for the block-diagonal elements of the matrix
@@ -30,8 +30,8 @@ pdBlocked(value, form, nam, data, pdClass)
    named in \code{value} and \code{form}. It is used to
    obtain the levels for \code{factors}, which affect the
    dimensions and the row/column names of the underlying matrix. If
-   \code{NULL}, no attempt is made to obtain information on 
-   \code{factors} appearing the random effects model. Defaults to parent
+   \code{NULL}, no attempt is made to obtain information on any
+   \code{factors} appearing in the formulas. Defaults to the parent
    frame from which the function was called.}
  \item{pdClass}{an optional vector of character strings naming the
    \code{pdMat} classes to be assigned to the individual blocks in the
@@ -51,7 +51,7 @@ pdBlocked(value, form, nam, data, pdClass)
   of character strings,  \code{object} is returned
   as an uninitialized \code{pdBlocked} object (with just some of its
   attributes and its class defined) and needs to have its coefficients
-  assigned later, generally using the \code{coef} or {matrix}
+  assigned later, generally using the \code{coef} or \code{matrix} replacement
   functions. If \code{value} is a list of  initialized \code{pdMat}
   objects, \code{object} will be constructed from the list obtained by
   applying \code{as.matrix} to each of the \code{pdMat} elements of

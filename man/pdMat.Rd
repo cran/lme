@@ -1,4 +1,4 @@
-% $Id: pdMat.Rd,v 1.2 1998/04/02 18:53:16 pinheiro Exp $
+% $Id: pdMat.Rd,v 1.5 1999/07/29 18:44:00 bates Exp $
 \name{pdMat}
 \title{Positive-Definite Matrix}
 \usage{
@@ -7,7 +7,7 @@ pdMat(value, form, nam, data, pdClass)
 \alias{pdMat}
 \arguments{
  \item{value}{an optional initialization value, which can be any of the
-   following: a code{pdMat} object, a positive-definite
+   following: a \code{pdMat} object, a positive-definite
    matrix, a one-sided linear formula (with variables separated by
    \code{+}), a vector of character strings, or a numeric
    vector. Defaults to \code{numeric(0)}, corresponding to an
@@ -29,8 +29,8 @@ pdMat(value, form, nam, data, pdClass)
    obtain the levels for \code{factors}, which affect the
    dimensions and the row/column names of the underlying matrix. If
    \code{NULL}, no attempt is made to obtain information on 
-   \code{factors} appearing the random effects model. Defaults to parent
-   frame from which the function was called.}
+   \code{factors} appearing in the formulas. Defaults to the
+   parent frame from which the function was called.}
  \item{pdClass}{an optional character string naming the
    \code{pdMat} class to be assigned to the returned object. This
    argument will only be used when \code{value} is not a \code{pdMat} 

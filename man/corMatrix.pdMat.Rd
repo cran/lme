@@ -1,4 +1,4 @@
-% $Id: corMatrix.pdMat.Rd,v 1.3 1998/04/02 18:53:11 pinheiro Exp $
+% $Id: corMatrix.pdMat.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{corMatrix.pdMat}
 \title{Extract Correlation Matrix from a pdMat Object}
 \usage{
@@ -12,7 +12,7 @@ corMatrix(object)
 \alias{corMatrix.pdSymm}
 
 \arguments{
- \item{object}{an object inheriting from class code{pdMat}, representing
+ \item{object}{an object inheriting from class \code{pdMat}, representing
    a positive definite matrix.}
 }
 

@@ -1,4 +1,4 @@
-% $Id: getCovariate.Rd,v 1.3 1998/04/02 18:53:12 pinheiro Exp $
+% $Id: getCovariate.Rd,v 1.4 1999/07/28 04:00:51 bates Exp $
 \name{getCovariate}
 \title{Extract Covariate from an Object}
 \usage{
@@ -24,7 +24,12 @@ getCovariate(object, form, data)
 
 \author{Jose Pinheiro and Douglas Bates}
 
-\seealso{\code{\link{getCovariateFormula}}}
+\seealso{
+    \code{\link{getCovariate.corStruct}},
+    \code{\link{getCovariate.data.frame}},
+    \code{\link{getCovariate.varFunc}},
+    \code{\link{getCovariateFormula}}
+}
 \examples{
 ## see the method function documentation
 }

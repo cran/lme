@@ -1,4 +1,4 @@
-% $Id: gnlsStruct.Rd,v 1.2 1999/06/04 13:31:40 bates Exp $
+% $Id: gnlsStruct.Rd,v 1.3 1999/06/28 17:22:25 bates Exp $
 \name{gnlsStruct}
 \title{Generalized Nonlinear Least Squares Structure}
 \usage{
@@ -29,7 +29,7 @@ gnlsStruct(corStruct, varStruct)
   \code{\link{varFunc}} } 
 
 \examples{
-library(nlme)
+library(lme)
 gnls1 <- gnlsStruct(corAR1(), varPower())
 }
 \keyword{models}

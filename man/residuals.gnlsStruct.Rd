@@ -1,4 +1,4 @@
-% $Id: residuals.gnlsStruct.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+% $Id: residuals.gnlsStruct.Rd,v 1.2 1999/07/28 04:00:51 bates Exp $
 \name{residuals.gnlsStruct}
 \title{Calculate gnlsStruct Residuals}
 \usage{
@@ -19,14 +19,11 @@ fitted(object)
   a vector with the residuals for the nonlinear model represented by
   \code{object}. 
 }
-
 \author{Jose Pinheiro and Douglas Bates}
 \note{
-  This method function is generally only used inside \code{gnls} and 
+  This method function is primarily used inside \code{gnls} and 
   \code{residuals.gnls}.
 }
-
 \seealso{\code{\link{gnls}}, \code{\link{residuals.gnls}},
   \code{\link{fitted.gnlsStruct}} } 
-
 \keyword{models}
