@@ -1,0 +1,97 @@
+R> ### $Id: CultMiss.Rt,v 1.2 1999/05/27 22:08:41 bates Exp $
+R> ### A blocked split-plot with missing data (sec 2.7, pp. 68-75)
+R> ## Remove all observations in block 1, cultivar 'A'.
+R> library( lme )
+R> data( Cultivation )
+R> options( contrasts = c(factor = "contr.SAS", ordered = "contr.poly") )
+R> CultMiss <- Cultivation[ Cultivation$Block != 1 | Cultivation$Cult != 'a', ]
+R> dim(CultMiss)
+[1] 21  4
+R> fm1CultM <- lme( drywt ~ Cult * Inoc, CultMiss, list(Block = ~ 1, Cult = ~ 1) )
+R> summary( fm1CultM )
+Linear mixed-effects model fit by REML
+ Data: CultMiss 
+     AIC    BIC  logLik
+  72.423 78.795 -27.211
+
+Random effects:
+ Formula: ~1 | Block
+        (Intercept)
+StdDev:     0.98512
+
+ Formula: ~1 | Cult %in% Block
+        (Intercept) Residual
+StdDev:      1.0493  0.78631
+
+Fixed effects: drywt ~ Cult * Inoc 
+              Value Std.Error DF t-value p-value
+(Intercept)  33.525   0.82003 10  40.883  <.0001
+Cult         -0.631   1.02438  2  -0.616  0.6007
+Inoccon      -5.500   0.55600 10  -9.892  <.0001
+Inocdea      -2.875   0.55600 10  -5.171  0.0004
+Cult.Inoccon  0.867   0.84931 10   1.020  0.3316
+Cult.Inocdea -0.725   0.84931 10  -0.854  0.4133
+ Correlation: 
+             (Intr) Cult   Inoccn Inocde Clt.Incc
+Cult         -0.512                              
+Inoccon      -0.339  0.271                       
+Inocdea      -0.339  0.271  0.500                
+Cult.Inoccon  0.222 -0.415 -0.655 -0.327         
+Cult.Inocdea  0.222 -0.415 -0.327 -0.655  0.500  
+
+Standardized Within-Group Residuals:
+     Min       Q1      Med       Q3      Max 
+-1.23182 -0.46801  0.16787  0.32977  1.64694 
+
+Number of Observations: 21
+Number of Groups: 
+          Block Cult %in% Block 
+              4               7 
+R> anova( fm1CultM )  # check on the need for different terms
+            numDF denDF F-value p-value
+(Intercept)     1    10 2126.50  <.0001
+Cult            1     2    0.42  0.5829
+Inoc            2    10   75.90  <.0001
+Cult:Inoc       2    10    1.76  0.2213
+R> # Essentially the same conclusions as for the balanced data
+R> fm2CultM <- update( fm1CultM, drywt ~ Inoc )
+R> summary( fm2CultM )
+Linear mixed-effects model fit by REML
+ Data: CultMiss 
+     AIC    BIC  logLik
+  74.474 79.816 -31.237
+
+Random effects:
+ Formula: ~1 | Block
+        (Intercept)
+StdDev:      1.1726
+
+ Formula: ~1 | Cult %in% Block
+        (Intercept) Residual
+StdDev:     0.83463  0.83467
+
+Fixed effects: drywt ~ Inoc 
+             Value Std.Error DF t-value p-value
+(Intercept) 33.305   0.74204 12  44.883  <.0001
+Inoccon     -5.129   0.44615 12 -11.495  <.0001
+Inocdea     -3.186   0.44615 12  -7.140  <.0001
+ Correlation: 
+        (Intr) Inoccn
+Inoccon -0.301       
+Inocdea -0.301  0.500
+
+Standardized Within-Group Residuals:
+     Min       Q1      Med       Q3      Max 
+-1.71823 -0.26658 -0.14866  0.36051  1.74341 
+
+Number of Observations: 21
+Number of Groups: 
+          Block Cult %in% Block 
+              4               7 
+R> VarCorr( fm2CultM )  # variance component estimates
+            Variance  StdDev 
+Block =     pdSymm(1)        
+(Intercept) 1.37504   1.17262
+Cult =      pdSymm(1)        
+(Intercept) 0.69661   0.83463
+Residual    0.69667   0.83467

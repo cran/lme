@@ -1,0 +1,53 @@
+R> ### $Id: Genetics.Rt,v 1.2 1999/05/27 22:08:41 bates Exp $
+R> ### Analysis of the heritability data given as data set 4.5 in
+R> ### "SAS System for Mixed Models"
+R> library( lme )
+R> data( Genetics )
+R> options(contrasts = c(factor = "contr.SAS", ordered = "contr.poly"))
+R> formula( Genetics )
+Yield ~ 1 | Location/Block
+R> fm1Gen <- lme( Yield ~ 1, data = Genetics,
++    random = list(Location = pdCompSymm(~ Family - 1), Block = ~ 1) )
+R> summary( fm1Gen )
+Linear mixed-effects model fit by REML
+ Data: Genetics 
+     AIC    BIC  logLik
+  492.92 503.31 -241.46
+
+Random effects:
+ Formula: ~Family - 1 | Location
+ Structure: Compound Symmetry
+        StdDev Corr                   
+Family1 28.986                        
+Family2 28.986 0.687                  
+Family3 28.986 0.687 0.687            
+Family4 28.986 0.687 0.687 0.687      
+Family5 28.986 0.687 0.687 0.687 0.687
+
+ Formula: ~1 | Block %in% Location
+        (Intercept) Residual
+StdDev:      9.4552   7.1984
+
+Fixed effects: Yield ~ 1 
+             Value Std.Error DF t-value p-value
+(Intercept) 209.13    12.875 48  16.244  <.0001
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.780580 -0.510782 -0.070237  0.619366  1.382666 
+
+Number of Observations: 60
+Number of Groups: 
+           Location Block %in% Location 
+                  4                  12 
+R> VarCorr( fm1Gen )
+            Variance  StdDev  Corr             
+Location =  pdCompSymm(Family - 1)                          
+Family1     840.171  28.9857                  
+Family2     840.171  28.9857 0.687            
+Family3     840.171  28.9857 0.687 0.687      
+Family4     840.171  28.9857 0.687 0.687 0.687
+Family5     840.171  28.9857 0.687 0.687 0.687 0.687
+Block =     pdSymm(1)                          
+(Intercept)  89.401   9.4552                  
+Residual     51.817   7.1984                  

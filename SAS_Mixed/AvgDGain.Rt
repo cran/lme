@@ -1,0 +1,90 @@
+R> ### $Id: AvgDGain.Rt,v 1.2 1999/05/27 22:08:41 bates Exp $
+R> ### Analysis of average daily weight gain data given as data set 5.3
+R> ### in "SAS System for Mixed Models"
+R> library( lme )
+R> data( AvgDGain )
+R> options( contrasts = c(factor = "contr.SAS", ordered = "contr.poly") )
+R> fm1Adg <- lme( adg ~ InitWt * Treatment - 1, 
++       data = AvgDailyGain, random = ~ 1 | Block )
+R> summary( fm1Adg )           # compare with output 5.1, p. 178
+Linear mixed-effects model fit by REML
+ Data: AvgDailyGain 
+   AIC   BIC logLik
+  88.1 99.88 -34.05
+
+Random effects:
+ Formula: ~1 | Block
+        (Intercept) Residual
+StdDev:     0.50923  0.22233
+
+Fixed effects: adg ~ InitWt * Treatment - 1 
+                      Value Std.Error DF t-value p-value
+InitWt              0.00280   0.00086 17  3.2696  0.0045
+Treatment^0         0.63625   0.37825 17  1.6821  0.1108
+Treatment^1        -0.37199   0.70950 17 -0.5243  0.6068
+Treatment^2        -0.63325   0.67638 17 -0.9362  0.3623
+Treatment^3         0.58148   0.53023 17  1.0966  0.2881
+InitWt.Treatment.L  0.00196   0.00188 17  1.0383  0.3137
+InitWt.Treatment.Q  0.00115   0.00174 17  0.6594  0.5185
+InitWt.Treatment.C -0.00105   0.00132 17 -0.7946  0.4378
+ Correlation: 
+                   InitWt Trtm^0 Trtm^1 Trtm^2 Trtm^3 IW.T.L
+Treatment^0        -0.872                                   
+Treatment^1        -0.087  0.045                            
+Treatment^2        -0.137  0.086  0.075                     
+Treatment^3        -0.160  0.133  0.294 -0.059              
+InitWt.Treatment.L  0.121 -0.074 -0.993 -0.100 -0.311       
+InitWt.Treatment.Q  0.178 -0.121 -0.108 -0.992  0.032  0.135
+InitWt.Treatment.C  0.167 -0.138 -0.326  0.033 -0.988  0.345
+                   IW.T.Q
+Treatment^0              
+Treatment^1              
+Treatment^2              
+Treatment^3              
+InitWt.Treatment.L       
+InitWt.Treatment.Q       
+InitWt.Treatment.C -0.005
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.829034 -0.449140 -0.030235  0.447385  1.598777 
+
+Number of Observations: 32
+Number of Groups: 8 
+R> anova( fm1Adg )     # little indication of need for interaction
+                 numDF denDF F-value p-value
+InitWt               1    17  91.682  <.0001
+Treatment            4    17   8.813  0.0005
+InitWt:Treatment     3    17   0.931  0.4471
+R> fm2Adg <- update( fm1Adg, adg ~ InitWt + Treatment )  # common slope model
+R> summary( fm2Adg )   # perhaps could use a quadratic in treatment
+Linear mixed-effects model fit by REML
+ Data: AvgDailyGain 
+     AIC    BIC  logLik
+  51.724 60.794 -18.862
+
+Random effects:
+ Formula: ~1 | Block
+        (Intercept) Residual
+StdDev:     0.49076  0.22379
+
+Fixed effects: adg ~ InitWt + Treatment 
+               Value Std.Error DF t-value p-value
+(Intercept)  0.62392   0.37024 20  1.6851  0.1075
+InitWt       0.00278   0.00083 20  3.3356  0.0033
+Treatment.L  0.36597   0.08142 20  4.4948  0.0002
+Treatment.Q -0.19769   0.08245 20 -2.3978  0.0264
+Treatment.C  0.13657   0.07912 20  1.7261  0.0997
+ Correlation: 
+            (Intr) InitWt Trtm.L Trtm.Q
+InitWt      -0.877                     
+Treatment.L -0.207  0.236              
+Treatment.Q -0.247  0.281  0.066       
+Treatment.C  0.001 -0.001  0.000  0.000
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.495049 -0.595112  0.087431  0.690442  1.865026 
+
+Number of Observations: 32
+Number of Groups: 8 

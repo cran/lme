@@ -1,0 +1,132 @@
+R> ### $Id: Weights.Rt,v 1.2 1998/07/14 15:29:31 bates Exp $
+R> ### Analysis of the weight-lifting program data given as data set 3.2(a)
+R> ### in "SAS System for Mixed Models"
+R> library( lme )
+R> data( Weights )
+R> options(contrasts = c(factor = "contr.SAS", ordered = "contr.poly"))
+R> fm1Weight <- 
++    lme( strength ~ Program * Time, data = Weights, random = ~ 1 | Subj )
+R> summary( fm1Weight )
+Linear mixed-effects model fit by maximum likelihood
+ Data: Weights 
+     AIC    BIC  logLik
+  1441.9 1473.8 -712.93
+
+Random effects:
+ Formula: ~1 | Subj
+        (Intercept) Residual
+StdDev:      3.0152   1.0850
+
+Fixed effects: strength ~ Program * Time 
+                  Value Std.Error z-value p-value
+(Intercept)      81.105     0.682 118.879   0.000
+ProgramCONT      -1.115     0.977  -1.142   0.254
+ProgramRI        -1.045     1.037  -1.007   0.314
+Time              0.160     0.022   7.146   0.000
+ProgramCONT.Time -0.184     0.032  -5.744   0.000
+ProgramRI.Time   -0.055     0.034  -1.615   0.106
+ Correlation: 
+                 (Intr) PrCONT PrgrRI Time   PCONT.
+ProgramCONT      -0.698                            
+ProgramRI        -0.658  0.459                     
+Time             -0.230  0.160  0.151              
+ProgramCONT.Time  0.160 -0.230 -0.105 -0.698       
+ProgramRI.Time    0.151 -0.105 -0.230 -0.658  0.459
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-3.129156 -0.612373  0.037615  0.633140  3.346907 
+
+Number of Observations: 399
+Number of Groups: 57 
+R> summary( update( fm1Weight, REML = TRUE ) )  # compare with output 3.1, p. 91
+Linear mixed-effects model fit by REML
+ Data: Weights 
+     AIC    BIC  logLik
+  1455.4 1487.2 -719.68
+
+Random effects:
+ Formula: ~1 | Subj
+        (Intercept) Residual
+StdDev:      3.0991   1.0897
+
+Fixed effects: strength ~ Program * Time 
+                  Value Std.Error z-value p-value
+(Intercept)      81.105     0.700 115.843   0.000
+ProgramCONT      -1.115     1.002  -1.113   0.266
+ProgramRI        -1.045     1.065  -0.982   0.326
+Time              0.160     0.022   7.114   0.000
+ProgramCONT.Time -0.184     0.032  -5.718   0.000
+ProgramRI.Time   -0.055     0.034  -1.608   0.108
+ Correlation: 
+                 (Intr) PrCONT PrgrRI Time   PCONT.
+ProgramCONT      -0.698                            
+ProgramRI        -0.658  0.459                     
+Time             -0.225  0.157  0.148              
+ProgramCONT.Time  0.157 -0.225 -0.103 -0.698       
+ProgramRI.Time    0.148 -0.103 -0.225 -0.658  0.459
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-3.116691 -0.609633  0.039635  0.630750  3.335204 
+
+Number of Observations: 399
+Number of Groups: 57 
+R> c( 3.0991, 1.0897 )^2
+[1] 9.6044 1.1874
+R> fm2Weight <- update( fm1Weight, random = ~ Time | Subj )
+R> anova( fm1Weight, fm2Weight )
+          Model df AIC    BIC    logLik  Test    Lik.Ratio
+fm1Weight 1      8 1441.9 1473.8 -712.93                  
+fm2Weight 2     10 1333.3 1373.2 -656.68 1 vs. 2 112.52   
+          p-value
+fm1Weight        
+fm2Weight  0     
+R> summary( fm2Weight )
+Linear mixed-effects model fit by maximum likelihood
+ Data: Weights 
+     AIC    BIC  logLik
+  1333.4 1373.2 -656.68
+
+Random effects:
+ Formula: ~Time | Subj
+ Structure: General positive-definite
+            StdDev  Corr  
+(Intercept) 2.92292 (Intr)
+Time        0.17074 -0.115
+Residual    0.79559       
+
+Fixed effects: strength ~ Program * Time 
+                  Value Std.Error z-value p-value
+(Intercept)      81.105     0.651 124.509   0.000
+ProgramCONT      -1.115     0.933  -1.196   0.232
+ProgramRI        -1.045     0.991  -1.055   0.291
+Time              0.160     0.041   3.927   0.000
+ProgramCONT.Time -0.184     0.058  -3.156   0.002
+ProgramRI.Time   -0.055     0.062  -0.888   0.375
+ Correlation: 
+                 (Intr) PrCONT PrgrRI Time   PCONT.
+ProgramCONT      -0.698                            
+ProgramRI        -0.658  0.459                     
+Time             -0.174  0.122  0.114              
+ProgramCONT.Time  0.122 -0.174 -0.080 -0.698       
+ProgramRI.Time    0.114 -0.080 -0.174 -0.658  0.459
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-2.752687 -0.648299 -0.010436  0.573449  3.482789 
+
+Number of Observations: 399
+Number of Groups: 57 
+R> fm3Weight <- update( fm2Weight, correlation = corAR1())
+Error: NAs in foreign function call (arg 1)
+R> anova( fm2Weight, fm3Weight )
+Error: Object "fm3Weight" not found
+R> fm4Weight <- update( fm3Weight, strength ~ Program * (Time + I(Time^2)) )
+Error: Object "fm3Weight" not found
+R> anova( fm1Weight, fm2Weight, fm3Weight, fm4Weight )
+Error: Object "fm3Weight" not found
+R> summary( fm4Weight )
+Error: Object "fm4Weight" not found
+R> intervals( fm4Weight )
+Error: Object "fm4Weight" not found

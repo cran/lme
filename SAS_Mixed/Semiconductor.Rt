@@ -1,0 +1,119 @@
+R> ### $Id: Semiconductor.Rt,v 1.1 1998/06/29 13:29:15 bates Exp $
+R> ### Analysis of the Semiconductor split-plot experiment, section 2.3 of
+R> ### "SAS System for Mixed Models"
+R> library( lme )
+R> data( Semiconductor )
+R> options(contrasts = c(factor = "contr.SAS", ordered = "contr.poly"))
+R> formula( Semiconductor )
+resistance ~ 1 | Grp
+R> names( Semiconductor )
+[1] "resistance" "ET"         "Wafer"      "position"  
+[5] "Grp"       
+R> fm1Semi <- lme( resistance ~ ET * position,
++                  data = Semiconductor,
++                  random = ~ 1 | Grp )
+R> summary( fm1Semi )
+Linear mixed-effects model fit by maximum likelihood
+ Data: Semiconductor 
+     AIC    BIC  logLik
+  66.147 99.828 -15.073
+
+Random effects:
+ Formula: ~1 | Grp
+        (Intercept) Residual
+StdDev:     0.26557  0.27221
+
+Fixed effects: resistance ~ ET * position 
+                Value Std.Error z-value p-value
+(Intercept)    6.5400    0.2196 29.7862  0.0000
+ET1           -0.6533    0.3105 -2.1041  0.0354
+ET2           -0.6233    0.3105 -2.0074  0.0447
+ET3           -0.4467    0.3105 -1.4385  0.1503
+position1     -0.2000    0.2223 -0.8998  0.3682
+position2      0.0133    0.2223  0.0600  0.9522
+position3     -0.6433    0.2223 -2.8945  0.0038
+ET1.position1 -0.0733    0.3143 -0.2333  0.8155
+ET2.position1  0.2767    0.3143  0.8802  0.3788
+ET3.position1  0.2433    0.3143  0.7741  0.4388
+ET1.position2 -0.4500    0.3143 -1.4316  0.1522
+ET2.position2  0.2567    0.3143  0.8166  0.4142
+ET3.position2  0.2400    0.3143  0.7635  0.4451
+ET1.position3  0.3100    0.3143  0.9862  0.3240
+ET2.position3  0.4933    0.3143  1.5695  0.1165
+ET3.position3  0.3233    0.3143  1.0287  0.3036
+ Correlation: 
+              (Intr) ET1    ET2    ET3    postn1 postn2 postn3
+ET1           -0.707                                          
+ET2           -0.707  0.500                                   
+ET3           -0.707  0.500  0.500                            
+position1     -0.506  0.358  0.358  0.358                     
+position2     -0.506  0.358  0.358  0.358  0.500              
+position3     -0.506  0.358  0.358  0.358  0.500  0.500       
+ET1.position1  0.358 -0.506 -0.253 -0.253 -0.707 -0.354 -0.354
+ET2.position1  0.358 -0.253 -0.506 -0.253 -0.707 -0.354 -0.354
+ET3.position1  0.358 -0.253 -0.253 -0.506 -0.707 -0.354 -0.354
+ET1.position2  0.358 -0.506 -0.253 -0.253 -0.354 -0.707 -0.354
+ET2.position2  0.358 -0.253 -0.506 -0.253 -0.354 -0.707 -0.354
+ET3.position2  0.358 -0.253 -0.253 -0.506 -0.354 -0.707 -0.354
+ET1.position3  0.358 -0.506 -0.253 -0.253 -0.354 -0.354 -0.707
+ET2.position3  0.358 -0.253 -0.506 -0.253 -0.354 -0.354 -0.707
+ET3.position3  0.358 -0.253 -0.253 -0.506 -0.354 -0.354 -0.707
+              ET1.p1 ET2.p1 ET3.p1 ET1.p2 ET2.p2 ET3.p2 ET1.p3
+ET1                                                           
+ET2                                                           
+ET3                                                           
+position1                                                     
+position2                                                     
+position3                                                     
+ET1.position1                                                 
+ET2.position1  0.500                                          
+ET3.position1  0.500  0.500                                   
+ET1.position2  0.500  0.250  0.250                            
+ET2.position2  0.250  0.500  0.250  0.500                     
+ET3.position2  0.250  0.250  0.500  0.500  0.500              
+ET1.position3  0.500  0.250  0.250  0.500  0.250  0.250       
+ET2.position3  0.250  0.500  0.250  0.250  0.500  0.250  0.500
+ET3.position3  0.250  0.250  0.500  0.250  0.250  0.500  0.500
+              ET2.p3
+ET1                 
+ET2                 
+ET3                 
+position1           
+position2           
+position3           
+ET1.position1       
+ET2.position1       
+ET3.position1       
+ET1.position2       
+ET2.position2       
+ET3.position2       
+ET1.position3       
+ET2.position3       
+ET3.position3  0.500
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-2.340617 -0.562403  0.012600  0.574017  1.606201 
+
+Number of Observations: 48
+Number of Groups: 12 
+R> ## check significance of the interaction
+R> fm2Semi <- update( fm1Semi, resistance ~ ET + position )
+R> fm3Semi <- update( fm1Semi, resistance ~ ET )
+R> fm4Semi <- update( fm1Semi, resistance ~ position )
+R> fm5Semi <- update( fm1Semi, resistance ~ 1 )
+R> anova( fm5Semi, fm4Semi, fm2Semi, fm1Semi )
+        Model df AIC    BIC    logLik  Test    Lik.Ratio p-value
+fm5Semi 1      3 62.373 67.987 -28.187                          
+fm4Semi 2      6 58.251 69.479 -23.126 1 vs. 2 10.1218   0.01756
+fm2Semi 3      9 57.687 74.528 -19.844 2 vs. 3  6.5641   0.08717
+fm1Semi 4     18 66.147 99.828 -15.073 3 vs. 4  9.5405   0.38895
+R> anova( fm5Semi, fm3Semi, fm2Semi, fm1Semi )
+        Model df AIC    BIC    logLik  Test    Lik.Ratio p-value
+fm5Semi 1      3 62.373 67.987 -28.187                          
+fm3Semi 2      6 61.809 73.036 -24.904 1 vs. 2  6.5641   0.08717
+fm2Semi 3      9 57.687 74.528 -19.844 2 vs. 3 10.1218   0.01756
+fm1Semi 4     18 66.147 99.828 -15.073 3 vs. 4  9.5405   0.38895
+R> ## AIC favors resistance ~ ET + position
+R> ## BIC favors resistance ~ 1
+R> ## Likelihood ratio seems to favor resistance ~ position

@@ -1,0 +1,246 @@
+R> ### $Id: SIMS.Rt,v 1.3 1998/07/14 15:29:30 bates Exp $
+R> ### Analysis of the Second International Mathematics Study (SIMS)
+R> ### described in section 7.2 of "SAS System for Mixed Models"
+R> library( lme )
+R> data( SIMS )
+R> unix.time(assign("fm1RSIMS", lme(Gain ~ Pretot, SIMS, ~ Pretot | Class, REML = TRUE, control = list(msVerbose = TRUE))))
+iteration = 0
+Step:
+[1] 0 0 0
+Parameter:
+[1] 0.38635 0.13866 7.90119
+Function Value
+[1] 21105
+Gradient:
+[1] -0.076183  4.627491 -1.733006
+
+iteration = 1
+Step:
+[1]  7.6183e-05 -4.6275e-03  1.7330e-03
+Parameter:
+[1] 0.38643 0.13403 7.90292
+Function Value
+[1] 21105
+Gradient:
+[1] -1.0256 -3.2895 -1.7870
+
+iteration = 2
+Step:
+[1] 0.00046018 0.00146101 0.00080668
+Parameter:
+[1] 0.38689 0.13550 7.90373
+Function Value
+[1] 21105
+Gradient:
+[1] -0.69968 -0.69522 -1.76193
+
+iteration = 3
+Step:
+[1] 0.00111579 0.00089566 0.00286410
+Parameter:
+[1] 0.38800 0.13639 7.90659
+Function Value
+[1] 21105
+Gradient:
+[1] -0.45347  1.11193 -1.73151
+
+iteration = 4
+Step:
+[1] 0.0049896 0.0015621 0.0137366
+Parameter:
+[1] 0.39299 0.13795 7.92033
+Function Value
+[1] 21105
+Gradient:
+[1]  0.14671  5.04603 -1.62399
+
+iteration = 5
+Step:
+[1] 0.01140530 0.00084835 0.03265490
+Parameter:
+[1] 0.40440 0.13880 7.95298
+Function Value
+[1] 21105
+Gradient:
+[1]  0.96324  9.39451 -1.41516
+
+iteration = 6
+Step:
+[1]  0.0238415 -0.0015884  0.0703703
+Parameter:
+[1] 0.42824 0.13721 8.02335
+Function Value
+[1] 21105
+Gradient:
+[1]  1.9827 12.7052 -1.0476
+
+iteration = 7
+Step:
+[1]  0.030443 -0.005652  0.093330
+Parameter:
+[1] 0.45868 0.13156 8.11668
+Function Value
+[1] 21105
+Gradient:
+[1]  2.51911 10.78008 -0.67797
+
+iteration = 8
+Step:
+[1]  0.019583 -0.006733  0.065061
+Parameter:
+[1] 0.47826 0.12483 8.18174
+Function Value
+[1] 21105
+Gradient:
+[1]  2.18787  4.52151 -0.49948
+
+iteration = 9
+Step:
+[1]  0.0025788 -0.0029338  0.0145075
+Parameter:
+[1] 0.48084 0.12189 8.19625
+Function Value
+[1] 21105
+Gradient:
+[1]  1.69967  0.42367 -0.48331
+
+iteration = 10
+Step:
+[1] -0.00230490 -0.00067216 -0.00050181
+Parameter:
+[1] 0.47854 0.12122 8.19575
+Function Value
+[1] 21105
+Gradient:
+[1]  1.42300 -1.18359 -0.49467
+
+iteration = 11
+Step:
+[1] -0.00596670 -0.00035232 -0.00166840
+Parameter:
+[1] 0.47257 0.12087 8.19408
+Function Value
+[1] 21105
+Gradient:
+[1]  1.00827 -3.07246 -0.50638
+
+iteration = 12
+Step:
+[1] -0.01113785  0.00025954  0.00343487
+Parameter:
+[1] 0.46143 0.12113 8.19751
+Function Value
+[1] 21105
+Gradient:
+[1]  0.43304 -5.01582 -0.49003
+
+iteration = 13
+Step:
+[1] -0.0181122  0.0015103  0.0198440
+Parameter:
+[1] 0.44332 0.12264 8.21736
+Function Value
+[1] 21105
+Gradient:
+[1] -0.27109 -6.23158 -0.39445
+
+iteration = 14
+Step:
+[1] -0.016725  0.002714  0.040309
+Parameter:
+[1] 0.42660 0.12535 8.25767
+Function Value
+[1] 21105
+Gradient:
+[1] -0.64503 -4.93168 -0.21444
+
+iteration = 15
+Step:
+[1] -0.0036765  0.0020512  0.0399940
+Parameter:
+[1] 0.42292 0.12740 8.29766
+Function Value
+[1] 21105
+Gradient:
+[1] -0.417538 -1.860790 -0.057957
+
+iteration = 16
+Step:
+[1] 0.00467975 0.00027501 0.01719412
+Parameter:
+[1] 0.42760 0.12768 8.31486
+Function Value
+[1] 21105
+Gradient:
+[1] -0.0907203 -0.1709705 -0.0026759
+
+iteration = 17
+Step:
+[1]  0.00218772 -0.00018419  0.00205934
+Parameter:
+[1] 0.42979 0.12750 8.31692
+Function Value
+[1] 21105
+Gradient:
+[1] -0.00529326  0.02544766  0.00098288
+
+iteration = 18
+Parameter:
+[1] 0.43007 0.12745 8.31682
+Function Value
+[1] 21105
+Gradient:
+[1] 3.6016e-04 5.4861e-03 9.4046e-05
+
+Relative gradient close to zero.
+Current iterate is probably solution.
+
+[1] 13.07  0.07 19.00  0.00  0.00
+R> ## Timing done on a 233 MHz Pentium II running Linux.
+R> ## Your mileage may vary.
+R> summary(fm1RSIMS)              # compare to output 7.4, p. 262
+Linear mixed-effects model fit by REML
+ Data: SIMS 
+    AIC   BIC logLik
+  22393 22430 -11190
+
+Random effects:
+ Formula: ~Pretot | Class
+ Structure: General positive-definite
+            StdDev   Corr  
+(Intercept) 3.806523 (Intr)
+Pretot      0.095932 -0.641
+Residual    4.715481       
+
+Fixed effects: Gain ~ Pretot 
+              Value Std.Error z-value p-value
+(Intercept)  7.0596    0.3659  19.294       0
+Pretot      -0.1860    0.0161 -11.556       0
+ Correlation: 
+       (Intr)
+Pretot -0.76 
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-5.3776210 -0.5955342  0.0098765  0.6409906  3.7182499 
+
+Number of Observations: 3691
+Number of Groups: 190 
+R> intervals( fm1RSIMS )
+Approximate 95% confidence intervals
+
+ Fixed effects:
+               lower     est.    upper
+(Intercept)  6.34246  7.05960  7.77675
+Pretot      -0.21758 -0.18603 -0.15448
+
+ Random Effects:
+  Level: Class 
+                            lower      est.    upper
+sd((Intercept))          2.941302  3.806523  4.92626
+sd(Pretot)               0.045617  0.095932  0.20175
+cor((Intercept),Pretot) -0.881888 -0.640799 -0.13404
+
+ Within-group standard error:
+ lower   est.  upper 
+4.5561 4.7155 4.8805 

@@ -1,0 +1,35 @@
+% $Id: formula.nlsList.Rd,v 1.1 1998/10/14 19:49:57 pinheiro Exp $
+\name{formula.nlsList}
+\title{Extract nlsList Object Formula}
+\usage{
+formula(object)
+}
+\alias{formula.nlsList}
+\arguments{
+ \item{object}{an object inheriting from class \code{nlsList}, representing
+   a list of \code{nls} objects with a common model.
+ }
+}
+\description{
+  This method function extracts the common nonlinear model formula
+  associated with each \code{nls} component of \code{object}. 
+}
+\value{
+  a two-sided nonlinear formula specifying the model used to
+  obtain the \code{nls} components of \code{object}.
+}
+
+\author{Jose Pinheiro and Douglas Bates}
+
+\seealso{\code{\link{nlsList}}}
+
+\examples{
+library(nls)
+data(Soybean)
+## This example won't run in 0.64.1 but should in 0.65
+\dontrun{
+fm1 <- nlsList(weight ~ SSlogis(Time, Asym, xmid, scal)|Plot, data=Soybean)
+formula(fm1)
+}
+}
+\keyword{models}

@@ -1,0 +1,112 @@
+R> ### $Id: WWheat.Rt,v 1.1 1998/06/29 13:29:15 bates Exp $
+R> ### Analysis of winter wheat yields versus preplant soil moisture
+R> ### given as data set 7.2 in "SAS System for Mixed Models"
+R> library( lme )
+R> data( WWheat )
+R> formula( WWheat )
+Yield ~ Moisture | Variety
+R> fm1WWheat <- lme( WWheat )   # default model
+R> summary( fm1WWheat )
+Linear mixed-effects model fit by maximum likelihood
+ Data: WWheat 
+     AIC    BIC  logLik
+  194.06 206.62 -91.028
+
+Random effects:
+ Formula: ~Moisture | Variety
+ Structure: General positive-definite
+            StdDev   Corr  
+(Intercept) 4.118139 (Intr)
+Moisture    0.045839 -0.34 
+Residual    0.593678       
+
+Fixed effects: Yield ~ Moisture 
+             Value Std.Error z-value p-value
+(Intercept) 33.420     1.327  25.179       0
+Moisture     0.662     0.016  41.684       0
+ Correlation: 
+         (Intr)
+Moisture -0.378
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.679400 -0.595771 -0.066976  0.588344  1.988077 
+
+Number of Observations: 60
+Number of Groups: 10 
+R> fm1RWWheat <- update( fm1WWheat, REML = TRUE )
+R> summary( fm1RWWheat )      # compare with output 7.1, p. 257
+Linear mixed-effects model fit by REML
+ Data: WWheat 
+     AIC    BIC  logLik
+  198.15 210.51 -93.073
+
+Random effects:
+ Formula: ~Moisture | Variety
+ Structure: General positive-definite
+            StdDev  Corr  
+(Intercept) 4.34680 (Intr)
+Moisture    0.04893 -0.342
+Residual    0.59334       
+
+Fixed effects: Yield ~ Moisture 
+             Value Std.Error z-value p-value
+(Intercept) 33.434     1.398  23.907       0
+Moisture     0.662     0.017  39.422       0
+ Correlation: 
+         (Intr)
+Moisture -0.376
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.677989 -0.563176 -0.053734  0.582210  1.971514 
+
+Number of Observations: 60
+Number of Groups: 10 
+R> ranef( fm1RWWheat)         # compare with output 7.2, p. 258
+   (Intercept)  Moisture
+7    -10.73005  0.056424
+2     -2.28428 -0.066697
+4      0.69602 -0.023306
+8      2.40117  0.022434
+9     -0.17621  0.023357
+1      0.95780 -0.049211
+3     -0.40812  0.067223
+6      4.63915  0.023889
+5      1.11591 -0.019904
+10     3.78862 -0.034207
+R> fm2RWWheat <- lme( Yield ~ Moisture, data = WWheat,
++     random = pdDiag( ~ Moisture ), REML = TRUE )  # diagonal variance-covariance
+R> summary( fm2RWWheat )       # compare with output 7.3, p. 259
+Linear mixed-effects model fit by REML
+ Data: WWheat 
+     AIC    BIC  logLik
+  197.11 207.42 -93.556
+
+Random effects:
+ Formula: ~Moisture | Variety
+ Structure: Diagonal
+        (Intercept) Moisture Residual
+StdDev:      4.2758 0.047864  0.59519
+
+Fixed effects: Yield ~ Moisture 
+             Value Std.Error z-value p-value
+(Intercept) 33.411     1.376  24.279       0
+Moisture     0.662     0.016  40.190       0
+ Correlation: 
+         (Intr)
+Moisture -0.068
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.675390 -0.562000 -0.031484  0.577905  2.017709 
+
+Number of Observations: 60
+Number of Groups: 10 
+R> anova( fm1RWWheat, fm2RWWheat )  # compare with discussion on p. 260
+           Model df AIC    BIC    logLik  Test    Lik.Ratio
+fm1RWWheat 1     6  198.15 210.51 -93.073                  
+fm2WWheat  2     5  197.11 207.41 -93.556 1 vs. 2 0.96668  
+           p-value
+fm1RWWheat        
+fm2WWheat  0.32551

@@ -1,0 +1,85 @@
+R> ### $Id: PBIB.Rt,v 1.2 1999/05/27 22:08:41 bates Exp $
+R> ### Analysis of the partially balanced incomplete blocked PBIB data
+R> ### given as data set 1.5.1 in "SAS System for Mixed Models"
+R> library( lme )
+R> data( PBIB )
+R> options( contrasts = c(factor = "contr.SAS", ordered = "contr.poly") )
+R> formula( PBIB )
+response ~ Treatment | Block
+R> names( PBIB )
+[1] "response"  "Treatment" "Block"    
+R> sapply( PBIB, data.class )
+ response Treatment     Block 
+"numeric"  "factor" "ordered" 
+R> fm1PBIB <- lme( response ~ Treatment, data = PBIB, random = ~ 1 | Block )
+R> summary( fm1PBIB )     # compare with output 1.7  pp. 24-25
+Linear mixed-effects model fit by REML
+ Data: PBIB 
+     AIC    BIC  logLik
+  85.985 116.70 -25.992
+
+Random effects:
+ Formula: ~1 | Block
+        (Intercept) Residual
+StdDev:     0.21569  0.29251
+
+Fixed effects: response ~ Treatment 
+               Value Std.Error DF t-value p-value
+(Intercept)  2.85923   0.16641 31 17.1816  <.0001
+Treatment1  -0.04171   0.22206 31 -0.1878  0.8522
+Treatment2  -0.45392   0.22206 31 -2.0441  0.0495
+Treatment3  -0.40429   0.22206 31 -1.8206  0.0783
+Treatment4  -0.07540   0.22206 31 -0.3395  0.7365
+Treatment5  -0.05434   0.22720 31 -0.2392  0.8126
+Treatment6   0.05146   0.22206 31  0.2317  0.8183
+Treatment7  -0.07025   0.22206 31 -0.3163  0.7539
+Treatment8  -0.07763   0.22206 31 -0.3496  0.7290
+Treatment9   0.03208   0.22206 31  0.1444  0.8861
+Treatment10 -0.36817   0.22720 31 -1.6205  0.1153
+Treatment11  0.03947   0.22206 31  0.1777  0.8601
+Treatment12  0.19359   0.22206 31  0.8718  0.3900
+Treatment13 -0.24147   0.22206 31 -1.0874  0.2853
+Treatment14 -0.36792   0.22206 31 -1.6569  0.1076
+ Correlation: 
+            (Intr) Trtmn1 Trtmn2 Trtmn3 Trtmn4 Trtmn5 Trtmn6
+Treatment1  -0.667                                          
+Treatment2  -0.667  0.500                                   
+Treatment3  -0.667  0.500  0.500                            
+Treatment4  -0.667  0.500  0.500  0.500                     
+Treatment5  -0.683  0.512  0.512  0.512  0.512              
+Treatment6  -0.667  0.477  0.500  0.500  0.500  0.512       
+Treatment7  -0.667  0.500  0.477  0.500  0.500  0.512  0.500
+Treatment8  -0.667  0.500  0.500  0.477  0.500  0.512  0.500
+Treatment9  -0.667  0.500  0.500  0.500  0.477  0.512  0.500
+Treatment10 -0.683  0.512  0.512  0.512  0.512  0.500  0.512
+Treatment11 -0.667  0.477  0.500  0.500  0.500  0.512  0.477
+Treatment12 -0.667  0.500  0.477  0.500  0.500  0.512  0.500
+Treatment13 -0.667  0.500  0.500  0.477  0.500  0.512  0.500
+Treatment14 -0.667  0.500  0.500  0.500  0.477  0.512  0.500
+            Trtmn7 Trtmn8 Trtmn9 Trtm10 Trtm11 Trtm12 Trtm13
+Treatment1                                                  
+Treatment2                                                  
+Treatment3                                                  
+Treatment4                                                  
+Treatment5                                                  
+Treatment6                                                  
+Treatment7                                                  
+Treatment8   0.500                                          
+Treatment9   0.500  0.500                                   
+Treatment10  0.512  0.512  0.512                            
+Treatment11  0.500  0.500  0.500  0.512                     
+Treatment12  0.477  0.500  0.500  0.512  0.500              
+Treatment13  0.500  0.477  0.500  0.512  0.500  0.500       
+Treatment14  0.500  0.500  0.477  0.512  0.500  0.500  0.500
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.524657 -0.454346 -0.013271  0.425684  2.744339 
+
+Number of Observations: 60
+Number of Groups: 15 
+R> anova( fm1PBIB )   # testing for significance of terms
+            numDF denDF F-value p-value
+(Intercept)     1    31 1654.24  <.0001
+Treatment      14    31    1.53  0.1576
+

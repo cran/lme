@@ -1,0 +1,182 @@
+R> ### $Id: Semi2.Rt,v 1.1 1998/06/29 13:29:15 bates Exp $
+R> ### Analysis of the Oxide layer thickness data given as data set 4.4 in
+R> ### "SAS System for Mixed Models"
+R> library( lme )
+R> data( Semi2 )
+R> options(contrasts = c(factor = "contr.SAS", ordered = "contr.poly"))
+R> formula(Semi2)
+Thickness ~ 1 | Lot/Wafer
+R> fm1Semi2 <- lme( Thickness ~ 1, data = Semi2,
++    random = ~ 1 | Lot/Wafer )
+R> summary( fm1Semi2 )
+Linear mixed-effects model fit by maximum likelihood
+ Data: Semi2 
+     AIC    BIC  logLik
+  466.68 475.78 -229.34
+
+Random effects:
+ Formula: ~1 | Lot
+        (Intercept)
+StdDev:      10.583
+
+ Formula: ~1 | Wafer %in% Lot
+        (Intercept) Residual
+StdDev:      5.9888   3.5453
+
+Fixed effects: Thickness ~ 1 
+             Value Std.Error z-value p-value
+(Intercept) 2000.2      3.96  505.29       0
+
+Standardized Within-Group Residuals:
+     Min       Q1      Med       Q3      Max 
+-1.86876 -0.49906  0.10125  0.54825  1.79803 
+
+Number of Observations: 72
+Number of Groups: 
+           Lot Wafer %in% Lot 
+             8             24 
+R> fm1RSemi2 <- update( fm1Semi2, REML = TRUE )
+R> summary( fm1RSemi2 )       # compare with output 4.13, p. 156
+Linear mixed-effects model fit by REML
+ Data: Semi2 
+     AIC    BIC  logLik
+  462.02 471.07 -227.01
+
+Random effects:
+ Formula: ~1 | Lot
+        (Intercept)
+StdDev:      11.398
+
+ Formula: ~1 | Wafer %in% Lot
+        (Intercept) Residual
+StdDev:      5.9888   3.5453
+
+Fixed effects: Thickness ~ 1 
+             Value Std.Error z-value p-value
+(Intercept) 2000.2      4.23  472.66       0
+
+Standardized Within-Group Residuals:
+     Min       Q1      Med       Q3      Max 
+-1.87459 -0.49908  0.10465  0.55102  1.79219 
+
+Number of Observations: 72
+Number of Groups: 
+           Lot Wafer %in% Lot 
+             8             24 
+R> fm2Semi2 <- update( fm1Semi2, Thickness ~ Source )
+R> anova( fm1Semi2, fm2Semi2 )
+         Model df AIC    BIC    logLik  Test    Lik.Ratio
+fm1Semi2 1     4  466.68 475.78 -229.34                  
+fm2Semi2 2     5  466.86 478.25 -228.43 1 vs. 2 1.8130   
+         p-value
+fm1Semi2        
+fm2Semi2 0.17815
+R> ## Again, the p-value is smaller than that for the F test.
+R> fm2RSemi2 <- update( fm2Semi2, REML = TRUE )
+R> summary( fm2RSemi2 )       # compare with output 4.15, p. 159
+Linear mixed-effects model fit by REML
+ Data: Semi2 
+     AIC    BIC  logLik
+  456.48 467.72 -223.24
+
+Random effects:
+ Formula: ~1 | Lot
+        (Intercept)
+StdDev:      10.950
+
+ Formula: ~1 | Wafer %in% Lot
+        (Intercept) Residual
+StdDev:      5.9888   3.5453
+
+Fixed effects: Thickness ~ Source 
+              Value Std.Error z-value p-value
+(Intercept) 2005.19      5.77  347.43    0.00
+Source       -10.08      8.16   -1.24    0.22
+ Correlation: 
+       (Intr)
+Source -0.707
+
+Standardized Within-Group Residuals:
+     Min       Q1      Med       Q3      Max 
+-1.88642 -0.51397  0.11776  0.53466  1.78036 
+
+Number of Observations: 72
+Number of Groups: 
+           Lot Wafer %in% Lot 
+             8             24 
+R> fm3Semi2 <- update( fm2Semi2, 
++    random = list(Lot = pdDiag( ~ Source - 1 ), Wafer = ~ 1 ) )
+R> summary( fm3Semi2 )
+Linear mixed-effects model fit by maximum likelihood
+ Data: Semi2 
+     AIC   BIC  logLik
+  465.24 478.9 -226.62
+
+Random effects:
+ Formula: ~Source - 1 | Lot
+ Structure: Diagonal
+        Source1 Source2
+StdDev:  3.0772  12.794
+
+ Formula: ~1 | Wafer %in% Lot
+        (Intercept) Residual
+StdDev:      5.9888   3.5453
+
+Fixed effects: Thickness ~ Source 
+              Value Std.Error z-value p-value
+(Intercept) 2005.19      6.65  301.40    0.00
+Source       -10.08      7.07   -1.43    0.15
+ Correlation: 
+       (Intr)
+Source -0.941
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.893598 -0.552364  0.079283  0.574954  1.773186 
+
+Number of Observations: 72
+Number of Groups: 
+           Lot Wafer %in% Lot 
+             8             24 
+R> fm3RSemi2 <- update( fm3Semi2, REML = TRUE )
+R> summary( fm3RSemi2 )       # compare with output 4.17, p. 163
+Linear mixed-effects model fit by REML
+ Data: Semi2 
+     AIC    BIC  logLik
+  455.76 469.25 -221.88
+
+Random effects:
+ Formula: ~Source - 1 | Lot
+ Structure: Diagonal
+        Source1 Source2
+StdDev:   4.132  14.923
+
+ Formula: ~1 | Wafer %in% Lot
+        (Intercept) Residual
+StdDev:      5.9888   3.5454
+
+Fixed effects: Thickness ~ Source 
+              Value Std.Error z-value p-value
+(Intercept) 2005.19      7.68  261.02    0.00
+Source       -10.08      8.16   -1.24    0.22
+ Correlation: 
+       (Intr)
+Source -0.941
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.899041 -0.530910  0.081686  0.557218  1.767725 
+
+Number of Observations: 72
+Number of Groups: 
+           Lot Wafer %in% Lot 
+             8             24 
+R> anova( fm1Semi2, fm2Semi2, fm3Semi2 )
+         Model df AIC    BIC    logLik  Test    Lik.Ratio
+fm1Semi2 1     4  466.68 475.78 -229.34                  
+fm2Semi2 2     5  466.86 478.25 -228.43 1 vs. 2 1.8130   
+fm3Semi2 3     6  465.24 478.90 -226.62 2 vs. 3 3.6197   
+         p-value
+fm1Semi2        
+fm2Semi2 0.17815
+fm3Semi2 0.05710

@@ -1,0 +1,51 @@
+% $Id: pairs.compareFits.Rd,v 1.3 1998/04/02 18:53:15 pinheiro Exp $
+\name{pairs.compareFits}
+\title{Pairs Plot of compareFits Object}
+\usage{
+pairs(object, subset, key, ...)
+}
+\alias{pairs.compareFits}
+\arguments{
+ \item{object}{an object of class \code{compareFits}.}
+ \item{subset}{an optional logical or integer vector specifying which
+   rows of \code{object} should be used in the plots. If missing, all
+   rows are used.}
+ \item{key}{an optional logical value, or list. If \code{TRUE}, a legend
+ is included at the top of the plot indicating which symbols (colors)
+ correspond to which objects being compared. If \code{FALSE}, no legend
+ is included. If given as a list, \code{key} is passed down as an
+ argument to the \code{trellis} function generating the plots
+ (\code{splom} or  \code{xyplot}). Defaults to \code{TRUE}.}
+ \item{\dots}{optional arguments passed down to the \code{trellis}
+   function generating the plots.}
+}
+\description{
+  Scatter plots of the values being compared are generated for each pair
+  of coefficients in \code{object}. Different symbols (colors) are used
+  for each object being compared and values corresponding to the same
+  group are joined by a line, to facilitate comparison of fits. If only
+  two coefficients are present, the \code{trellis} function
+  \code{xyplot} is used; else the \code{trellis} function \code{splom}
+  is employed.
+}
+\value{
+  Pairwise scatter plots of the values being compared, with different
+  symbols (colors) used for each object under comparison.
+}
+
+\author{Jose Pinheiro and Douglas Bates }
+
+\seealso{\code{\link{compareFits}},\code{\link{plot.compareFits}},
+  \code{\link{xyplot}}, \code{\link{splom}} }
+
+\examples{
+library(lme)
+data(Orthodont)
+fm1 <- lmList(Orthodont)
+fm2 <- lme(Orthodont)
+\dontrun{
+## requires trellis graphics
+pairs(compareFits(coef(fm1), coef(fm2)))
+}
+}
+\keyword{models}

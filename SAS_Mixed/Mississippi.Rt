@@ -1,0 +1,138 @@
+R> ### $Id: Mississippi.Rt,v 1.3 1999/05/27 22:08:41 bates Exp $
+R> ### Analysis of the Mississippi nitrogren concentrations given as data set
+R> ### 4.2 in "SAS System for Mixed Models"
+R> library( lme )
+R> data( Mississippi )
+R> options(contrasts=c(factor="contr.SAS", ordered="contr.poly"))
+R> formula( Mississippi )
+y ~ 1 | influent
+R> fm1Miss <- lme( y ~ 1, data = Mississippi, random = ~ 1 | influent )
+R> summary( fm1Miss )         # compare with output 4.2, p. 143
+Linear mixed-effects model fit by REML
+ Data: Mississippi 
+     AIC   BIC  logLik
+  258.35 263.1 -126.18
+
+Random effects:
+ Formula: ~1 | influent
+        (Intercept) Residual
+StdDev:      7.9576   6.5313
+
+Fixed effects: y ~ 1 
+             Value Std.Error DF t-value p-value
+(Intercept) 21.223     3.429 31  6.1892  <.0001
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.914436 -0.536460 -0.032173  0.837135  1.958237 
+
+Number of Observations: 37
+Number of Groups: 6 
+R> summary( fm1Miss )         # compare with output 4.1, p. 142
+Linear mixed-effects model fit by maximum likelihood
+ Data: Mississippi 
+     AIC    BIC  logLik
+  262.56 267.39 -128.28
+
+Random effects:
+ Formula: ~1 | influent
+        (Intercept) Residual
+StdDev:      7.1592   6.5343
+
+Fixed effects: y ~ 1 
+             Value Std.Error z-value p-value
+(Intercept) 21.217     3.122   6.796       0
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.934382 -0.557039 -0.035454  0.837596  1.932324 
+
+Number of Observations: 37
+Number of Groups: 6 
+R> fm1RMiss <- update( fm1Miss, REML = TRUE )
+R> summary( fm1RMiss )        # compare with output 4.1, p. 142
+Linear mixed-effects model fit by REML
+ Data: Mississippi 
+     AIC   BIC  logLik
+  258.35 263.1 -126.18
+
+Random effects:
+ Formula: ~1 | influent
+        (Intercept) Residual
+StdDev:      7.9576   6.5313
+
+Fixed effects: y ~ 1 
+             Value Std.Error z-value p-value
+(Intercept) 21.223     3.429  6.1892       0
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.914436 -0.536460 -0.032173  0.837135  1.958237 
+
+Number of Observations: 37
+Number of Groups: 6 
+R> random.effects( fm1Miss )    # BLUP's of random effects on p. 142
+  (Intercept)
+3    -3.89795
+5    -6.01298
+2    -6.71933
+1     0.30929
+4     2.94610
+6    13.37487
+R> random.effects( fm1Miss, aug = TRUE )   # including covariates
+  (Intercept)      y Type
+3    -3.89795 16.800    1
+5    -6.01298 14.400    1
+2    -6.71933 13.857    2
+1     0.30929 21.556    2
+4     2.94610 24.500    2
+6    13.37487 36.400    3
+R> intervals( fm1Miss )        # interval estimates of variance components
+Approximate 95% confidence intervals
+
+ Fixed effects:
+             lower   est.  upper
+(Intercept) 14.230 21.223 28.217
+
+ Random Effects:
+  Level: influent 
+                 lower   est.  upper
+sd((Intercept)) 2.9567 7.9576 21.417
+
+ Within-group standard error:
+ lower   est.  upper 
+4.5900 6.5313 9.2937 
+R> c(2.9567, 7.9576, 21.417)^2 # compare to output 4.7, p. 148
+[1]   8.742  63.323 458.688
+R> fm2Miss <- lme( y ~ Type, data = Mississippi, random = ~ 1 | influent)
+R> summary( fm2Miss )         # compare to output 4.8 and 4.9, pp. 150-152
+Linear mixed-effects model fit by REML
+ Data: Mississippi 
+     AIC    BIC  logLik
+  244.52 252.16 -117.26
+
+Random effects:
+ Formula: ~1 | influent
+        (Intercept) Residual
+StdDev:      3.8691   6.5202
+
+Fixed effects: y ~ Type 
+              Value Std.Error DF t-value p-value
+(Intercept)  36.400    4.8449 31  7.5131  <.0001
+Type1       -20.800    5.9337  3 -3.5054  0.0393
+Type2       -16.462    5.5168  3 -2.9840  0.0584
+ Correlation: 
+      (Intr) Type1 
+Type1 -0.816       
+Type2 -0.878  0.717
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-2.087675 -0.639176 -0.025703  0.705495  2.019144 
+
+Number of Observations: 37
+Number of Groups: 6 
+R> anova( fm2Miss )           # getting a p-value for the Type
+            numDF denDF F-value p-value
+(Intercept)     1    31 121.538  <.0001
+Type            2     3   6.372  0.0832

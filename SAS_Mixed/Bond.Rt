@@ -1,0 +1,49 @@
+R> ### $Id: Bond.Rt,v 1.3 1999/05/27 22:08:41 bates Exp $
+R> ### Analysis of strengths of metal bonds given as data set 1.1 
+R> ### in "SAS System for Mixed Models"
+R> library( lme )
+R> data( Bond )
+R> options( contrasts = c(factor = "contr.SAS", ordered = "contr.poly") )
+R> formula(Bond)                    # check the formula
+pressure ~ 1 | Ingot
+R> fm1Bond <- lme( pressure ~ Metal, data = Bond, random = ~ 1 | Ingot )
+R> summary( fm1Bond )               # compare with output 1.1 on p. 6
+Linear mixed-effects model fit by REML
+ Data: Bond 
+     AIC    BIC  logLik
+  117.79 122.24 -53.895
+
+Random effects:
+ Formula: ~1 | Ingot
+        (Intercept) Residual
+StdDev:      3.3835   3.2205
+
+Fixed effects: pressure ~ Metal 
+             Value Std.Error DF t-value p-value
+(Intercept) 71.100    1.7655 12  40.271  <.0001
+Metalc      -0.914    1.7214 12  -0.531  0.6050
+Metali       4.800    1.7214 12   2.788  0.0164
+ Correlation: 
+       (Intr) Metalc
+Metalc -0.488       
+Metali -0.488  0.500
+
+Standardized Within-Group Residuals:
+     Min       Q1      Med       Q3      Max 
+-1.34712 -0.75825  0.07451  0.48354  1.81566 
+
+Number of Observations: 21
+Number of Groups: 7 
+R> logLik( fm1Bond )                 # log-restricted-likelihood
+[1] -53.895
+R> VarCorr( fm1Bond )                # variance estimates 
+Ingot = pdSymm(1) 
+            Variance StdDev
+(Intercept) 11.448   3.3835
+Residual    10.372   3.2205
+R> ##  To test the need for the Metal term in the fixed effects, 
+R> ##  use anova.
+R> anova( fm1Bond )
+            numDF denDF F-value p-value
+(Intercept)     1    12 2461.43  <.0001
+Metal           2    12    6.36  0.0131

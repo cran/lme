@@ -1,0 +1,180 @@
+R> ### $Id: HR.Rt,v 1.4 1999/05/27 22:08:41 bates Exp $
+R> ### Analysis of the Heart rate data given as data set 3.5 in
+R> ### "SAS System for Mixed Models"
+R> options(contrasts = c(factor = "contr.SAS", ordered = "contr.poly"))
+R> library( lme )
+R> data( HR )
+R> formula(HR)
+HR ~ Time | Patient
+R> fm1HR <- lme( HR ~ Time * Drug + baseHR, data = HR,  # linear trend in time
++    random = ~ Time | Patient )
+R> summary( fm1HR )
+Linear mixed-effects model fit by REML
+ Data: HR 
+    AIC    BIC logLik
+  789.6 819.61 -383.8
+
+Random effects:
+ Formula: ~Time | Patient
+ Structure: General positive-definite
+            StdDev Corr  
+(Intercept) 7.7882 (Intr)
+Time        6.1493 -0.562
+Residual    4.9348       
+
+Fixed effects: HR ~ Time * Drug + baseHR 
+             Value Std.Error DF t-value p-value
+(Intercept) 33.968   10.2880 93  3.3017  0.0014
+Time        -3.197    3.0853 93 -1.0362  0.3028
+Druga        3.600    4.2320 20  0.8506  0.4051
+Drugb        7.091    4.2100 20  1.6844  0.1076
+baseHR       0.544    0.1162 20  4.6773  0.0001
+Time.Druga  -7.501    4.3632 93 -1.7192  0.0889
+Time.Drugb  -3.989    4.3632 93 -0.9143  0.3629
+ Correlation: 
+           (Intr) Time   Druga  Drugb  baseHR Tim.Drg
+Time       -0.162                                    
+Druga      -0.308  0.393                             
+Drugb      -0.244  0.396  0.501                      
+baseHR     -0.957  0.000  0.110  0.041               
+Time.Druga  0.114 -0.707 -0.556 -0.280  0.000        
+Time.Drugb  0.114 -0.707 -0.278 -0.559  0.000  0.500 
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.963167 -0.478476  0.010736  0.513897  2.312322 
+
+Number of Observations: 120
+Number of Groups: 24 
+R> fm2HR <- update( fm1HR, weights = varPower(0) ) # use power-of-mean variance
+R> summary( fm2HR )
+Linear mixed-effects model fit by REML
+ Data: HR 
+     AIC   BIC  logLik
+  788.87 821.6 -382.43
+
+Random effects:
+ Formula: ~Time | Patient
+ Structure: General positive-definite
+            StdDev   Corr  
+(Intercept) 7.835845 (Intr)
+Time        6.582133 -0.543
+Residual    0.031759       
+
+Variance function:
+ Structure: Power of variance covariate
+ Formula: ~fitted(.) 
+ Parameter estimates:
+ power 
+1.1465 
+Fixed effects: HR ~ Time * Drug + baseHR 
+             Value Std.Error DF t-value p-value
+(Intercept) 34.133   10.2692 93  3.3238  0.0013
+Time        -3.723    3.1080 93 -1.1978  0.2340
+Druga        2.956    4.2381 20  0.6976  0.4935
+Drugb        6.726    4.2391 20  1.5866  0.1283
+baseHR       0.543    0.1161 20  4.6758  0.0001
+Time.Druga  -6.222    4.3481 93 -1.4310  0.1558
+Time.Drugb  -3.082    4.4515 93 -0.6923  0.4905
+ Correlation: 
+           (Intr) Time   Druga  Drugb  baseHR Tim.Drg
+Time       -0.170                                    
+Druga      -0.311  0.391                             
+Drugb      -0.245  0.390  0.499                      
+baseHR     -0.957  0.009  0.112  0.043               
+Time.Druga  0.119 -0.715 -0.555 -0.279 -0.004        
+Time.Drugb  0.112 -0.698 -0.272 -0.557  0.000  0.499 
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-2.151298 -0.471400  0.014817  0.505365  2.121697 
+
+Number of Observations: 120
+Number of Groups: 24 
+R> intervals( fm2HR )             # variance function does not seem significant
+Approximate 95% confidence intervals
+
+ Fixed effects:
+                lower     est.    upper
+(Intercept)  13.74040 34.13291 54.52541
+Time         -9.89472 -3.72284  2.44904
+Druga        -5.88413  2.95649 11.79711
+Drugb        -2.11698  6.72562 15.56822
+baseHR        0.30062  0.54274  0.78487
+Time.Druga  -14.85662 -6.22209  2.41245
+Time.Drugb  -11.92161 -3.08174  5.75813
+
+ Random Effects:
+  Level: Patient 
+                        lower     est.    upper
+sd((Intercept))        4.6385  7.83584 13.23722
+sd(Time)               3.0333  6.58213 14.28313
+cor((Intercept),Time) -0.9091 -0.54313  0.29600
+
+ Variance function:
+         lower   est.  upper
+power -0.56034 1.1465 2.8533
+
+ Within-group standard error:
+     lower       est.      upper 
+1.7805e-05 3.1759e-02 5.6650e+01 
+R> anova( fm1HR, fm2HR )         # confirm with likelihood ratio
+      Model df    AIC    BIC  logLik   Test L.Ratio p-value
+fm1HR     1 11 789.61 819.61 -383.80                       
+fm2HR     2 12 788.87 821.59 -382.43 1 vs 2  2.7413  0.0978
+R> anova( fm1HR )                # check significance of fixed-effects terms
+            numDF denDF F-value p-value
+(Intercept)     1    93 3067.29  <.0001
+Time            1    93   15.56  0.0002
+Drug            2    20    1.90  0.1750
+baseHR          1    20   21.88  0.0001
+Time:Drug       2    93    1.48  0.2330
+R> fm3HR <- update( fm1HR, HR ~ Time + Drug + baseHR ) # remove interaction
+R> anova( fm3HR )
+            numDF denDF F-value p-value
+(Intercept)     1    95 3070.16  <.0001
+Time            1    95   14.94  0.0002
+Drug            2    20    1.91  0.1747
+baseHR          1    20   21.89  0.0001
+R> fm4HR <- update( fm3HR, HR ~ Time + baseHR )  # remove Drug term
+R> anova( fm4HR )
+            numDF denDF F-value p-value
+(Intercept)     1    95 2947.99  <.0001
+Time            1    95   14.94   2e-04
+baseHR          1    22   21.96   1e-04
+R> summary( fm4HR )
+Linear mixed-effects model fit by REML
+ Data: HR 
+     AIC    BIC  logLik
+  805.15 824.48 -395.57
+
+Random effects:
+ Formula: ~Time | Patient
+ Structure: General positive-definite
+            StdDev Corr  
+(Intercept) 7.9389 (Intr)
+Time        6.3998 -0.553
+Residual    4.9357       
+
+Fixed effects: HR ~ Time + baseHR 
+             Value Std.Error DF t-value p-value
+(Intercept) 36.932    9.9015 95  3.7299   3e-04
+Time        -7.027    1.8178 95 -3.8658   2e-04
+baseHR       0.551    0.1175 22  4.6857   1e-04
+ Correlation: 
+       (Intr) Time  
+Time   -0.098       
+baseHR -0.984  0.000
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-2.112002 -0.487781 -0.031794  0.424013  2.412048 
+
+Number of Observations: 120
+Number of Groups: 24 
+R> VarCorr( fm4HR )
+Patient = pdSymm(Time) 
+            Variance StdDev Corr  
+(Intercept) 63.026   7.9389 (Intr)
+Time        40.958   6.3998 -0.553
+Residual    24.361   4.9357       

@@ -1,0 +1,40 @@
+### $Id: Semiconductor.q,v 1.2 1999/06/23 22:05:17 bates Exp $
+### Resistance in a semiconductor - data set 2.2(b) in
+### "SAS System for Mixed Models"
+"Semiconductor" <-
+  structure(list(
+  resistance = c(5.22, 5.61, 6.11, 6.33, 6.13, 6.14, 
+    5.6, 5.91, 5.49, 4.6, 4.95, 5.42, 5.78, 6.52, 5.9, 5.67, 5.77, 
+    6.23, 5.57, 5.96, 6.43, 5.81, 5.83, 6.12, 5.66, 6.25, 5.46, 5.08, 
+    6.53, 6.5, 6.23, 6.84, 6.22, 6.29, 5.63, 6.36, 6.75, 6.97, 6.02, 
+    6.88, 6.22, 6.54, 6.12, 6.61, 6.05, 6.15, 5.55, 6.13),
+ET = structure(factor(c(1, 
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 
+  2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 
+  4, 4, 4, 4, 4), levels=1:4),
+  class = "factor", .Label = c("1", "2", "3", "4")),
+Wafer = structure(factor(c(1, 1, 1, 1, 2, 2, 
+  2, 2, 3, 3, 3, 3, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 1, 1, 1, 
+  1, 2, 2, 2, 2, 3, 3, 3, 3, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3
+  ), levels=1:3),
+  class = "factor", .Label = c("1", "2", "3")),
+position = structure(factor(c(1, 
+  2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 
+  3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 
+  4, 1, 2, 3, 4), levels=1:4), class = "factor",
+  .Label = c("1", "2", "3", "4")),
+Grp = structure(factor(c(1, 1, 1, 1, 2, 2, 2, 
+  2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 
+  8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 
+  12, 12), levels=1:12),
+  class = c("ordered", "factor"),
+  .Label = c("1/1", 
+    "1/2", "1/3", "2/1", "2/2", "2/3", "3/1", "3/2", "3/3", "4/1", 
+    "4/2", "4/3"))),
+row.names = 1:48,
+class = c("nffGroupedData", "nfGroupedData", "groupedData", "data.frame"),
+formula = resistance ~ 1 | Grp,
+outer = ~ET,
+inner = ~position,
+FUN = function (x) mean(x, na.rm = T),
+order.groups = TRUE)

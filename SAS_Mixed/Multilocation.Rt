@@ -1,0 +1,488 @@
+R> ### $Id: Multilocation.Rt,v 1.2 1998/06/29 21:45:12 bates Exp $
+R> ### Analysis of the Multilocation data with fixed effects for the locations
+R> ### Data is given as data set 2.8 in "SAS System for Mixed Models"
+R> library( lme )
+R> data( Multilocation )
+R> options( contrasts = c(factor = "contr.SAS", ordered = "contr.poly") )
+R> formula( Multilocation )
+Adj ~ 1 | Location/Block
+R> names( Multilocation )
+[1] "obs"      "Location" "Block"    "Trt"      "Adj"     
+[6] "Fe"       "Grp"     
+R> ### Create a Block %in% Location factor
+R> Multilocation$Grp <-
++   getGroups( Multilocation, form = ~ Location/Block, level = 2 )
+R> fm1Mult <- lme( Adj ~ Location * Trt, data = Multilocation, ~ 1 | Grp )
+R> summary( fm1Mult )
+Linear mixed-effects model fit by maximum likelihood
+ Data: Multilocation 
+      AIC    BIC logLik
+  -11.146 90.775 43.573
+
+Random effects:
+ Formula: ~1 | Grp
+        (Intercept) Residual
+StdDev:    0.061206  0.15183
+
+Fixed effects: Adj ~ Location * Trt 
+                Value Std.Error z-value p-value
+(Intercept)     3.373     0.095  35.691   0.000
+LocationB      -0.948     0.134  -7.089   0.000
+LocationD      -0.640     0.134  -4.787   0.000
+LocationE      -0.464     0.134  -3.472   0.001
+LocationI      -1.014     0.134  -7.586   0.000
+LocationG      -0.653     0.134  -4.889   0.000
+LocationA      -0.365     0.134  -2.729   0.006
+LocationC      -0.469     0.134  -3.507   0.000
+LocationF      -0.016     0.134  -0.119   0.905
+Trt1            0.078     0.124   0.627   0.531
+Trt2           -0.332     0.124  -2.678   0.007
+Trt3            0.051     0.124   0.413   0.680
+LocationB.Trt1 -0.126     0.175  -0.717   0.473
+LocationD.Trt1 -0.386     0.175  -2.199   0.028
+LocationE.Trt1 -0.113     0.175  -0.647   0.518
+LocationI.Trt1  0.150     0.175   0.853   0.394
+LocationG.Trt1  0.353     0.175   2.012   0.044
+LocationA.Trt1 -0.039     0.175  -0.222   0.824
+LocationC.Trt1  0.110     0.175   0.625   0.532
+LocationF.Trt1 -0.122     0.175  -0.696   0.487
+LocationB.Trt2  0.008     0.175   0.045   0.964
+LocationD.Trt2  0.034     0.175   0.192   0.848
+LocationE.Trt2  0.024     0.175   0.135   0.893
+LocationI.Trt2  0.331     0.175   1.886   0.059
+LocationG.Trt2  0.222     0.175   1.266   0.205
+LocationA.Trt2  0.237     0.175   1.353   0.176
+LocationC.Trt2  0.420     0.175   2.397   0.017
+LocationF.Trt2  0.021     0.175   0.118   0.906
+LocationB.Trt3 -0.193     0.175  -1.104   0.270
+LocationD.Trt3 -0.176     0.175  -1.006   0.314
+LocationE.Trt3  0.043     0.175   0.248   0.804
+LocationI.Trt3  0.372     0.175   2.122   0.034
+LocationG.Trt3  0.119     0.175   0.679   0.497
+LocationA.Trt3 -0.030     0.175  -0.174   0.862
+LocationC.Trt3  0.250     0.175   1.424   0.155
+LocationF.Trt3 -0.091     0.175  -0.516   0.606
+ Correlation: 
+               (Intr) LoctnB LoctnD LoctnE LoctnI LoctnG LoctnA
+LocationB      -0.707                                          
+LocationD      -0.707  0.500                                   
+LocationE      -0.707  0.500  0.500                            
+LocationI      -0.707  0.500  0.500  0.500                     
+LocationG      -0.707  0.500  0.500  0.500  0.500              
+LocationA      -0.707  0.500  0.500  0.500  0.500  0.500       
+LocationC      -0.707  0.500  0.500  0.500  0.500  0.500  0.500
+LocationF      -0.707  0.500  0.500  0.500  0.500  0.500  0.500
+Trt1           -0.656  0.464  0.464  0.464  0.464  0.464  0.464
+Trt2           -0.656  0.464  0.464  0.464  0.464  0.464  0.464
+Trt3           -0.656  0.464  0.464  0.464  0.464  0.464  0.464
+LocationB.Trt1  0.464 -0.656 -0.328 -0.328 -0.328 -0.328 -0.328
+LocationD.Trt1  0.464 -0.328 -0.656 -0.328 -0.328 -0.328 -0.328
+LocationE.Trt1  0.464 -0.328 -0.328 -0.656 -0.328 -0.328 -0.328
+LocationI.Trt1  0.464 -0.328 -0.328 -0.328 -0.656 -0.328 -0.328
+LocationG.Trt1  0.464 -0.328 -0.328 -0.328 -0.328 -0.656 -0.328
+LocationA.Trt1  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.656
+LocationC.Trt1  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.328
+LocationF.Trt1  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.328
+LocationB.Trt2  0.464 -0.656 -0.328 -0.328 -0.328 -0.328 -0.328
+LocationD.Trt2  0.464 -0.328 -0.656 -0.328 -0.328 -0.328 -0.328
+LocationE.Trt2  0.464 -0.328 -0.328 -0.656 -0.328 -0.328 -0.328
+LocationI.Trt2  0.464 -0.328 -0.328 -0.328 -0.656 -0.328 -0.328
+LocationG.Trt2  0.464 -0.328 -0.328 -0.328 -0.328 -0.656 -0.328
+LocationA.Trt2  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.656
+LocationC.Trt2  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.328
+LocationF.Trt2  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.328
+LocationB.Trt3  0.464 -0.656 -0.328 -0.328 -0.328 -0.328 -0.328
+LocationD.Trt3  0.464 -0.328 -0.656 -0.328 -0.328 -0.328 -0.328
+LocationE.Trt3  0.464 -0.328 -0.328 -0.656 -0.328 -0.328 -0.328
+LocationI.Trt3  0.464 -0.328 -0.328 -0.328 -0.656 -0.328 -0.328
+LocationG.Trt3  0.464 -0.328 -0.328 -0.328 -0.328 -0.656 -0.328
+LocationA.Trt3  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.656
+LocationC.Trt3  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.328
+LocationF.Trt3  0.464 -0.328 -0.328 -0.328 -0.328 -0.328 -0.328
+               LoctnC LoctnF Trt1   Trt2   Trt3   LcB.T1 LcD.T1
+LocationB                                                      
+LocationD                                                      
+LocationE                                                      
+LocationI                                                      
+LocationG                                                      
+LocationA                                                      
+LocationC                                                      
+LocationF       0.500                                          
+Trt1            0.464  0.464                                   
+Trt2            0.464  0.464  0.500                            
+Trt3            0.464  0.464  0.500  0.500                     
+LocationB.Trt1 -0.328 -0.328 -0.707 -0.354 -0.354              
+LocationD.Trt1 -0.328 -0.328 -0.707 -0.354 -0.354  0.500       
+LocationE.Trt1 -0.328 -0.328 -0.707 -0.354 -0.354  0.500  0.500
+LocationI.Trt1 -0.328 -0.328 -0.707 -0.354 -0.354  0.500  0.500
+LocationG.Trt1 -0.328 -0.328 -0.707 -0.354 -0.354  0.500  0.500
+LocationA.Trt1 -0.328 -0.328 -0.707 -0.354 -0.354  0.500  0.500
+LocationC.Trt1 -0.656 -0.328 -0.707 -0.354 -0.354  0.500  0.500
+LocationF.Trt1 -0.328 -0.656 -0.707 -0.354 -0.354  0.500  0.500
+LocationB.Trt2 -0.328 -0.328 -0.354 -0.707 -0.354  0.500  0.250
+LocationD.Trt2 -0.328 -0.328 -0.354 -0.707 -0.354  0.250  0.500
+LocationE.Trt2 -0.328 -0.328 -0.354 -0.707 -0.354  0.250  0.250
+LocationI.Trt2 -0.328 -0.328 -0.354 -0.707 -0.354  0.250  0.250
+LocationG.Trt2 -0.328 -0.328 -0.354 -0.707 -0.354  0.250  0.250
+LocationA.Trt2 -0.328 -0.328 -0.354 -0.707 -0.354  0.250  0.250
+LocationC.Trt2 -0.656 -0.328 -0.354 -0.707 -0.354  0.250  0.250
+LocationF.Trt2 -0.328 -0.656 -0.354 -0.707 -0.354  0.250  0.250
+LocationB.Trt3 -0.328 -0.328 -0.354 -0.354 -0.707  0.500  0.250
+LocationD.Trt3 -0.328 -0.328 -0.354 -0.354 -0.707  0.250  0.500
+LocationE.Trt3 -0.328 -0.328 -0.354 -0.354 -0.707  0.250  0.250
+LocationI.Trt3 -0.328 -0.328 -0.354 -0.354 -0.707  0.250  0.250
+LocationG.Trt3 -0.328 -0.328 -0.354 -0.354 -0.707  0.250  0.250
+LocationA.Trt3 -0.328 -0.328 -0.354 -0.354 -0.707  0.250  0.250
+LocationC.Trt3 -0.656 -0.328 -0.354 -0.354 -0.707  0.250  0.250
+LocationF.Trt3 -0.328 -0.656 -0.354 -0.354 -0.707  0.250  0.250
+               LcE.T1 LcI.T1 LcG.T1 LcA.T1 LcC.T1 LcF.T1 LcB.T2
+LocationB                                                      
+LocationD                                                      
+LocationE                                                      
+LocationI                                                      
+LocationG                                                      
+LocationA                                                      
+LocationC                                                      
+LocationF                                                      
+Trt1                                                           
+Trt2                                                           
+Trt3                                                           
+LocationB.Trt1                                                 
+LocationD.Trt1                                                 
+LocationE.Trt1                                                 
+LocationI.Trt1  0.500                                          
+LocationG.Trt1  0.500  0.500                                   
+LocationA.Trt1  0.500  0.500  0.500                            
+LocationC.Trt1  0.500  0.500  0.500  0.500                     
+LocationF.Trt1  0.500  0.500  0.500  0.500  0.500              
+LocationB.Trt2  0.250  0.250  0.250  0.250  0.250  0.250       
+LocationD.Trt2  0.250  0.250  0.250  0.250  0.250  0.250  0.500
+LocationE.Trt2  0.500  0.250  0.250  0.250  0.250  0.250  0.500
+LocationI.Trt2  0.250  0.500  0.250  0.250  0.250  0.250  0.500
+LocationG.Trt2  0.250  0.250  0.500  0.250  0.250  0.250  0.500
+LocationA.Trt2  0.250  0.250  0.250  0.500  0.250  0.250  0.500
+LocationC.Trt2  0.250  0.250  0.250  0.250  0.500  0.250  0.500
+LocationF.Trt2  0.250  0.250  0.250  0.250  0.250  0.500  0.500
+LocationB.Trt3  0.250  0.250  0.250  0.250  0.250  0.250  0.500
+LocationD.Trt3  0.250  0.250  0.250  0.250  0.250  0.250  0.250
+LocationE.Trt3  0.500  0.250  0.250  0.250  0.250  0.250  0.250
+LocationI.Trt3  0.250  0.500  0.250  0.250  0.250  0.250  0.250
+LocationG.Trt3  0.250  0.250  0.500  0.250  0.250  0.250  0.250
+LocationA.Trt3  0.250  0.250  0.250  0.500  0.250  0.250  0.250
+LocationC.Trt3  0.250  0.250  0.250  0.250  0.500  0.250  0.250
+LocationF.Trt3  0.250  0.250  0.250  0.250  0.250  0.500  0.250
+               LcD.T2 LcE.T2 LcI.T2 LcG.T2 LcA.T2 LcC.T2 LcF.T2
+LocationB                                                      
+LocationD                                                      
+LocationE                                                      
+LocationI                                                      
+LocationG                                                      
+LocationA                                                      
+LocationC                                                      
+LocationF                                                      
+Trt1                                                           
+Trt2                                                           
+Trt3                                                           
+LocationB.Trt1                                                 
+LocationD.Trt1                                                 
+LocationE.Trt1                                                 
+LocationI.Trt1                                                 
+LocationG.Trt1                                                 
+LocationA.Trt1                                                 
+LocationC.Trt1                                                 
+LocationF.Trt1                                                 
+LocationB.Trt2                                                 
+LocationD.Trt2                                                 
+LocationE.Trt2  0.500                                          
+LocationI.Trt2  0.500  0.500                                   
+LocationG.Trt2  0.500  0.500  0.500                            
+LocationA.Trt2  0.500  0.500  0.500  0.500                     
+LocationC.Trt2  0.500  0.500  0.500  0.500  0.500              
+LocationF.Trt2  0.500  0.500  0.500  0.500  0.500  0.500       
+LocationB.Trt3  0.250  0.250  0.250  0.250  0.250  0.250  0.250
+LocationD.Trt3  0.500  0.250  0.250  0.250  0.250  0.250  0.250
+LocationE.Trt3  0.250  0.500  0.250  0.250  0.250  0.250  0.250
+LocationI.Trt3  0.250  0.250  0.500  0.250  0.250  0.250  0.250
+LocationG.Trt3  0.250  0.250  0.250  0.500  0.250  0.250  0.250
+LocationA.Trt3  0.250  0.250  0.250  0.250  0.500  0.250  0.250
+LocationC.Trt3  0.250  0.250  0.250  0.250  0.250  0.500  0.250
+LocationF.Trt3  0.250  0.250  0.250  0.250  0.250  0.250  0.500
+               LcB.T3 LcD.T3 LcE.T3 LcI.T3 LcG.T3 LcA.T3 LcC.T3
+LocationB                                                      
+LocationD                                                      
+LocationE                                                      
+LocationI                                                      
+LocationG                                                      
+LocationA                                                      
+LocationC                                                      
+LocationF                                                      
+Trt1                                                           
+Trt2                                                           
+Trt3                                                           
+LocationB.Trt1                                                 
+LocationD.Trt1                                                 
+LocationE.Trt1                                                 
+LocationI.Trt1                                                 
+LocationG.Trt1                                                 
+LocationA.Trt1                                                 
+LocationC.Trt1                                                 
+LocationF.Trt1                                                 
+LocationB.Trt2                                                 
+LocationD.Trt2                                                 
+LocationE.Trt2                                                 
+LocationI.Trt2                                                 
+LocationG.Trt2                                                 
+LocationA.Trt2                                                 
+LocationC.Trt2                                                 
+LocationF.Trt2                                                 
+LocationB.Trt3                                                 
+LocationD.Trt3  0.500                                          
+LocationE.Trt3  0.500  0.500                                   
+LocationI.Trt3  0.500  0.500  0.500                            
+LocationG.Trt3  0.500  0.500  0.500  0.500                     
+LocationA.Trt3  0.500  0.500  0.500  0.500  0.500              
+LocationC.Trt3  0.500  0.500  0.500  0.500  0.500  0.500       
+LocationF.Trt3  0.500  0.500  0.500  0.500  0.500  0.500  0.500
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-2.48710878 -0.51690294 -0.00094981  0.55423741  3.29724027 
+
+Number of Observations: 108
+Number of Groups: 27 
+R> fm2Mult <- update( fm1Mult, Adj ~ Location + Trt )
+R> fm3Mult <- update( fm1Mult, Adj ~ Location )
+R> fm4Mult <- update( fm1Mult, Adj ~ Trt )
+R> fm5Mult <- update( fm1Mult, Adj ~ 1 )
+R> anova( fm1Mult, fm2Mult, fm3Mult, fm5Mult )
+        Model df AIC     BIC    logLik  Test    Lik.Ratio
+fm1Mult 1     38 -11.146 90.775  43.573                  
+fm2Mult 2     14 -24.504 13.046  26.252 1 vs. 2 34.642   
+fm3Mult 3     11  -0.956 28.547  11.478 2 vs. 3 29.548   
+fm5Mult 4      3  49.731 57.777 -21.865 3 vs. 4 66.687   
+        p-value 
+fm1Mult         
+fm2Mult 0.073883
+fm3Mult 0.000002
+fm5Mult 0.000000
+R> anova( fm1Mult, fm2Mult, fm4Mult, fm5Mult )
+        Model df AIC     BIC    logLik  Test    Lik.Ratio
+fm1Mult 1     38 -11.146 90.775  43.573                  
+fm2Mult 2     14 -24.504 13.046  26.252 1 vs. 2 34.642   
+fm4Mult 3      6  26.951 43.044  -7.476 2 vs. 3 67.455   
+fm5Mult 4      3  49.731 57.777 -21.865 3 vs. 4 28.780   
+        p-value 
+fm1Mult         
+fm2Mult 0.073883
+fm4Mult 0.000000
+fm5Mult 0.000002
+R> ### AIC, BIC, and likelihood ratio tests all prefer model fm2Mult
+R> summary( fm2Mult )
+Linear mixed-effects model fit by maximum likelihood
+ Data: Multilocation 
+      AIC    BIC logLik
+  -24.504 13.046 26.252
+
+Random effects:
+ Formula: ~1 | Grp
+        (Intercept) Residual
+StdDev:    0.025893  0.18803
+
+Fixed effects: Adj ~ Location + Trt 
+             Value Std.Error z-value p-value
+(Intercept)  3.334     0.064  51.741   0.000
+LocationB   -1.025     0.080 -12.879   0.000
+LocationD   -0.772     0.080  -9.696   0.000
+LocationE   -0.476     0.080  -5.974   0.000
+LocationI   -0.801     0.080 -10.060   0.000
+LocationG   -0.480     0.080  -6.029   0.000
+LocationA   -0.323     0.080  -4.054   0.000
+LocationC   -0.274     0.080  -3.440   0.001
+LocationF   -0.064     0.080  -0.803   0.422
+Trt1         0.058     0.051   1.140   0.254
+Trt2        -0.188     0.051  -3.674   0.000
+Trt3         0.084     0.051   1.637   0.102
+ Correlation: 
+          (Intr) LoctnB LoctnD LoctnE LoctnI LoctnG LoctnA
+LocationB -0.618                                          
+LocationD -0.618  0.500                                   
+LocationE -0.618  0.500  0.500                            
+LocationI -0.618  0.500  0.500  0.500                     
+LocationG -0.618  0.500  0.500  0.500  0.500              
+LocationA -0.618  0.500  0.500  0.500  0.500  0.500       
+LocationC -0.618  0.500  0.500  0.500  0.500  0.500  0.500
+LocationF -0.618  0.500  0.500  0.500  0.500  0.500  0.500
+Trt1      -0.397  0.000  0.000  0.000  0.000  0.000  0.000
+Trt2      -0.397  0.000  0.000  0.000  0.000  0.000  0.000
+Trt3      -0.397  0.000  0.000  0.000  0.000  0.000  0.000
+          LoctnC LoctnF Trt1   Trt2  
+LocationB                            
+LocationD                            
+LocationE                            
+LocationI                            
+LocationG                            
+LocationA                            
+LocationC                            
+LocationF  0.500                     
+Trt1       0.000  0.000              
+Trt2       0.000  0.000  0.500       
+Trt3       0.000  0.000  0.500  0.500
+
+Standardized Within-Group Residuals:
+     Min       Q1      Med       Q3      Max 
+-2.12535 -0.65599 -0.09219  0.61603  2.93451 
+
+Number of Observations: 108
+Number of Groups: 27 
+R> fm2RMult <- update( fm2Mult, REML = TRUE ) # get REML estimates
+R> summary( fm2RMult )
+Linear mixed-effects model fit by REML
+ Data: Multilocation 
+     AIC  BIC logLik
+  21.999 57.9 3.0005
+
+Random effects:
+ Formula: ~1 | Grp
+        (Intercept) Residual
+StdDev:     0.07131  0.19161
+
+Fixed effects: Adj ~ Location + Trt 
+             Value Std.Error z-value p-value
+(Intercept)  3.334     0.076  43.873   0.000
+LocationB   -1.025     0.098 -10.515   0.000
+LocationD   -0.772     0.098  -7.916   0.000
+LocationE   -0.476     0.098  -4.877   0.000
+LocationI   -0.801     0.098  -8.214   0.000
+LocationG   -0.480     0.098  -4.922   0.000
+LocationA   -0.323     0.098  -3.310   0.001
+LocationC   -0.274     0.098  -2.809   0.005
+LocationF   -0.064     0.098  -0.655   0.512
+Trt1         0.058     0.052   1.119   0.263
+Trt2        -0.188     0.052  -3.605   0.000
+Trt3         0.084     0.052   1.607   0.108
+ Correlation: 
+          (Intr) LoctnB LoctnD LoctnE LoctnI LoctnG LoctnA
+LocationB -0.642                                          
+LocationD -0.642  0.500                                   
+LocationE -0.642  0.500  0.500                            
+LocationI -0.642  0.500  0.500  0.500                     
+LocationG -0.642  0.500  0.500  0.500  0.500              
+LocationA -0.642  0.500  0.500  0.500  0.500  0.500       
+LocationC -0.642  0.500  0.500  0.500  0.500  0.500  0.500
+LocationF -0.642  0.500  0.500  0.500  0.500  0.500  0.500
+Trt1      -0.343  0.000  0.000  0.000  0.000  0.000  0.000
+Trt2      -0.343  0.000  0.000  0.000  0.000  0.000  0.000
+Trt3      -0.343  0.000  0.000  0.000  0.000  0.000  0.000
+          LoctnC LoctnF Trt1   Trt2  
+LocationB                            
+LocationD                            
+LocationE                            
+LocationI                            
+LocationG                            
+LocationA                            
+LocationC                            
+LocationF  0.500                     
+Trt1       0.000  0.000              
+Trt2       0.000  0.000  0.500       
+Trt3       0.000  0.000  0.500  0.500
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-2.060304 -0.658867 -0.059717  0.609822  2.621084 
+
+Number of Observations: 108
+Number of Groups: 27 
+R> ### Treating the location as a random effect
+R> fm1MultR <- lme( Adj ~ Trt, data = Multilocation,
++   random = list( Location = pdCompSymm( ~ Trt - 1 ), Block = ~ 1 ) )
+R> summary( fm1MultR )
+Linear mixed-effects model fit by maximum likelihood
+ Data: Multilocation 
+     AIC    BIC logLik
+  2.3564 23.813 6.8218
+
+Random effects:
+ Formula: ~Trt - 1 | Location
+ Structure: Compound Symmetry
+     StdDev  Corr             
+Trt1 0.31933                  
+Trt2 0.31933 0.992            
+Trt3 0.31933 0.992 0.992      
+Trt4 0.31933 0.992 0.992 0.992
+
+ Formula: ~1 | Block %in% Location
+        (Intercept) Residual
+StdDev:    0.074962  0.18595
+
+Fixed effects: Adj ~ Trt 
+              Value Std.Error z-value p-value
+(Intercept)  2.8657    0.1132 25.3104  0.0000
+Trt1         0.0583    0.0523  1.1158  0.2645
+Trt2        -0.1880    0.0523 -3.5959  0.0003
+Trt3         0.0838    0.0523  1.6024  0.1091
+ Correlation: 
+     (Intr) Trt1   Trt2  
+Trt1 -0.231              
+Trt2 -0.231  0.500       
+Trt3 -0.231  0.500  0.500
+
+Standardized Within-Group Residuals:
+     Min       Q1      Med       Q3      Max 
+-2.09775 -0.64759 -0.06221  0.58966  2.61905 
+
+Number of Observations: 108
+Number of Groups: 
+           Location Block %in% Location 
+                  9                  27 
+R> fm2MultR <- update( fm1MultR, random = list( Location = ~ Trt - 1, Block = ~ 1 ))
+R> anova( fm1MultR, fm2MultR )
+         Model df AIC     BIC    logLik Test    Lik.Ratio
+fm1MultR 1      8  2.3564 23.813 6.8218                  
+fm2MultR 2     16 15.8244 58.739 8.0878 1 vs. 2 2.5320   
+         p-value
+fm1MultR        
+fm2MultR 0.96022
+R> ## No indication that a general variance-covariance is preferred to
+R> ## a compound symmetry structure.
+R> fm1RMultR <- update( fm1MultR, REML = TRUE )
+R> summary( fm1RMultR )
+Linear mixed-effects model fit by REML
+ Data: Multilocation 
+     AIC    BIC   logLik
+  17.613 38.768 -0.80661
+
+Random effects:
+ Formula: ~Trt - 1 | Location
+ Structure: Compound Symmetry
+     StdDev  Corr          
+Trt1 0.34116               
+Trt2 0.34116 0.98          
+Trt3 0.34116 0.98 0.98     
+Trt4 0.34116 0.98 0.98 0.98
+
+ Formula: ~1 | Block %in% Location
+        (Intercept) Residual
+StdDev:    0.074962  0.18595
+
+Fixed effects: Adj ~ Trt 
+              Value Std.Error z-value p-value
+(Intercept)  2.8657    0.1201 23.8628  0.0000
+Trt1         0.0583    0.0555  1.0520  0.2928
+Trt2        -0.1880    0.0555 -3.3903  0.0007
+Trt3         0.0838    0.0555  1.5107  0.1309
+ Correlation: 
+     (Intr) Trt1   Trt2  
+Trt1 -0.231              
+Trt2 -0.231  0.500       
+Trt3 -0.231  0.500  0.500
+
+Standardized Within-Group Residuals:
+      Min        Q1       Med        Q3       Max 
+-1.983723 -0.674349 -0.030877  0.538807  2.627174 
+
+Number of Observations: 108
+Number of Groups: 
+           Location Block %in% Location 
+                  9                  27 
+R> c( 0.34116, 0.07497, 0.18595)^2  # compare with estimates, p. 84
+[1] 0.1163901 0.0056205 0.0345774
